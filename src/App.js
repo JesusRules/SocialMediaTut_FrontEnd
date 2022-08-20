@@ -7,6 +7,7 @@ import jwtDecode from 'jwt-decode'
 
 //Components
 import Navbar from './components/Navbar.js'
+import AuthRoute from './util/AuthRoute.js'
 
 //Pages
 import Home from './pages/home.js';
@@ -17,7 +18,7 @@ const theme = createTheme(themeFile)
 
 const token = localStorage.FBIdToken;
 
-let authenticated;
+let authenticated = true;
 if (token){
   const decodedToken = jwtDecode(token);
   if (decodedToken.exp * 1000 < Date.now()) {
@@ -26,20 +27,28 @@ if (token){
   } else {
     authenticated = true;
   }
-  
 }
 
 function App() {
   return (
     <ThemeProvider  theme={theme}>
       <div className="App">
-      <Router> {/* Browser Router */}
+      <Router>
       <Navbar />
       <div className="container">
-        <Routes> {/* Switch */}
+        <Routes>
           <Route exact path='/' element={<Home />} />
-          <Route path='/login' element={<Login />} />
-          <Route path='/signup' element={<Signup />} />
+          
+          <Route element={<AuthRoute authenticated={authenticated} />}>
+            <Route path='/login' element={<Login />}/>
+          </Route>
+
+          <Route element={<AuthRoute authenticated={authenticated} />}>
+            <Route path='/signup' element={<Signup />} />
+          </Route>
+
+          {/* <AuthRoute exact path='/login' element={<Login />} authenticated={authenticated}/>
+          <AuthRoute exact path='/signup' element={<Signup />} authenticated={authenticated}/> */}
         </Routes>
       </div>
       </Router>
