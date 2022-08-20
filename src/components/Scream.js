@@ -3,6 +3,8 @@ import {Typography } from '@mui/material';
 // import withStyles from '@mui/material';
 import {Link} from 'react-router-dom'
 import '../App.css';
+import dayjs from'dayjs'
+import relativeTime from 'dayjs/plugin/relativeTime'
 
 // MUI Stuff
 import Card from '@mui/material/Card';
@@ -16,10 +18,11 @@ const styles = {
         marginBottom: 20,
     },
     image:{
-        minWidth: 200
+        minWidth: 200,
     },
     content:{
-        padding: 25
+        padding: 25,
+        objectFit: 'cover'
     }
 }
 
@@ -28,6 +31,7 @@ class Scream extends Component {
       const { classes, scream : {body, createdAt, userImage, 
         userHandle, screamId, likeCount, commentCount} } = this.props;
     //   const classes = this.props.classes;
+    dayjs.extend(relativeTime);
     return (
       <Card style={styles.card}>
         <CardMedia
@@ -35,7 +39,7 @@ class Scream extends Component {
         title="Profile image" style={styles.image}/>
         <CardContent style={styles.content}>
             <Typography variant="h5" component={Link} to={`users/${userHandle}`} color="primary">{userHandle}</Typography>
-            <Typography variant="body2" color="textSecondary">{createdAt}</Typography>
+            <Typography variant="body2" color="textSecondary">{dayjs(createdAt).fromNow()}</Typography>
             <Typography variant="body1">{body}</Typography>
         </CardContent>
       </Card>

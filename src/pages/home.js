@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import Grid from '@mui/material/Grid';
+import Button from '@mui/material/Button';
+import {Link} from 'react-router-dom'
 import { useEffect } from 'react'
 import axios from 'axios'
 import { render } from '@testing-library/react';
@@ -15,7 +17,6 @@ class home extends Component {
     {
         axios.get('https://us-central1-socialape-14d54.cloudfunctions.net/api/screams')
         .then(res => {
-            console.log(res.data);
             this.setState({
                 screams: res.data,
             })
@@ -26,7 +27,7 @@ class home extends Component {
     }
     render() {
         let recentScreamsMarkup = this.state.screams ? (
-            this.state.screams.map(scream => <Scream scream={scream}/>)
+            this.state.screams.map(scream => <Scream key={scream.screamId} scream={scream}/>)
         ) : <p>Loading...</p>
     return (
         <Grid container spacing={16}>
