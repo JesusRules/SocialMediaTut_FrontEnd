@@ -3,6 +3,7 @@ import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import {Link} from 'react-router-dom'
 import { useEffect } from 'react'
+import { useParams, Navigate, useNavigate } from 'react-router-dom';
 import axios from 'axios'
 import { render } from '@testing-library/react';
 
@@ -17,6 +18,7 @@ class home extends Component {
     {
         axios.get('https://us-central1-socialape-14d54.cloudfunctions.net/api/screams')
         .then(res => {
+            <Navigate to="/login" />
             this.setState({
                 screams: res.data,
             })

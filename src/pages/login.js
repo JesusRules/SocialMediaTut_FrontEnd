@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { useParams, Navigate, useNavigate } from 'react-router-dom';
 // import withStyles from '@material-ui/core/styles/withStyles';
 import PropTypes from 'prop-types';
 import AppIcon from '../images/icon.png';
@@ -10,8 +11,11 @@ import Button from '@mui/material/Button';
 import axios from 'axios';
 import {Link} from 'react-router-dom'
 import CircularProgress from '@mui/material/CircularProgress';
-import { useNavigate, Navigate } from 'react-router-dom';
+import withRouter from "react-router";
 
+// const styles = (theme) => ({
+//   ...theme
+// })
 const styles = {
   form: {
     textAlign: 'center',
@@ -39,20 +43,8 @@ const styles = {
   }
 }
 
-// function NavigateFunc() {
-//   const navigate = useNavigate();
-//   const  logout = () =>{
-//       localStorage.removeItem('logged');
-//       navigate('/login')
-//   }
-
-//   return(
-//       <Bouton typeBtn = 'btn-danger' click={() => logout()}>Deconnexion</Bouton>
-//   )
-// }
 
 export class login extends Component {
-  
   constructor(){
     super();
     this.state = {
@@ -62,11 +54,12 @@ export class login extends Component {
       errors: {}
     }
   }
+  
+
+  
   handleSubmit = (event) => {
     event.preventDefault();
-    let navigate = useNavigate();
-    return <Navigate to= '/' />;
-    this.props.history.push('/');
+
     this.setState({
       loading: true
     });
@@ -77,10 +70,12 @@ export class login extends Component {
     axios.post('https://us-central1-socialape-14d54.cloudfunctions.net/api/login', userData)
     .then(res => {
       console.log(res.data); //axios is res.data
+      localStorage.setItem('FBIdToken', `Bearer ${res.data.token}`);
       this.setState({ //if post is successful, set loading off
         loading: false
       });
-      navigate('/');
+      // this.props.history.push('/');
+      window.location.href = '/';
     })
     .catch(err => {
       this.setState({
@@ -95,10 +90,10 @@ export class login extends Component {
       [event.target.name]: event.target.value
     });
   }
+
   render() {
     const { classes } = this.props;
     const {errors, loading} = this.state;
-
     return (
       <Grid container style={styles.form}>
         <Grid item sm/>
@@ -108,6 +103,7 @@ export class login extends Component {
             Login
           </Typography>
           <form noValidate onSubmit={this.handleSubmit}>
+
             <TextField id="email" name="email" type="email" label="Email" 
             helperText={errors.email} error={errors.email ? true : false} style={styles.textField}
             value={this.state.email} variant="standard" onChange={this.handleChange} fullWidth/>
@@ -137,9 +133,9 @@ export class login extends Component {
   }
 }
 
-login.propTypes = {
-  classes: PropTypes.object.isRequired
-}
+// login.propTypes = {
+//   classes: PropTypes.object.isRequired
+// }
 
-export default login
-// export default withStyles(styles)(login)
+// export default login
+export default login;
