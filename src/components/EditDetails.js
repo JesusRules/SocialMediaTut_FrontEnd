@@ -1,14 +1,14 @@
 import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types';
 // import withStyles from 'asd'
-
+import MyButton from '../util/MyButton.js'
+import { Tooltip } from '@mui/material';
+import { IconButton } from '@mui/material';
 //Redux stuff
 import { connect } from 'react-redux';
 import { editUserDetails } from '../redux/actions/userActions.js';
 
 //MUI stuff
-import { Tooltip } from '@mui/material';
-import { IconButton } from '@mui/material';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
@@ -108,11 +108,9 @@ class EditDetails extends Component {
     return (
       <Fragment>
 
-        <Tooltip title="Edit details" placement="top">
-          <IconButton onClick={this.handleOpen} style={styles.button}>
+        <MyButton tip="Edit Details" onClick={this.handleOpen} style={styles.button}>
             <EditIcon color="primary"/>
-          </IconButton>
-        </Tooltip>
+        </MyButton>
 
         <Dialog
         open={this.state.open}

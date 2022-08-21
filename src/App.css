@@ -15,6 +15,9 @@ body{
 a {
   text-decoration: none;
 }
+.nav-container svg {
+  color: #fff;
+}
 
 /* NEW */
 .classes-card {
