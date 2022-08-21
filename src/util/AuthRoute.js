@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import Login from '../pages/login.js';
 import { BrowserRouter as Router, Outlet, Routes, Navigate } from 'react-router-dom';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 // const AuthRoute = () => {
 const AuthRoute = ({authenticated}) => {
@@ -14,6 +16,14 @@ const AuthRoute = ({authenticated}) => {
         // render={(props) => authenticated === true ? <Navigate replace to="/" /> : <Component {...props}/>}
         // />
     )
-  }
+  };
   
-  export default AuthRoute
+  const mapStateToProps = (state) => ({
+    authenticated: state.user.authenticated
+  })
+
+  AuthRoute.propTypes = {
+    user: PropTypes.object.isRequired
+  }
+
+  export default connect(mapStateToProps)(AuthRoute);

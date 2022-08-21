@@ -8,7 +8,6 @@ import Grid from '@mui/material/Grid';
 import {Typography} from '@mui/material';
 import {TextField} from '@mui/material';
 import Button from '@mui/material/Button';
-import axios from 'axios';
 import {Link} from 'react-router-dom'
 import CircularProgress from '@mui/material/CircularProgress';
 import withRouter from "react-router";
@@ -27,6 +26,7 @@ const styles = {
     margin: '20px auto 20px auto',
   },
   pageTitle: {
+    // fontWeight: 'lighter',
     margin: '10px auto 10px auto'
   },
   textField: {
