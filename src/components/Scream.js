@@ -7,6 +7,7 @@ import dayjs from'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import PropTypes from 'prop-types';
 import MyButton from '../util/MyButton.js';
+import DeleteScream from './DeleteScream.js';
 //Icons
 import ChatIcon from '@mui/icons-material/Chat';
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -23,6 +24,7 @@ import { likeScream, unlikeScream } from '../redux/actions/dataActions.js';
 //Not using - in css
 const styles = {
     card: {
+       position: 'relative',
         display: 'flex',
         marginBottom: 20,
     },
@@ -55,7 +57,7 @@ class Scream extends Component {
       dayjs.extend(relativeTime);
       const { classes, scream : {body, createdAt, userImage, 
         userHandle, screamId, likeCount, commentCount},
-         user: { authenticated } } = this.props;
+         user: { authenticated, credentials: { handle } } } = this.props;
 
     const likeButton = !authenticated ? (
       //empty heart
@@ -75,6 +77,10 @@ class Scream extends Component {
       </MyButton>
       )
     )
+    const deleteButton = authenticated && userHandle === handle ? (
+      <DeleteScream screamId={screamId}/>
+    ) : null
+
     return (
       <Card style={styles.card}>
         <CardMedia
@@ -82,6 +88,7 @@ class Scream extends Component {
         title="Profile image" style={styles.image}/>
         <CardContent style={styles.content}>
             <Typography variant="h5" component={Link} to={`users/${userHandle}`} color="primary">{userHandle}</Typography>
+            {deleteButton}
             <Typography variant="body2" color="textSecondary">{dayjs(createdAt).fromNow()}</Typography>
             <Typography variant="body1">{body}</Typography>
             {likeButton}
