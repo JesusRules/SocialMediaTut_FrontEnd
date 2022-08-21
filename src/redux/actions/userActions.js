@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { SET_USER, SET_ERRORS, CLEAR_ERRORS, LOADING_UI, SET_UNAUTHENTICATED } from '../types.js';
+import { SET_USER, SET_ERRORS, CLEAR_ERRORS, LOADING_UI, SET_UNAUTHENTICATED, LOADING_USER } from '../types.js';
 import {Navigate, useNavigate} from 'react-router-dom'
 import {useLocation} from 'react-router'
 
@@ -63,7 +63,10 @@ export const logoutUser = () => (dispatch) => {
     dispatch({ type: SET_UNAUTHENTICATED });
 }
 
+//showing profile
 export const getUserData = () => (dispatch) => {
+    dispatch( {type: LOADING_USER }); //loading
+    
     axios.get('https://us-central1-socialape-14d54.cloudfunctions.net/api/user')
     .then(res => {
         dispatch({
