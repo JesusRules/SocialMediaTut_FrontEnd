@@ -6,9 +6,13 @@ import { useEffect } from 'react'
 import { useParams, Navigate, useNavigate } from 'react-router-dom';
 import axios from 'axios'
 import { render } from '@testing-library/react';
+import PropTypes from 'prop-types';
 
 import Scream from '../components/Scream';
 import Profile from '../components/Profile';
+
+import { connect } from 'react-redux';
+import { getScreams } from '../redux/actions/dataActions.js'
 
 // const home = () => {
 class home extends Component {
@@ -17,21 +21,15 @@ class home extends Component {
     }
     componentDidMount() 
     {
-        axios.get('https://us-central1-socialape-14d54.cloudfunctions.net/api/screams')
-        .then(res => {
-            <Navigate to="/login" />
-            this.setState({
-                screams: res.data,
-            })
-        })
-        .catch(err => {
-            console.log(err);
-        })
+        this.props.getScreams();
     }
     render() {
-        let recentScreamsMarkup = this.state.screams ? (
-            this.state.screams.map(scream => <Scream key={scream.screamId} scream={scream}/>)
+        const { screams, loading } = this.props.data;
+        
+        let recentScreamsMarkup = !loading ? (
+            screams.map(scream => <Scream key={scream.screamId} scream={scream}/>)
         ) : <p>Loading...</p>
+
     return (
         <Grid container spacing={2}>
             <Grid item sm={8} xs={12}>
@@ -45,4 +43,13 @@ class home extends Component {
     }
 }
 
-export default home
+home.propTypes = {
+    getScreams: PropTypes.func.isRequired,
+    data: PropTypes.object.isRequired
+}
+
+const mapStateToProps = (state) => ({
+    data: state.data
+})
+
+export default connect(mapStateToProps, { getScreams })(home)
