@@ -10,11 +10,14 @@ import theme from '../util/theme';
 import MuiLink from '@mui/material/Link';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
+import IconButton from '@mui/material/IconButton';
+import Tooltip from '@mui/material/Tooltip';
 
 //Icons
 import LocationOn from '@mui/icons-material/LocationOn';
 import LinkIcon from '@mui/icons-material/Link';
 import CalendarToday from '@mui/icons-material/CalendarToday';
+import EditIcon from '@mui/icons-material/Edit';
 //Redux
 import {connect} from 'react-redux';
 
@@ -107,6 +110,14 @@ const styles = {
 
 
 class Profile extends Component {
+    handleImageChange = (event) => {
+        const image = event.target.files[0];
+        // send to server
+    }
+    handleEditPicture = () => {
+        const fileInput = document.getElementById('imageInput');
+        fileInput.click();
+    }
   render() {
       const {classes, user: { credentials: { handle, createdAt, imageUrl, bio, website, location }, 
       loading,
@@ -118,10 +129,16 @@ class Profile extends Component {
             <div style={styles.profile}>
                 <div style={styles.profileImageWrapper}>
                     <img src={imageUrl} alt="profile" style={styles.profileImage}/>
+                    <input type="file" id="imageInput" hidden="hidden" onChange={this.handleImageChange}/>
+                    <Tooltip title="Edit profile picture" placement="top">
+                        <IconButton onClick={this.handleEditPicture} style={styles.profileImageWrapperButton}>
+                            <EditIcon color="primary"/>
+                        </IconButton>
+                    </Tooltip>
                 </div>
                 <hr style={styles.profileHR}/>
                 <div style={styles.profileDetails}>
-        <MuiLink component={Link} to={`/users/${handle}`} color="primary" variant="h5">
+        <MuiLink style={{textDecoration: 'none' }} component={Link} to={`/users/${handle}`} color="primary" variant="h5">
             @{handle}
         </MuiLink>
         <hr style={styles.profileHR}/>
