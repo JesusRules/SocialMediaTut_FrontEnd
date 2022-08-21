@@ -18,53 +18,92 @@ import CalendarToday from '@mui/icons-material/CalendarToday';
 //Redux
 import {connect} from 'react-redux';
 
-const styles = (theme) => ({
+const styles = {
     paper: {
-        padding: 20
+        padding: 20,
+        // width: '400px'
     },
-    profile: {
-        '& .image-wrapper': {
-            textAlign: 'center',
-            position: 'relative',
-            '& button': {
-                position: 'absolute',
+    profileImageWrapper: {
+        textAlign: 'center',
+        position: 'relative',
+    
+    },
+    profileImageWrapperButton: {
+        position: 'absolute',
                 top:'80%',
                 left: '70%'
-            }
-        },
-        '& .profile-image': {
-            width: 200,
+    },
+    profileImage: {
+        width: 200,
             height: 200,
             objectFit: 'cover',
             maxWidth: '100%',
             borderRadius: '50%'
-        },
-        '& .profile-details': {
-            textAlign: 'center',
-            '& span, svg': {
-                verticalAlign: 'middle'
-            },
-            '& a': {
-                color: theme.palette.primary.main
-            }
-        },
-        '& hr': {
-            border: 'none',
-            margin: '0 0 10px 0'
-        },
-        '& svg.button': {
-            '&:hover': {
-                cursor: 'pointer'
-            }
+    },
+    profileDetails: {
+        textAlign: 'center',
+        verticalAlign: 'middle',
+        // color: theme.palette.primary.main,
+    },
+    profileHR: {
+        border: 'none',
+        margin: '0 0 10px 0'
+    },
+    profileButton: {
+        '&:hover': {
+            cursor: 'pointer'
         }
     },
     buttons: {
         textAlign:'center',
-        '& a': {
-            margin: '20px 10px'
-        }
+        margin: '20px 10px'
+        // '& a': {
+        
     }
-});
+
+    // profile: {
+    //     '& .image-wrapper': {
+    //         textAlign: 'center',
+    //         position: 'relative',
+    //         '& button': {
+    //             position: 'absolute',
+    //             top:'80%',
+    //             left: '70%'
+    //         }
+    //     },
+    //     '& .profile-image': {
+    //         width: 200,
+    //         height: 200,
+    //         objectFit: 'cover',
+    //         maxWidth: '100%',
+    //         borderRadius: '50%'
+    //     },
+    //     '& .profile-details': {
+    //         textAlign: 'center',
+    //         '& span, svg': {
+    //             verticalAlign: 'middle'
+    //         },
+    //         '& a': {
+    //             color: theme.palette.primary.main
+    //         }
+    //     },
+    //     '& hr': {
+    //         border: 'none',
+    //         margin: '0 0 10px 0'
+    //     },
+    //     '& svg.button': {
+    //         '&:hover': {
+    //             cursor: 'pointer'
+    //         }
+    //     }
+    // },
+    // buttons: {
+    //     textAlign:'center',
+    //     '& a': {
+    //         margin: '20px 10px'
+    //     }
+    // }
+};
 
 
 class Profile extends Component {
@@ -74,32 +113,33 @@ class Profile extends Component {
       authenticated}} = this.props;
     
       let profileMarkup = !loading ? (authenticated ? (
+
         <Paper style={styles.paper}>
             <div style={styles.profile}>
-                <div style={styles.profile['& .profile-image']}>
-                    <img src={imageUrl} alt="profile" style={styles.profile['& .profile-image']}/>
+                <div style={styles.profileImageWrapper}>
+                    <img src={imageUrl} alt="profile" style={styles.profileImage}/>
                 </div>
-                <hr/>
-                <div style={styles.profile['& .profile-details']}>
+                <hr style={styles.profileHR}/>
+                <div style={styles.profileDetails}>
         <MuiLink component={Link} to={`/users/${handle}`} color="primary" variant="h5">
             @{handle}
         </MuiLink>
-        <hr/>
+        <hr style={styles.profileHR}/>
         {bio && <Typography variant="body2">{bio}</Typography>}
-        <hr/>
+        <hr style={styles.profileHR}/>
         {location && (
             <Fragment>
                 <LocationOn color="primary"/> <span>{location}</span>
-            <hr/>
+            <hr style={styles.profileHR}/>
             </Fragment>
         )}
         {website && (
             <Fragment>
                 <LinkIcon color="primary"/>
-                <a href={website} target="_blank" rel="noopener noreferrer">
+                <a style={{color: theme.palette.primary.main }} href={website} target="_blank" rel="noopener noreferrer">
                     {' '}{website}
                 </a>
-                <hr/>
+                <hr style={styles.profileHR}/>
             </Fragment>
         )}
         <CalendarToday color="primary"/>{' '}
