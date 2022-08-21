@@ -5,6 +5,11 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import themeFile from './util/theme'
 import jwtDecode from 'jwt-decode'
 
+//Redux
+import { Provider } from 'react-redux';
+import store, {persistor} from './redux/store.js';
+import {PersistGate} from 'redux-persist/integration/react'
+
 //Components
 import Navbar from './components/Navbar.js'
 import AuthRoute from './util/AuthRoute.js'
@@ -18,7 +23,7 @@ const theme = createTheme(themeFile)
 
 const token = localStorage.FBIdToken;
 
-let authenticated = true;
+let authenticated;
 if (token){
   const decodedToken = jwtDecode(token);
   if (decodedToken.exp * 1000 < Date.now()) {
@@ -32,7 +37,8 @@ if (token){
 function App() {
   return (
     <ThemeProvider  theme={theme}>
-      <div className="App">
+      <Provider store={store}>
+      {/* <PersistGate persistor={persistor}> */}
       <Router>
       <Navbar />
       <div className="container">
@@ -47,12 +53,12 @@ function App() {
             <Route path='/signup' element={<Signup />} />
           </Route>
 
-          {/* <AuthRoute exact path='/login' element={<Login />} authenticated={authenticated}/>
-          <AuthRoute exact path='/signup' element={<Signup />} authenticated={authenticated}/> */}
+          {/* {/* <AuthRoute exact path='/login' element={<Login />} authenticated={authenticated}/> */}
         </Routes>
       </div>
       </Router>
-    </div>
+      {/* </PersistGate> */}
+    </Provider>
     </ThemeProvider >
   );
 }

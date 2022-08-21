@@ -73,10 +73,10 @@ export class signup extends Component {
     axios.post('https://us-central1-socialape-14d54.cloudfunctions.net/api/signup', newUserData)
     .then(res => {
       console.log(res.data); //axios is res.data
-      localStorage.setItem('FBIdToken', `Bearer ${res.data.token}`);
-      this.setState({ //if post is successful, set loading off
+      this.setState({ 
         loading: false
       });
+      localStorage.setItem('FBIdToken', `Bearer ${res.data.token}`);
       window.location.href = '/';
     })
     .catch(err => {

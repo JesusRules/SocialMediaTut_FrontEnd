@@ -8,7 +8,6 @@ const AuthRoute = ({authenticated}) => {
         // console.log("? :" + authenticated)
         authenticated ? <Navigate replace to="/" /> : <Outlet/>
 
-
         // <Outlet/>
         // <Route
         // {...rest}
