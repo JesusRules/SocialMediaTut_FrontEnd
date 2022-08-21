@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { PropTypes } from '@mui/material';
+import PropTypes from 'prop-types';
 // import withStyles from 'asd'
 import { Link } from 'react-router-dom';
 import dayjs from 'dayjs';
@@ -9,7 +9,7 @@ import Button from '@mui/material/Button';
 import theme from '../util/theme';
 import MuiLink from '@mui/material/Link';
 import Paper from '@mui/material/Paper';
-import Typography from '@mui/material';
+import Typography from '@mui/material/Typography';
 
 //Icons
 import LocationOn from '@mui/icons-material/LocationOn';
@@ -77,7 +77,7 @@ class Profile extends Component {
         <Paper style={styles.paper}>
             <div style={styles.profile}>
                 <div style={styles.profile['& .profile-image']}>
-                    <img src={imageUrl} alt="profile"/>
+                    <img src={imageUrl} alt="profile" style={styles.profile['& .profile-image']}/>
                 </div>
                 <hr/>
                 <div style={styles.profile['& .profile-details']}>
