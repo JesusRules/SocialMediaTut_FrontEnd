@@ -66,13 +66,22 @@ export const logoutUser = () => (dispatch) => {
 //showing profile
 export const getUserData = () => (dispatch) => {
     dispatch( {type: LOADING_USER }); //loading
-    
+
     axios.get('https://us-central1-socialape-14d54.cloudfunctions.net/api/user')
     .then(res => {
         dispatch({
             type: SET_USER,
             payload: res.data
         })
+    })
+    .catch(err => console.log(err));
+}
+
+export const uploadImage = (formData) => (dispatch) => {
+    dispatch({ type: LOADING_USER })
+    axios.post('https://us-central1-socialape-14d54.cloudfunctions.net/api/user/image', formData)
+    .then(() => {
+        dispatch(getUserData());
     })
     .catch(err => console.log(err));
 }

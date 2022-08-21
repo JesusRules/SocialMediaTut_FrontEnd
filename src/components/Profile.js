@@ -20,6 +20,7 @@ import CalendarToday from '@mui/icons-material/CalendarToday';
 import EditIcon from '@mui/icons-material/Edit';
 //Redux
 import {connect} from 'react-redux';
+import { logoutUser, uploadImage } from '../redux/actions/userActions.js';
 
 const styles = {
     paper: {
@@ -112,7 +113,9 @@ const styles = {
 class Profile extends Component {
     handleImageChange = (event) => {
         const image = event.target.files[0];
-        // send to server
+        const formData = new FormData();
+        formData.append('image', image, image.name);
+        this.props.uploadImage(formData);
     }
     handleEditPicture = () => {
         const fileInput = document.getElementById('imageInput');
@@ -184,12 +187,19 @@ class Profile extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    user: state.user
+    user: state.user,
 });
 
+const mapActionsToProps = { 
+    logoutUser,
+    uploadImage
+};
+
 Profile.propTypes = {
-    user: PropTypes.object.isRequired
+    user: PropTypes.object.isRequired,
+    logoutUser: PropTypes.func.isRequired,
+    uploadImage: PropTypes.func.isRequired
     // classes: PropTypes.object.isRequired,
 }
 
-export default connect(mapStateToProps)(Profile)
+export default connect(mapStateToProps, mapActionsToProps)(Profile)
