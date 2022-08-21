@@ -48,11 +48,11 @@ function App() {
         <Routes>
           <Route exact path='/' element={<Home />} />
           
-          <Route element={<AuthRoute  />}>
+          <Route element={<AuthRoute />}>
             <Route path='/login' element={<Login />}/>
           </Route>
 
-          <Route element={<AuthRoute  />}>
+          <Route element={<AuthRoute />}>
             <Route path='/signup' element={<Signup />} />
           </Route>
 
