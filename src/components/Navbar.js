@@ -3,13 +3,13 @@ import {Link} from 'react-router-dom'
 import MyButton from '../util/MyButton.js';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
+import PostScream from './PostScream.js';
 // MUI stuff
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Button from '@mui/material/Button';
 import { Tooltip } from '@mui/material';
 // Icons
-import AddIcon from '@mui/icons-material/Add';
 import HomeIcon from '@mui/icons-material/Home';
 import Notifications from '@mui/icons-material/Notifications';
 
@@ -22,10 +22,7 @@ class Navbar extends Component {
           {authenticated ? (
             <Fragment>
               {/* <Tooltip> */}
-              <MyButton tip="Post a Scream!">
-                <AddIcon />
-              </MyButton>
-
+              <PostScream/>
               <Link to="/">
               <MyButton tip="Home">
                 <HomeIcon />
