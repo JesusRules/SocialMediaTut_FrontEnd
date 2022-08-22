@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types';
-import MyButton from '../util/MyButton.js'
+import MyButton from '../../util/MyButton.js'
 // import withStyles from 'asd'
 import dayjs from 'dayjs';
 import {Link} from 'react-router-dom';
@@ -16,7 +16,7 @@ import UnfoldMore from '@mui/icons-material/UnfoldMore';
 import ChatIcon from '@mui/icons-material/Chat';
 // Redux stuff
 import { connect } from 'react-redux';
-import { getScream } from '../redux/actions/dataActions.js'
+import { getScream } from '../../redux/actions/dataActions.js'
 import LikeButton from './LikeButton.js'
 
 const styles = {

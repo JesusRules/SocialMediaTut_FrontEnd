@@ -2,11 +2,11 @@ import React, { Component } from 'react'
 import {Typography } from '@mui/material';
 // import withStyles from '@mui/material';
 import {Link} from 'react-router-dom'
-import '../App.css';
+import '../../App.css';
 import dayjs from'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import PropTypes from 'prop-types';
-import MyButton from '../util/MyButton.js';
+import MyButton from '../../util/MyButton.js';
 import DeleteScream from './DeleteScream.js';
 import ScreamDialog from './ScreamDialog.js';
 //Icons

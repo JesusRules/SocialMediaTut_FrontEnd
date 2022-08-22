@@ -6,11 +6,11 @@ import dayjs from 'dayjs';
 import EditDetails from './EditDetails.js';
 // MUI Stuff
 import Button from '@mui/material/Button';
-import theme from '../util/theme';
+import theme from '../../util/theme';
 import MuiLink from '@mui/material/Link';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
-import MyButton from '../util/MyButton.js'
+import MyButton from '../../util/MyButton.js'
 
 //Icons
 import LocationOn from '@mui/icons-material/LocationOn';
@@ -20,7 +20,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import KeyboardReturn from '@mui/icons-material/KeyboardReturn';
 //Redux
 import {connect} from 'react-redux';
-import { logoutUser, uploadImage } from '../redux/actions/userActions.js';
+import { logoutUser, uploadImage } from '../../redux/actions/userActions.js';
 import { style } from '@mui/system';
 
 const styles = {

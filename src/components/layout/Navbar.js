@@ -1,9 +1,9 @@
 import React, { Component, Fragment } from 'react'
 import {Link} from 'react-router-dom'
-import MyButton from '../util/MyButton.js';
+import MyButton from '../../util/MyButton.js';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
-import PostScream from './PostScream.js';
+import PostScream from '../scream/PostScream.js';
 // MUI stuff
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';

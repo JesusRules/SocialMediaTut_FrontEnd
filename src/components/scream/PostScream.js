@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types';
-import MyButton from '../util/MyButton.js'
+import MyButton from '../../util/MyButton.js'
 // import withStyles from 'asd'
 //MUI stuff
 import Button from '@mui/material/Button';
@@ -13,7 +13,7 @@ import AddIcon from '@mui/icons-material/Add';
 import CloseIcon from '@mui/icons-material/Close';
 //Redux stuff
 import { connect } from 'react-redux';
-import { postScream, clearErrors } from '../redux/actions/dataActions.js';
+import { postScream, clearErrors } from '../../redux/actions/dataActions.js';
 
 const styles = {
 

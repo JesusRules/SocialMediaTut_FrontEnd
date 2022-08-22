@@ -1,12 +1,12 @@
 import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types';
 // import withStyles from 'asd'
-import MyButton from '../util/MyButton.js'
+import MyButton from '../../util/MyButton.js'
 import { Tooltip } from '@mui/material';
 import { IconButton } from '@mui/material';
 //Redux stuff
 import { connect } from 'react-redux';
-import { editUserDetails } from '../redux/actions/userActions.js';
+import { editUserDetails } from '../../redux/actions/userActions.js';
 
 //MUI stuff
 import Button from '@mui/material/Button';
