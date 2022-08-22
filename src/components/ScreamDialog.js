@@ -7,17 +7,17 @@ import {Link} from 'react-router-dom';
 // MUI Stuff
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
-import DialogTitle from '@mui/material/DialogTitle';
 import CircularProgress from '@mui/material/CircularProgress';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 // Icons
 import CloseIcon from '@mui/icons-material/Close';
 import UnfoldMore from '@mui/icons-material/UnfoldMore';
+import ChatIcon from '@mui/icons-material/Chat';
 // Redux stuff
 import { connect } from 'react-redux';
 import { getScream } from '../redux/actions/dataActions.js'
-import Scream from './Scream.js';
+import LikeButton from './LikeButton.js'
 
 const styles = {
     //THEME!!!
@@ -81,6 +81,15 @@ const styles = {
         position: 'absolute',
         left: '90%'
     },
+    expandButton: {
+        position: 'absolute',
+        left: '90%'
+    },
+    spinnerDiv: {
+        textAlign: 'center',
+        marginTop: 50,
+        marginBottom: 50
+    }
 }
 
 class ScreamDialog extends Component{
@@ -100,7 +109,9 @@ class ScreamDialog extends Component{
         commentCount, userImage, userHandle }, UI: { loading }} = this.props;
 
     const dialogMarkup = loading ? (
-            <CircularProgress size={200}/>
+            <div style={styles.spinnerDiv}>
+                <CircularProgress size={200} thickness={2}/>
+            </div>
     ) : (
         <Grid container spacing={16}>
             <Grid item sm={5}>
@@ -123,6 +134,12 @@ class ScreamDialog extends Component{
                     <Typography variant="body1">
                         {body}
                     </Typography>
+                    <LikeButton screamId={screamId}/>
+                    <span>{likeCount} Likes</span>
+                <MyButton tip="comments">
+                    <ChatIcon color="primary"/>
+                </MyButton>
+                    <span>{commentCount} comments</span>
             </Grid>
         </Grid>
     )
