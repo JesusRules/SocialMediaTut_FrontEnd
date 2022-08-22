@@ -1,6 +1,6 @@
 import { SET_SCREAMS, LOADING_DATA, LIKE_SCREAM, UNLIKE_SCREAM, 
     DELETE_SCREAM, LOADING_UI, SET_ERRORS, CLEAR_ERRORS, POST_SCREAM, SET_SCREAM,
-    STOP_LOADING_UI } from '../types';
+    STOP_LOADING_UI, SUBMIT_COMMENT } from '../types';
 import axios from 'axios'
 import { RssFeed } from '@mui/icons-material';
 
@@ -44,7 +44,7 @@ export const postScream = (newScream) => (dispatch) => {
             type: POST_SCREAM,
             payload: res.data
         });
-        dispatch({ type: CLEAR_ERRORS });
+        dispatch(clearErrors());
     })
     .catch(err => {
         dispatch({
@@ -65,6 +65,7 @@ export const likeScream = (screamId) => (dispatch) => {
     })
     .catch(err => console.log(err));
 }
+
 // Unlike a scream
 export const unlikeScream = (screamId) => (dispatch) => {
     axios.get(`https://us-central1-socialape-14d54.cloudfunctions.net/api/scream/${screamId}/unlike`)
@@ -75,6 +76,24 @@ export const unlikeScream = (screamId) => (dispatch) => {
         })
     })
     .catch(err => console.log(err));
+}
+
+//Submit a comment
+export const submitComment = (screamId, commentData) => (dispatch) => {
+    axios.post(`https://us-central1-socialape-14d54.cloudfunctions.net/api/scream/${screamId}/comment`, commentData)
+    .then(res => {
+        dispatch({
+            type: SUBMIT_COMMENT,
+            payload: res.data
+        });
+        dispatch(clearErrors());
+    })
+    .catch(err => {
+        dispatch({
+            type: SET_ERRORS,
+            payload: err.response.data
+        })
+    })
 }
 
 // Delete a scream

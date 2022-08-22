@@ -24,10 +24,10 @@ const styles = {
         height: 90,
         objectFit: 'cover',
         borderRadius: '50%',
-        marginLeft: 120
+        // marginLeft: 0
     },
     commentData: {
-        marginLeft: 120,
+        marginLeft: 20
         
     }
 }

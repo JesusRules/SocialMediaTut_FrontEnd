@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import MyButton from '../../util/MyButton.js'
 import LikeButton from './LikeButton.js'
 import Comments from './Comments.js';
+import CommentForm from './CommentForm.js';
 import dayjs from 'dayjs';
 import {Link} from 'react-router-dom';
 // MUI Stuff
@@ -18,7 +19,7 @@ import UnfoldMore from '@mui/icons-material/UnfoldMore';
 import ChatIcon from '@mui/icons-material/Chat';
 // Redux stuff
 import { connect } from 'react-redux';
-import { getScream } from '../../redux/actions/dataActions.js'
+import { getScream, clearErrors } from '../../redux/actions/dataActions.js'
 
 const styles = {
     //THEME!!!
@@ -110,6 +111,7 @@ class ScreamDialog extends Component{
     }
     handleClose = () => {
         this.setState({ open: false })
+        this.props.clearErrors();
     }
 
     render() {
@@ -121,7 +123,7 @@ class ScreamDialog extends Component{
                 <CircularProgress size={200} thickness={2}/>
             </div>
     ) : (
-        <Grid container spacing={16}>
+        <Grid container spacing={0}>
             <Grid item sm={5}>
                 <img src={userImage} alt="Profile" style={styles.profileImage}/>
             </Grid>
@@ -150,6 +152,7 @@ class ScreamDialog extends Component{
                     <span>{commentCount} comments</span>
             </Grid>
             <hr style={styles.visibleSeparator}/>
+            <CommentForm screamId={screamId} />
             <Comments comments={comments}/>
         </Grid>
     )
@@ -184,6 +187,7 @@ class ScreamDialog extends Component{
 }
 
 ScreamDialog.propTypes = {
+    clearErrors: PropTypes.func.isRequired,
     getScream: PropTypes.func.isRequired,
     screamId: PropTypes.string.isRequired,
     userHandle: PropTypes.string.isRequired,
@@ -197,7 +201,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapActionsToProps = {
-    getScream
+    getScream,
+    clearErrors
 };
 
 export default connect(mapStateToProps, mapActionsToProps)(ScreamDialog);
