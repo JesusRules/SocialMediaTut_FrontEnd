@@ -59,6 +59,8 @@ function App() {
 
           <Route exact path='/user/:handle' element={<User />} />
 
+          <Route exact path='/user/:handle/scream/:screamId' element={<User />} />
+
           {/* {/* <AuthRoute exact path='/login' element={<Login />} authenticated={authenticated}/> */}
         </Routes>
       </div>

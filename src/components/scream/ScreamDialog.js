@@ -105,6 +105,11 @@ class ScreamDialog extends Component{
     state = {
         open: false
     }
+    componentDidMount() {
+        if(this.props.openDialog){ //if exists from Scream, from user page
+            this.handleOpen();
+        }
+    }
     handleOpen = () => {
         this.setState({ open: true })
         this.props.getScream(this.props.screamId);

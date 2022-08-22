@@ -16,13 +16,22 @@ const getHandleFromPathname = () => {
 class user extends Component {
     
     state = {
-        profile: null
+        profile: null,
+        screamIdParam: null
     };
     componentDidMount() {
-        // const {handle} = useParams();
         // const handle = this.props.match.params.handle;
-        // console.log(window.location.pathname.substring(6));
-        let handle = window.location.pathname.substring(6);
+        // const screamId = this.props.match.params.screamId;
+        
+        const handle = (window.location.pathname).split('/')[2];
+        const screamId = (window.location.pathname ).split('/')[4];
+        // const screamId = (window.location.pathname + '/scream/asdasdsd').split('/')[4];
+
+        // console.log(handle);
+        // console.log(screamId);
+
+        if(screamId) this.setState({ screamIdParam: screamId });
+
         this.props.getUserData(handle);
         axios.get(`https://us-central1-socialape-14d54.cloudfunctions.net/api/user/${handle}`)
         .then(res => {
@@ -34,13 +43,20 @@ class user extends Component {
     }
   render() {
     const { screams, loading } = this.props.data;
+    const { screamIdParam } = this.state;
 
     const screamsMarkup = loading ? (
         <p>Loading data...</p>
     ) : screams === null ? (
         <p>No screams from this user</p>
-    ) : (
+    ) : !screamIdParam ? (
         screams.map(scream => <Scream key={scream.screamId} scream={scream}/>)
+    ) : (
+        screams.map(scream => {
+            if(scream.screamId !== screamIdParam)
+                return <Scream key={scream.screamId} scream={scream}/>
+            else return <Scream key={scream.screamId} scream={scream} openDialog/> //openDialog = true
+        })
     )
 
     return (
