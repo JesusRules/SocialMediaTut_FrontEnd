@@ -57,7 +57,7 @@ function App() {
             <Route path='/signup' element={<Signup />} />
           </Route>
 
-          <Route exact path='/users/:handle' element={<Home />} />
+          <Route exact path='/user/:handle' element={<User />} />
 
           {/* {/* <AuthRoute exact path='/login' element={<Login />} authenticated={authenticated}/> */}
         </Routes>

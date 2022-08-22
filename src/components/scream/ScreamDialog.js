@@ -132,7 +132,7 @@ class ScreamDialog extends Component{
                     component={Link}
                     color="primary"
                     variant="h5"
-                    to={`/users/${userHandle}`}
+                    to={`/user/${userHandle}`}
                     >
                         @{userHandle}
                     </Typography>

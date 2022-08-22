@@ -39,7 +39,7 @@ const styles = {
 class Scream extends Component {
   render() {
       dayjs.extend(relativeTime);
-      
+
       const { classes, scream : {body, createdAt, userImage, 
         userHandle, screamId, likeCount, commentCount},
          user: { authenticated, credentials: { handle } } } = this.props;
@@ -54,7 +54,7 @@ class Scream extends Component {
         image={userImage}
         title="Profile image" style={styles.image}/>
         <CardContent style={styles.content}>
-            <Typography variant="h5" component={Link} to={`users/${userHandle}`} color="primary">{userHandle}</Typography>
+            <Typography variant="h5" component={Link} to={`user/${userHandle}`} color="primary">{userHandle}</Typography>
             {deleteButton}
             <Typography variant="body2" color="textSecondary">{dayjs(createdAt).fromNow()}</Typography>
             <Typography variant="body1">{body}</Typography>
