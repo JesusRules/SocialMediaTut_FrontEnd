@@ -1,7 +1,9 @@
 import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types';
-import MyButton from '../../util/MyButton.js'
 // import withStyles from 'asd'
+import MyButton from '../../util/MyButton.js'
+import LikeButton from './LikeButton.js'
+import Comments from './Comments.js';
 import dayjs from 'dayjs';
 import {Link} from 'react-router-dom';
 // MUI Stuff
@@ -17,7 +19,6 @@ import ChatIcon from '@mui/icons-material/Chat';
 // Redux stuff
 import { connect } from 'react-redux';
 import { getScream } from '../../redux/actions/dataActions.js'
-import LikeButton from './LikeButton.js'
 
 const styles = {
     //THEME!!!
@@ -63,10 +64,17 @@ const styles = {
     //     position: 'absolute'
     // },
     //NEW
-    invisibleSeparator: {
+    invisibleSeparator: { //USE IN COMMENTS 10:05
         border: 'none',
         margin: 4,
     },
+    visibleSeparator: {
+        width: '100%',
+        borderBottom: '1px solid rgba(0,0,0,0.1)',
+        marginBottom: 20
+    },
+
+
     profileImage: {
         // maxWidth: 200,
         width: 200,
@@ -105,8 +113,8 @@ class ScreamDialog extends Component{
     }
 
     render() {
-    const { classes, scream: { screamId, body, createdAt, likeCount, 
-        commentCount, userImage, userHandle }, UI: { loading }} = this.props;
+    const { scream: { screamId, body, createdAt, likeCount, 
+        commentCount, userImage, userHandle, comments }, UI: { loading }} = this.props;
 
     const dialogMarkup = loading ? (
             <div style={styles.spinnerDiv}>
@@ -141,6 +149,8 @@ class ScreamDialog extends Component{
                 </MyButton>
                     <span>{commentCount} comments</span>
             </Grid>
+            <hr style={styles.visibleSeparator}/>
+            <Comments comments={comments}/>
         </Grid>
     )
     return (
