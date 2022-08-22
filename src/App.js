@@ -20,6 +20,7 @@ import AuthRoute from './util/AuthRoute.js'
 import Home from './pages/home.js';
 import Login from './pages/login.js';
 import Signup from './pages/signup.js';
+import User from './pages/user.js'
 import axios from 'axios';
 
 const theme = createTheme(themeFile)
@@ -55,6 +56,8 @@ function App() {
           <Route element={<AuthRoute />}>
             <Route path='/signup' element={<Signup />} />
           </Route>
+
+          <Route exact path='/users/:handle' element={<Home />} />
 
           {/* {/* <AuthRoute exact path='/login' element={<Login />} authenticated={authenticated}/> */}
         </Routes>
