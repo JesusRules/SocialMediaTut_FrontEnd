@@ -8,6 +8,7 @@ import relativeTime from 'dayjs/plugin/relativeTime'
 import PropTypes from 'prop-types';
 import MyButton from '../util/MyButton.js';
 import DeleteScream from './DeleteScream.js';
+import ScreamDialog from './ScreamDialog.js';
 //Icons
 import ChatIcon from '@mui/icons-material/Chat';
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -97,6 +98,7 @@ class Scream extends Component {
               <ChatIcon color="primary"/>
             </MyButton>
             <span>{commentCount} comments</span>
+            <ScreamDialog screamId={screamId} userHandle={userHandle} />
         </CardContent>
       </Card>
     )

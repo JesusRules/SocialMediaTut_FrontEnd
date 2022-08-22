@@ -1,9 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types';
-// import withStyles from 'asd'
 import MyButton from '../util/MyButton.js'
-import { Tooltip } from '@mui/material';
-import { IconButton } from '@mui/material';
+// import withStyles from 'asd'
 //MUI stuff
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
@@ -15,7 +13,7 @@ import AddIcon from '@mui/icons-material/Add';
 import CloseIcon from '@mui/icons-material/Close';
 //Redux stuff
 import { connect } from 'react-redux';
-import { postScream } from '../redux/actions/dataActions.js';
+import { postScream, clearErrors } from '../redux/actions/dataActions.js';
 
 const styles = {
 
@@ -24,15 +22,17 @@ const styles = {
     },
     submitButton: {
         position: 'relative',
-        top: '0.1rem'
+        // top: '0.1rem',
+        float: 'right',
+        marginTop: 10
     },
     progressSpinner: {
         position: 'absolute',
     },
     closeButton: {
         position: 'absolute',
-        left: '90%',
-        top: '10%'
+        left: '91%',
+        top: '6%'
         // left: '90.7%',
         // top: '13%'
     }
@@ -49,14 +49,18 @@ class PostScream extends Component {
             this.setState({ errors: nextProps.UI.errors })
         }
         if (!nextProps.UI.errors && !nextProps.UI.loading) {
-            this.setState({ body: '' });
-            this.handleClose();
+            this.setState({ 
+                body: '', 
+                open: false, 
+                errors: {} 
+            });
         }
     }
     handleOpen = () => {
         this.setState({ open: true })
     }
     handleClose = () => {
+        this.props.clearErrors();
         this.setState({ open: false, errors: {} })
     }
     handleChange = (event) => {
@@ -105,6 +109,7 @@ class PostScream extends Component {
 
 PostScream.propTypes = {
     postScream: PropTypes.func.isRequired,
+    clearErrors: PropTypes.func.isRequired,
     UI: PropTypes.object.isRequired,
 };
 
@@ -113,4 +118,4 @@ const mapStateToProps = (state) => ({
     UI: state.UI
 });
 
-export default connect(mapStateToProps, { postScream } )(PostScream)
+export default connect(mapStateToProps, { postScream, clearErrors } )(PostScream)
