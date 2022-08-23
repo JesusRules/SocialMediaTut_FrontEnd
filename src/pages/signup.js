@@ -29,7 +29,9 @@ const styles = {
     margin: '10px auto 10px auto'
   },
   textField: {
-    margin: '10px auto 10px auto'
+    margin: '10px auto 10px auto',
+    width: '100%',
+    maxWidth: '30em',
   },
   button: {
     marginTop: 20,
@@ -43,6 +45,9 @@ const styles = {
   },
   progress: {
     position: 'absolute'
+  },
+  div: {
+    // width: '32rem'
   }
 }
 
@@ -89,7 +94,7 @@ export class signup extends Component {
     const { classes, UI: {loading} } = this.props;
     const {errors} = this.state;
     return (
-      <Grid container style={styles.form}>
+      <Grid con style={styles.form}>
         <Grid item sm/>
         <Grid item sm>
           <img src={AppIcon} alt="Poki" style={styles.image}/>
@@ -101,15 +106,15 @@ export class signup extends Component {
             <TextField id="email" name="email" type="email" label="Email" 
             helperText={errors.email} error={errors.email ? true : false} style={styles.textField}
             value={this.state.email} variant="standard" onChange={this.handleChange} fullWidth/>
-
+            <br />
             <TextField id="password" name="password" type="password" label="Password" 
             helperText={errors.password} error={errors.password ? true : false} style={styles.textField}
             value={this.state.password} variant="standard" onChange={this.handleChange} fullWidth/>
-
+            <br />
             <TextField id="confirmPassword" name="confirmPassword" type="password" label="Confirm Password" 
             helperText={errors.confirmPassword} error={errors.confirmPassword ? true : false} style={styles.textField}
             value={this.state.confirmPassword} variant="standard" onChange={this.handleChange} fullWidth/>
-
+            <br />
             <TextField id="handle" name="handle" type="text" label="Handle" 
             helperText={errors.handle} error={errors.handle ? true : false} style={styles.textField}
             value={this.state.handle} variant="standard" onChange={this.handleChange} fullWidth/>
@@ -118,6 +123,7 @@ export class signup extends Component {
                 {errors.general}
               </Typography>
             )}
+            <div style={styles.div}/>
             <Button type="submit" variant="contained" color="primary" 
             style={styles.button} disabled={loading}>
               Signup

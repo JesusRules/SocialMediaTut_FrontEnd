@@ -26,11 +26,12 @@ const styles = {
     margin: '20px auto 20px auto',
   },
   pageTitle: {
-    // fontWeight: 'lighter',
     margin: '10px auto 10px auto'
   },
   textField: {
-    margin: '10px auto 10px auto'
+    margin: '10px auto 10px auto',
+    width: '100%',
+    maxWidth: '30em',
   },
   button: {
     marginTop: 20,
@@ -44,6 +45,9 @@ const styles = {
   },
   progress: {
     position: 'absolute'
+  },
+  div: {
+    // width: '32rem'
   }
 }
 
@@ -80,10 +84,10 @@ export class login extends Component {
   }
 
   render() {
-    const { classes, UI: {loading} } = this.props;
+    const { classes , UI: {loading} } = this.props;
     const {errors} = this.state;
     return (
-      <Grid container style={styles.form}>
+      <Grid conta style={styles.form}>
         <Grid item sm/>
         <Grid item sm>
           <img src={AppIcon} alt="Poki" style={styles.image}/>
@@ -95,7 +99,7 @@ export class login extends Component {
             <TextField id="email" name="email" type="email" label="Email" 
             helperText={errors.email} error={errors.email ? true : false} style={styles.textField}
             value={this.state.email} variant="standard" onChange={this.handleChange} fullWidth/>
-
+            <br/>
             <TextField id="password" name="password" type="password" label="Password" 
             helperText={errors.password} error={errors.password ? true : false} style={styles.textField}
             value={this.state.password} variant="standard" onChange={this.handleChange} fullWidth/>
@@ -104,6 +108,7 @@ export class login extends Component {
                 {errors.general}
               </Typography>
             )}
+            <div style={styles.div}/>
             <Button type="submit" variant="contained" color="primary" 
             style={styles.button} disabled={loading}>
               Login

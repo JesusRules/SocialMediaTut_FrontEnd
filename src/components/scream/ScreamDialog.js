@@ -10,9 +10,12 @@ import {Link} from 'react-router-dom';
 // MUI Stuff
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
+import DialogActions from '@mui/material/DialogActions';
 import CircularProgress from '@mui/material/CircularProgress';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
+import Tooltip from '@mui/material/Tooltip';
+import Button from '@mui/material/Button';
 // Icons
 import CloseIcon from '@mui/icons-material/Close';
 import UnfoldMore from '@mui/icons-material/UnfoldMore';
@@ -82,14 +85,20 @@ const styles = {
         width: 200,
         height: 200,
         borderRadius: '50%',
-        objectFit: 'cover'
+        objectFit: 'cover',
     },
     dialogContent: {
-        padding: 20
+        padding: 20,
+        "@media (minWidth: 10100px)": {
+            color: 'red',
+        },
     },
     closeButton: {
         position: 'absolute',
-        left: '90%'
+        top: '3.5%',
+        // top: '0%',
+        right: '0%',
+        cursor:'pointer'
     },
     expandButton: {
         position: 'absolute',
@@ -106,12 +115,16 @@ class ScreamDialog extends Component{
     state = {
         open: false,
         oldPath: '',
-        newPath: ''
+        newPath: '',
+        // matches: window.matchMedia("(max-width: 500px)").matches,
+
     }
     componentDidMount() {
         if(this.props.openDialog){ //if exists from Scream, from user page
             this.handleOpen();
         }
+        // const handler = e => this.setState({matches: e.matches});
+        // window.matchMedia()
     }
     handleOpen = () => {
         let oldPath = window.location.pathname;
@@ -127,9 +140,9 @@ class ScreamDialog extends Component{
         this.props.getScream(this.props.screamId);
     }
     handleClose = () => {
-        // window.history.pushState(null, null, this.state.oldPath);
-        window.location = this.state.oldPath;
         this.setState({ open: false })
+        window.history.pushState(null, null, this.state.oldPath);
+        // window.location = this.state.oldPath;
         this.props.clearErrors();
     }
 
@@ -188,13 +201,21 @@ class ScreamDialog extends Component{
                 fullWidth
                 maxWidth="sm"
                 >
-            <MyButton
+            {/* <MyButton
                 tip="Close"
                 onClick={this.handleClose}
                 style={styles.closeButton}
             >
             <CloseIcon />
-            </MyButton>
+            </MyButton> */}
+            {/* <Tooltip title="Close" placement="top"> */}
+            <DialogActions>
+            <Button onClick={this.handleClose} style={styles.closeButton}>
+              <CloseIcon/>
+            </Button>
+            </DialogActions>
+        {/* </Tooltip> */}
+
             <DialogContent style={styles.dialogContent}>
                 {dialogMarkup}
             </DialogContent>
