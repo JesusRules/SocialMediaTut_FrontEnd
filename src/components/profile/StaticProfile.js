@@ -68,7 +68,7 @@ const StaticProfile = (props) => {
                 </div>
                 <hr style={styles.profileHR}/>
                 <div style={styles.profileDetails}>
-        <MuiLink style={{textDecoration: 'none' }} component={Link} to={`/users/${handle}`} color="primary" variant="h5">
+        <MuiLink style={{textDecoration: 'none' }} component={Link} to={`/user/${handle}`} color="primary" variant="h5">
             @{handle}
         </MuiLink>
         <hr style={styles.profileHR}/>

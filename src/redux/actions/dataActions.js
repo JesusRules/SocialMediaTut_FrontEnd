@@ -1,6 +1,6 @@
 import { SET_SCREAMS, LOADING_DATA, LIKE_SCREAM, UNLIKE_SCREAM, 
     DELETE_SCREAM, LOADING_UI, SET_ERRORS, CLEAR_ERRORS, POST_SCREAM, SET_SCREAM,
-    STOP_LOADING_UI, SUBMIT_COMMENT } from '../types';
+    STOP_LOADING_UI, SUBMIT_COMMENT, RETURN } from '../types';
 import axios from 'axios'
 import { RssFeed } from '@mui/icons-material';
 
@@ -86,6 +86,28 @@ export const submitComment = (screamId, commentData) => (dispatch) => {
             type: SUBMIT_COMMENT,
             payload: res.data
         });
+        dispatch(clearErrors());
+    })
+    .catch(err => {
+        dispatch({
+            type: SET_ERRORS,
+            payload: err.response.data
+        })
+    })
+}
+
+//Submit a comment
+export const submitComment2 = (screamId, commentData) => (dispatch) => {
+    axios.post(`https://us-central1-socialape-14d54.cloudfunctions.net/api/scream/${screamId}/comment`, commentData)
+    .then(res => {
+        dispatch({
+            type: SUBMIT_COMMENT,
+            payload: res.data
+        });
+        // dispatch({
+        //     type: UNLIKE_SCREAM,
+        //     payload: res.data.screamData
+        // });
         dispatch(clearErrors());
     })
     .catch(err => {

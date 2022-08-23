@@ -7,7 +7,8 @@ import Grid from '@mui/material/Grid'
 import TextField from '@mui/material/TextField'
 // Redux stuff
 import { connect } from 'react-redux';
-import { submitComment } from '../../redux/actions/dataActions.js';
+import { submitComment, submitComment2 } from '../../redux/actions/dataActions.js';
+import store from '../../redux/store.js';
 
 const styles = {
     // ...theme,
@@ -39,6 +40,9 @@ export class CommentForm extends Component {
         if (!nextProps.UI.errors && !nextProps.UI.loading) {
             this.setState({ body: '' });
         }
+        // if (nextProps.data) {
+        //     store.dispatch({type: 'SUBMIT_COMMENT'});
+        // }
     }
     handleChange = (event) => {
         this.setState({
@@ -47,7 +51,8 @@ export class CommentForm extends Component {
     };
     handleSubmit = (event) => {
         event.preventDefault();
-        this.props.submitComment(this.props.screamId, { body: this.state.body });
+        // this.props.submitComment(this.props.screamId, { body: this.state.body });
+        this.props.submitComment2(this.props.screamId, { body: this.state.body });
     };
 
   render() {
@@ -87,8 +92,10 @@ export class CommentForm extends Component {
 }
 
 CommentForm.propTypes = {
-    submitComment: PropTypes.func.isRequired,
+    // submitComment: PropTypes.func.isRequired,
+    submitComment2: PropTypes.func.isRequired,
     UI: PropTypes.object.isRequired,
+    data: PropTypes.object.isRequired,
     // classes: PropTypes.object.isRequired,
     screamId: PropTypes.string.isRequired,
     authenticated: PropTypes.bool.isRequired,
@@ -96,7 +103,8 @@ CommentForm.propTypes = {
 
 const mapStateToProps = (state) => ({
     UI: state.UI,
+    data: state.data,
     authenticated: state.user.authenticated
 })
 
-export default connect(mapStateToProps, {submitComment} )(CommentForm);
+export default connect(mapStateToProps, {submitComment2} )(CommentForm);

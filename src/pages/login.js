@@ -112,7 +112,7 @@ export class login extends Component {
               )}
             </Button>
             <br />
-            <small>Don't have an account? <Link style={{fontWeight: 'bold', color:"#00bcd4"}} to="/login">Sign up here</Link></small>
+            <small>Don't have an account? <Link style={{fontWeight: 'bold', color:"#00bcd4"}} to="/signup">Sign up here</Link></small>
           </form>
         </Grid>
         <Grid item sm/>
