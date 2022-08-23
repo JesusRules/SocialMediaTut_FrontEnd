@@ -179,9 +179,11 @@ class Profile extends Component {
             <Typography variant="body2" align="center">
                 No profile found, please login again</Typography>
             <div style={styles.buttons}>
-            <Button variant="contained" color="primary" component={Link} to="/login">
+
+            <Button style={{marginRight: 7}} variant="contained" color="primary" component={Link} to="/login">
                 Login
             </Button>
+            
             <Button variant="contained" color="secondary" component={Link} to="/signup">
                 Signup
             </Button>

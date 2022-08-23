@@ -33,6 +33,7 @@ const styles = {
   },
   button: {
     marginTop: 20,
+    marginBottom: 10,
     position: 'relative'
   },
   customError: {
@@ -125,7 +126,7 @@ export class signup extends Component {
               )}
             </Button>
             <br />
-            <small>Already have an account? Login <Link to="/login">here</Link></small>
+            <small>Already have an account? <Link style={{fontWeight: 'bold', color:"#00bcd4"}} to="/login">Login here</Link></small>
           </form>
         </Grid>
         <Grid item sm/>
