@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/SocialMediaTut_FrontEnd/static/css/main.e4ebddfc.css",
+    "main.js": "/SocialMediaTut_FrontEnd/static/js/main.85ab03c8.js",
+    "static/js/787.62026ff2.chunk.js": "/SocialMediaTut_FrontEnd/static/js/787.62026ff2.chunk.js",
+    "static/media/no-img.png": "/SocialMediaTut_FrontEnd/static/media/no-img.2fda6558cd58b877e14f.png",
+    "static/media/pokes3.png": "/SocialMediaTut_FrontEnd/static/media/pokes3.1db0ee2628381a2a7346.png",
+    "index.html": "/SocialMediaTut_FrontEnd/index.html",
+    "main.e4ebddfc.css.map": "/SocialMediaTut_FrontEnd/static/css/main.e4ebddfc.css.map",
+    "main.85ab03c8.js.map": "/SocialMediaTut_FrontEnd/static/js/main.85ab03c8.js.map",
+    "787.62026ff2.chunk.js.map": "/SocialMediaTut_FrontEnd/static/js/787.62026ff2.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e4ebddfc.css",
+    "static/js/main.85ab03c8.js"
+  ]
+}
