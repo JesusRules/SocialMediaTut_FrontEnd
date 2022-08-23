@@ -15,13 +15,14 @@ const styles = {
         margin: '10px auto 10px auto'
     },
     button: {
-        marginTop: 20,
+        marginTop: 12,
         position: 'relative'
     },
     visibleSeparator: {
         width: '100%',
-        borderBottom: '1px solid rgba(0,0,0,0.1)',
-        marginBottom: 20
+        // borderBottom: '1px solid rgba(0,0,0,0.1)',
+        border: 'none',
+        marginBottom: 30
     }
 }
 
@@ -57,7 +58,7 @@ export class CommentForm extends Component {
         <Grid item sm={12} style={{ textAlign: 'center'}}>
             <form onSubmit={this.handleSubmit}>
             <TextField
-                variant="standard"
+                // variant="standard"
                 name="body"
                 type="text"
                 label="Comment on scream"
@@ -66,6 +67,8 @@ export class CommentForm extends Component {
                 value={this.state.body}
                 onChange={this.handleChange}
                 fullWidth
+                multiline
+                rows="2"
                 style={styles.textField}
                  />
                     <Button type="submit"

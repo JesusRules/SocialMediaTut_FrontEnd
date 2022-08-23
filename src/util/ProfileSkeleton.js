@@ -61,7 +61,8 @@ const styles = {
     },
     fullLine: {
         height: 15,
-        backgroundColor: 'rgba(0,0,0,0.6)',
+        // backgroundColor: 'rgba(0,0,0,0.6)',
+        backgroundColor: 'rgba(0,0,0,0.1)',
         width: '100%',
         marginBottom: 10,
     },
@@ -92,7 +93,8 @@ const ProfileSkeleton = (props) => {
                 <hr/>
                 <LinkIcon color="primary"/> https://website.com
                 <hr/>
-                <CalendarToday color="primary"/> Joined date
+                <CalendarToday color="primary"/>Joined date
+                <hr/>
             </div>
         </div>
     </Paper>

@@ -11,11 +11,11 @@ import DeleteScream from './DeleteScream.js';
 import ScreamDialog from './ScreamDialog.js';
 //Icons
 import ChatIcon from '@mui/icons-material/Chat';
-
 // MUI Stuff
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
+import Button from '@mui/material/Button';
 
 import { connect } from 'react-redux';
 import LikeButton from './LikeButton.js';
@@ -37,7 +37,14 @@ const styles = {
 }
 
 class Scream extends Component {
+  //  changeHandleProfile = () => {
+  //   // window.location.href = `/user/${userHandle}`;    
+  // }
   render() {
+      const changeHandleProfile = () => {
+        window.location.href = `/user/${userHandle}`;    
+      }
+
       dayjs.extend(relativeTime);
 
       const { classes, scream : {body, createdAt, userImage, 
@@ -54,7 +61,11 @@ class Scream extends Component {
         image={userImage}
         title="Profile image" style={styles.image}/>
         <CardContent style={styles.content}>
-            <Typography variant="h5" component={Link} to={`user/${userHandle}`} color="primary">{userHandle}</Typography>
+            {/* <Button onClick={changeHandleProfile} > */}
+            <Link onClick={changeHandleProfile} to="">
+            <Typography variant="h5" color="primary">{userHandle}</Typography>
+            {/* <Typography variant="h5" component={Link} to={`user/${userHandle}`} color="primary">{userHandle}</Typography> */}
+            </Link>
             {deleteButton}
             <Typography variant="body2" color="textSecondary">{dayjs(createdAt).fromNow()}</Typography>
             <Typography variant="body1">{body}</Typography>

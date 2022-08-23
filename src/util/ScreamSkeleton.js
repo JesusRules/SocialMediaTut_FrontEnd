@@ -31,19 +31,19 @@ const styles = {
     date: {
         height: 14,
         width: 100,
-        backgroundColor: 'rgba(0,0,0,0.3)',
+        backgroundColor: 'rgba(0,0,0,0.075)',
         marginBottom: 10
     },
     fullLine: {
         height: 15,
         width: '90%',
-        backgroundColor: 'rgba(0,0,0,0.6)',
+        backgroundColor: 'rgba(0,0,0,0.25)',
         marginBottom: 10
     },
     halfLine: {
         height: 15,
         width: '50%',
-        backgroundColor: 'rgba(0,0,0,0.6)',
+        backgroundColor: 'rgba(0,0,0,0.25)',
         marginBottom: 10
     }
 }
