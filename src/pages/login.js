@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { useParams, Navigate, useNavigate } from 'react-router-dom';
 // import withStyles from '@material-ui/core/styles/withStyles';
 import PropTypes from 'prop-types';
-import AppIcon from '../images/icon.png';
+import AppIcon from '../images/pokes2.png';
 // MUI Stuff
 import Grid from '@mui/material/Grid';
 import {Typography} from '@mui/material';
