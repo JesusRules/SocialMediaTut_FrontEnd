@@ -1,4 +1,5 @@
 {
+  "homepage": "http://JesusRules.github.io/SocialMediaTut_FrontEnd",
   "name": "socialape-client",
   "version": "0.3.0",
   "private": true,
@@ -26,6 +27,8 @@
   },
   "scripts": {
     "start": "set PORT=3007 && react-scripts start",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -48,5 +51,8 @@
       "last 1 safari version"
     ],
     "proxy": "https://us-central1-socialape-14d54.cloudfunctions.net/api"
+  },
+  "devDependencies": {
+    "gh-pages": "^4.0.0"
   }
 }
