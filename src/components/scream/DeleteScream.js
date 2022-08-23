@@ -41,7 +41,7 @@ class DeleteScream extends Component {
 
     return (
     <Fragment>
-        <MyButton tip="Delete Scream" onClick={this.handleOpen} style={styles.deleteButton}>
+        <MyButton tip="Delete Bark" onClick={this.handleOpen} style={styles.deleteButton}>
             <DeleteOutline color="secondary"/>
         </MyButton>
 
@@ -52,7 +52,7 @@ class DeleteScream extends Component {
             maxWidth="sm">
 
         <DialogTitle>
-            Are you sure you want to delete this scream ?
+            Are you sure you want to delete this bark ?
             <DialogActions>
                 <Button onClick={this.handleClose} color="primary">Cancel</Button>
                 <Button onClick={this.deleteScream} color="secondary">Delete</Button>

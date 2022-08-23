@@ -96,7 +96,7 @@ class Notifications extends Component {
                                 variant="body1"
                                 to={`/user/${notif.recipient}/scream/${notif.screamId}`}
                                  >
-                                    {notif.sender} {verb} your scream {time} 
+                                    {notif.sender} {verb} your bark {time} 
                                 </Typography>
                         </MenuItem>
                     )

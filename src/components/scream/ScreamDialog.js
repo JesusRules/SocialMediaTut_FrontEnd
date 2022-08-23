@@ -164,10 +164,10 @@ class ScreamDialog extends Component{
                     </Typography>
                     <LikeButton screamId={screamId}/>
                     <span>{likeCount} Likes</span>
-                <MyButton tip="comments">
+                <MyButton tip="Comments">
                     <ChatIcon color="primary"/>
                 </MyButton>
-                    <span>{commentCount} comments</span>
+                    <span>{commentCount} Comments</span>
             </Grid>
             <hr style={styles.visibleSeparator}/>
             <CommentForm screamId={screamId} />
@@ -177,7 +177,7 @@ class ScreamDialog extends Component{
     return (
         <Fragment>
 
-            <MyButton onClick={this.handleOpen} tip="Expand scream" style={styles.expandButton}>
+            <MyButton onClick={this.handleOpen} tip="Expand bark" style={styles.expandButton}>
                 <UnfoldMore color="primary"/>
             </MyButton>
 
