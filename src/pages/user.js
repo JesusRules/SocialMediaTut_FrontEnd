@@ -9,6 +9,8 @@ import {connect} from 'react-redux';
 import { getUserData } from '../redux/actions/dataActions.js';
 import Typography from '@mui/material/Typography';
 import { matchPath } from 'react-router'
+import ScreamSkeleton from '../util/ScreamSkeleton.js'
+import ProfileSkeleton from '../util/ProfileSkeleton.js'
 
 const getHandleFromPathname = () => {
     // return pathname.replace(/^us\./,'');
@@ -46,7 +48,7 @@ class user extends Component {
     const { screamIdParam } = this.state;
 
     const screamsMarkup = loading ? (
-        <p>Loading data...</p>
+        <ScreamSkeleton/>
     ) : screams === null ? (
         <p>No screams from this user</p>
     ) : !screamIdParam ? (
@@ -66,7 +68,7 @@ class user extends Component {
             </Grid>
             <Grid item sm={4} xs={12}>
                 {this.state.profile === null ? (
-                    <p>Loading profile...</p>
+                    <ProfileSkeleton/>
                 ) : (
                 <StaticProfile profile={this.state.profile}/>
                 )} 

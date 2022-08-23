@@ -14,6 +14,7 @@ import Profile from '../components/profile/Profile';
 import { connect } from 'react-redux';
 import { getScreams } from '../redux/actions/dataActions.js'
 import { Typography } from '@mui/material';
+import ScreamSkeleton from '../util/ScreamSkeleton.js'
 
 // const home = () => {
 class home extends Component {
@@ -29,8 +30,10 @@ class home extends Component {
         
         let recentScreamsMarkup = !loading ? (
             screams.map(scream => <Scream key={scream.screamId} scream={scream}/>)
+            ) :  (
             // <Typography>asads</Typography>
-        ) : <p>Loading...</p>
+            <ScreamSkeleton/>
+        );
 
     return (
         <Grid container spacing={2}>

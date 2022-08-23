@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import dayjs from 'dayjs';
 import EditDetails from './EditDetails.js';
+import ProfileSkeleton from '../../util/ProfileSkeleton.js'
 // MUI Stuff
 import Button from '@mui/material/Button';
 import theme from '../../util/theme';
@@ -186,7 +187,9 @@ class Profile extends Component {
             </Button>
             </div>
         </Paper>
-      )) : (<p>loading...</p>)
+      )) : (
+        <ProfileSkeleton/>
+      )
 
       return profileMarkup;
   }
