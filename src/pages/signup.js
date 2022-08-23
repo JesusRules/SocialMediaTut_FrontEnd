@@ -92,7 +92,7 @@ export class signup extends Component {
       <Grid container style={styles.form}>
         <Grid item sm/>
         <Grid item sm>
-          <img src={AppIcon} alt="monkey" style={styles.image}/>
+          <img src={AppIcon} alt="Poki" style={styles.image}/>
           <Typography variant="h2" style={styles.pageTitle}>
             Signup
           </Typography>
