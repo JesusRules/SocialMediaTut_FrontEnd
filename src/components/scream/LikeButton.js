@@ -11,7 +11,7 @@ import { likeScream, unlikeScream } from '../../redux/actions/dataActions.js';
 
 const styles = {
   button: {
-    // fontSize: '20',
+    // fontSize: '23',
   }
 }
 

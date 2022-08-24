@@ -104,7 +104,8 @@ const styles = {
     },
     expandButton: {
         position: 'absolute',
-        left: '90%'
+        left: '90%',
+        bottom: '10%',
     },
     spinnerDiv: {
         textAlign: 'center',

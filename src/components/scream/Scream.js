@@ -21,6 +21,7 @@ import { connect } from 'react-redux';
 import LikeButton from './LikeButton.js';
 import { createTheme, ThemeProvider, Box } from '@mui/system';
 import {styled} from '@mui/material/styles';
+import useWindowSize from '../../util/useWindowSize.js'
 
 const theme = createTheme({
   breakpoints: {
@@ -44,16 +45,16 @@ const styles = {
     },
     image:{
       //minWidth: 200
+      // paddingRight: 10,
     },
     content:{
-        padding: 25,
+        paddingLeft: 21,
         objectFit: 'cover'
     },
     text: {
-      [theme.breakpoints.up('lg')]: {
-        minWidth: 50,
-        backgroundColor: 'red',
-      }
+      paddingTop: 3,
+      marginTop: '0.5rem',
+      fontSize: 16,
       // }
     }
 }
@@ -66,7 +67,7 @@ const CardMediaStyled = styled(CardMedia)({
   [theme.breakpoints.up('666')]: {
     minWidth: 200,
   }
-});
+});            
 
 // const Responsive = styled('div')(({theme}) => ({
 //   [theme.breakpoints.down('md')]: {
@@ -74,8 +75,7 @@ const CardMediaStyled = styled(CardMedia)({
 //   }
 // }));
 
-
-const RespTest = () => {
+const RespNextLine = () => {
   const [w, setW] = useState(window.innerWidth);
 
   useEffect(()=> {
@@ -95,13 +95,16 @@ const RespTest = () => {
     //   ) : (
     //   null
     // )
+    const newTyp = w < 445 ? (
+      <br/>
+      ) : (
+      null
+    )
 
     return (
-      <div>
-        {/* <Typography>Advanced Material UI</Typography>
-        <Typography>{w}</Typography> */}
-        {/* {newTyp} */}
-      </div>
+      <>
+        {newTyp}
+      </>
   );
 }
 
@@ -109,7 +112,7 @@ const RespTest = () => {
 class Scream extends Component {
   render() {
     // RespTest(); NOT in render
-    
+
       const changeHandleProfile = () => {
         window.location.href = `/user/${userHandle}`;    
       }
@@ -127,28 +130,35 @@ class Scream extends Component {
     return (
       <Card style={styles.card}>
 
-        {/* <CardSizeDiv> */}
         <CardMediaStyled
         image={userImage}
         title="Profile image" style={styles.image}/>
-        {/* </CardSizeDiv> */}
 
         <CardContent style={styles.content}>
-            {/* <Button onClick={changeHandleProfile} > */}
+            
             <Link onClick={changeHandleProfile} to="">
-            <Typography variant="h5" color="primary">{userHandle}</Typography>
-            <RespTest/>
-            {/* <Typography variant="h5" component={Link} to={`user/${userHandle}`} color="primary">{userHandle}</Typography> */}
+            <Typography style={{fontSize: 22}} variant="h5" color="primary">{userHandle}</Typography>
+            {/* <RespTest/> */}
             </Link>
+
             {deleteButton}
-            <Typography variant="body2" color="textSecondary">{dayjs(createdAt).fromNow()}</Typography>
-            <Typography variant="body1">{body}</Typography>
+            
+            <Typography style={{fontSize: 13.3}}variant="body2" color="textSecondary">{dayjs(createdAt).fromNow()}</Typography>
+           
+            <Typography style={{paddingTop: 2, fontSize: 21}} variant="body1">{body}</Typography>
+            
+            <div style={styles.text}>
             <LikeButton screamId={screamId} />
-            <span className={'scream-details'} style={styles.text}>{likeCount} Likes</span>
+            <span className={'scream-details'} >{likeCount} Likes</span>
+            
+            <RespNextLine/>
+
             <MyButton tip="Comments">
-              <ChatIcon style={styles.text} color="primary"/>
+              <ChatIcon  color="primary"/>
             </MyButton>
-            <span className={'scream-details'} style={styles.text}>{commentCount} Comments</span>
+            <span className={'scream-details'} >{commentCount} Comments</span>
+            </div>
+            
             <ScreamDialog screamId={screamId} userHandle={userHandle} openDialog={this.props.openDialog} />
         </CardContent>
       </Card>
