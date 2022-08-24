@@ -20,7 +20,7 @@ const styles = {
         marginBottom: 20
     },
     commentImage: {
-        maxWidth: '100%',
+        width: 90,
         height: 90,
         objectFit: 'cover',
         borderRadius: '50%',
@@ -34,7 +34,7 @@ const styles = {
 
 class Comments extends Component{
     render() {
-        const { classes, comments } = this.props;
+        const { comments } = this.props;
         return (
         <Grid container>
             {comments.map((comment, index) => {

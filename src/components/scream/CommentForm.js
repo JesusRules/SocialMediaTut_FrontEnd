@@ -9,6 +9,7 @@ import TextField from '@mui/material/TextField'
 import { connect } from 'react-redux';
 import { submitComment, submitComment2 } from '../../redux/actions/dataActions.js';
 import store from '../../redux/store.js';
+import DialogActions from '@mui/material/DialogActions';
 
 const styles = {
     // ...theme,
@@ -17,7 +18,8 @@ const styles = {
     },
     button: {
         marginTop: 12,
-        position: 'relative'
+        position: 'relative',
+        cursor: 'pointer'
     },
     visibleSeparator: {
         width: '100%',
@@ -56,7 +58,7 @@ export class CommentForm extends Component {
     };
 
   render() {
-    const { classes, authenticated } = this.props;
+    const {authenticated } = this.props;
     const errors = this.state.errors;
 
     const commentFormMarkup = authenticated ? (

@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, useEffect, useState } from 'react'
 import {Typography } from '@mui/material';
 // import withStyles from '@mui/material';
 import {Link} from 'react-router-dom'
@@ -19,6 +19,21 @@ import Button from '@mui/material/Button';
 
 import { connect } from 'react-redux';
 import LikeButton from './LikeButton.js';
+import { createTheme, ThemeProvider, Box } from '@mui/system';
+import {styled} from '@mui/material/styles';
+
+const theme = createTheme({
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 600,
+      md: 900,
+      lg: 1200,
+      xl: 1536,
+      HUGE: 3200,
+    }
+  }
+})
 
 //Not using - in css
 const styles = {
@@ -28,19 +43,73 @@ const styles = {
         marginBottom: 20,
     },
     image:{
-        minWidth: 200,
+      //minWidth: 200
     },
     content:{
         padding: 25,
         objectFit: 'cover'
+    },
+    text: {
+      [theme.breakpoints.up('lg')]: {
+        minWidth: 50,
+        backgroundColor: 'red',
+      }
+      // }
     }
 }
 
+// const CardSizeDiv = styled('div')(({theme}) => ({
+const CardMediaStyled = styled(CardMedia)({
+  [theme.breakpoints.down('666')]: {
+    minWidth: 150,
+  },
+  [theme.breakpoints.up('666')]: {
+    minWidth: 200,
+  }
+});
+
+// const Responsive = styled('div')(({theme}) => ({
+//   [theme.breakpoints.down('md')]: {
+//     color: 'red'
+//   }
+// }));
+
+
+const RespTest = () => {
+  const [w, setW] = useState(window.innerWidth);
+
+  useEffect(()=> {
+    const handleResize = () => {
+      setW(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+    }, []);
+
+    // const newTyp = w > 1000 ? (
+    //   <Typography>YES!!!</Typography>
+    //   ) : (
+    //   null
+    // )
+
+    return (
+      <div>
+        {/* <Typography>Advanced Material UI</Typography>
+        <Typography>{w}</Typography> */}
+        {/* {newTyp} */}
+      </div>
+  );
+}
+
+
 class Scream extends Component {
-  //  changeHandleProfile = () => {
-  //   // window.location.href = `/user/${userHandle}`;    
-  // }
   render() {
+    // RespTest(); NOT in render
+    
       const changeHandleProfile = () => {
         window.location.href = `/user/${userHandle}`;    
       }
@@ -57,24 +126,29 @@ class Scream extends Component {
 
     return (
       <Card style={styles.card}>
-        <CardMedia
+
+        {/* <CardSizeDiv> */}
+        <CardMediaStyled
         image={userImage}
         title="Profile image" style={styles.image}/>
+        {/* </CardSizeDiv> */}
+
         <CardContent style={styles.content}>
             {/* <Button onClick={changeHandleProfile} > */}
             <Link onClick={changeHandleProfile} to="">
             <Typography variant="h5" color="primary">{userHandle}</Typography>
+            <RespTest/>
             {/* <Typography variant="h5" component={Link} to={`user/${userHandle}`} color="primary">{userHandle}</Typography> */}
             </Link>
             {deleteButton}
             <Typography variant="body2" color="textSecondary">{dayjs(createdAt).fromNow()}</Typography>
             <Typography variant="body1">{body}</Typography>
             <LikeButton screamId={screamId} />
-            <span>{likeCount} Likes</span>
+            <span className={'scream-details'} style={styles.text}>{likeCount} Likes</span>
             <MyButton tip="Comments">
-              <ChatIcon color="primary"/>
+              <ChatIcon style={styles.text} color="primary"/>
             </MyButton>
-            <span>{commentCount} Comments</span>
+            <span className={'scream-details'} style={styles.text}>{commentCount} Comments</span>
             <ScreamDialog screamId={screamId} userHandle={userHandle} openDialog={this.props.openDialog} />
         </CardContent>
       </Card>

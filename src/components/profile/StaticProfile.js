@@ -58,7 +58,7 @@ const styles = {
 }
 
 const StaticProfile = (props) => {
-    const { classes, profile: { handle, createdAt, imageUrl, bio, website, location }} = props; //not this.props cuz its a functional component
+    const { profile: { handle, createdAt, imageUrl, bio, website, location }} = props; //not this.props cuz its a functional component
 
     return (
         <Paper style={styles.paper}>

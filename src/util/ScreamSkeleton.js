@@ -49,7 +49,7 @@ const styles = {
 }
 
 const ScreamSkeleton = (props) => {
-    const { classes } = props;
+    const { } = props;
 
     const content = (
         <Card style={styles.card}>

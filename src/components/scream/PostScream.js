@@ -8,6 +8,7 @@ import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
+import DialogActions from '@mui/material/DialogActions';
 import CircularProgress from '@mui/material/CircularProgress';
 import AddIcon from '@mui/icons-material/Add';
 import CloseIcon from '@mui/icons-material/Close';
@@ -71,10 +72,14 @@ class PostScream extends Component {
     handleSubmit = (event) => {
         event.preventDefault();
         this.props.postScream({body: this.state.body}); //goes to get posted in database, saves, and get authenticated user
+    //     window.setTimeout(function() {
+    //         // window.location.href = '/';
+    //   }, 500);
+        // window.location = '/';
     }
     render() {
         const { errors } = this.state;
-        const { classes, UI: { loading }} = this.props;
+        const { UI: { loading }} = this.props;
         return (
             <Fragment>
                 <MyButton onClick={this.handleOpen} tip="Post a Bark!">
@@ -87,17 +92,21 @@ class PostScream extends Component {
                         </MyButton>
                         <DialogTitle>Post a new bark</DialogTitle>
                         <DialogContent>
-                            <form onSubmit={this.handleSubmit}>
+                            {/* <form onSubmit={this.handleSubmit}> */}
+                            <form>
                                 <TextField name="body" type="text" label="ARRRR!!" 
                                                 multiline rows="3" placeholder='Bark at your fellow pups' 
                                                 error={errors.body ? true : false} helperText={errors.body}
                                                 style={styles.textField} onChange={this.handleChange} fullWidth />
-                                <Button type="submit" variant="contained" color="primary"
+                                <DialogActions>
+                                {/* <Button type="submit" variant="contained" color="primary" */}
+                                <Button onClick={this.handleSubmit} variant="contained" color="primary"
                                     style={styles.submitButton} disabled={loading}>
                                         Submit
                                         {loading && 
                                         (<CircularProgress size={30} style={styles.progressSpinner} />)}
                             </Button>
+                            </DialogActions>
                             </form>
                         </DialogContent>
                 </Dialog>

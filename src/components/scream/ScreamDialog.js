@@ -95,10 +95,12 @@ const styles = {
     },
     closeButton: {
         position: 'absolute',
-        top: '3.5%',
-        // top: '0%',
-        right: '0%',
-        cursor:'pointer'
+        // top: '2.5%',
+        // right: '2.5%',
+        left: '91%',
+        top: '3%'
+        // cursor:'pointer'
+        
     },
     expandButton: {
         position: 'absolute',
@@ -140,10 +142,10 @@ class ScreamDialog extends Component{
         this.props.getScream(this.props.screamId);
     }
     handleClose = () => {
-        this.setState({ open: false })
         window.history.pushState(null, null, this.state.oldPath);
         // window.location = this.state.oldPath;
         this.props.clearErrors();
+        this.setState({ open: false })
     }
 
     render() {
@@ -201,19 +203,14 @@ class ScreamDialog extends Component{
                 fullWidth
                 maxWidth="sm"
                 >
-            {/* <MyButton
-                tip="Close"
-                onClick={this.handleClose}
-                style={styles.closeButton}
-            >
-            <CloseIcon />
-            </MyButton> */}
-            {/* <Tooltip title="Close" placement="top"> */}
-            <DialogActions>
+            <MyButton tip="Close" onClick={this.handleClose} style={styles.closeButton}>
+            <CloseIcon/>
+        </MyButton>
+            {/* <DialogActions>
             <Button onClick={this.handleClose} style={styles.closeButton}>
-              <CloseIcon/>
+              <CloseIcon/>Close
             </Button>
-            </DialogActions>
+            </DialogActions> */}
         {/* </Tooltip> */}
 
             <DialogContent style={styles.dialogContent}>

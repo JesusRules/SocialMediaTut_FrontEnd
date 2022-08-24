@@ -127,7 +127,7 @@ class Profile extends Component {
         this.props.logoutUser();
     }
   render() {
-      const {classes, user: { credentials: { handle, createdAt, imageUrl, bio, website, location }, 
+      const {user: { credentials: { handle, createdAt, imageUrl, bio, website, location }, 
       loading,
       authenticated}} = this.props;
     

@@ -9,6 +9,12 @@ import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 import {connect} from 'react-redux';
 import { likeScream, unlikeScream } from '../../redux/actions/dataActions.js';
 
+const styles = {
+  button: {
+    // fontSize: '20',
+  }
+}
+
 export class LikeButton extends Component {
   likedScream = () => {
     if(this.props.user.likes && this.props.user.likes.find(like => like.screamId === this.props.screamId)) {
@@ -38,11 +44,11 @@ export class LikeButton extends Component {
       ) : (
         this.likedScream() ? (
           <MyButton tip="Undo like" onClick={this.unlikeScream}>
-            <FavoriteIcon color="primary"/>
+            <FavoriteIcon style={styles.button} color="primary"/>
         </MyButton>
         ) : (
           <MyButton tip="Like" onClick={this.likeScream}>
-            <FavoriteBorder color="primary"/>
+            <FavoriteBorder style={styles.button} color="primary"/>
         </MyButton>
         )
       )
