@@ -55,7 +55,8 @@ const styles = {
 
     handle: {
         height: 20,
-        backgroundColor: theme.palette.primary.main,
+        // backgroundColor: theme.palette.primary.main,
+        backgroundColor: 'rgba(0,0,0,0.2)',
         width: 60,
         margin: '0 auto 7px auto',
     },
@@ -75,7 +76,7 @@ const styles = {
 }
 
 const ProfileSkeleton = (props) => {
-    const { classes } = props;
+    const { } = props;
   return (
     <Paper styles={styles.paper}>
         <div style={styles.profile}>

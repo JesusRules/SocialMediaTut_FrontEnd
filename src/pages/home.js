@@ -99,40 +99,39 @@ class home extends Component {
             ) :  (
             <ScreamSkeleton/>
         );           
-        
 
-        const GridOrder = this.state.hideNav ? (
-            <Grid container spacing={2}>
-                <Grid item sm={8} xs={12}>
-                    {recentScreamsMarkup}
-                </Grid>
-                <Grid item sm={4} xs={12}>
-                    <Profile />
-                </Grid>
-            </Grid>
-            ) : (
-                <Grid container spacing={2}>
-                <Grid item sm={4} xs={12}>
-                    <Profile />
-                </Grid>
-                <Grid item sm={8} xs={12}>
-                    {recentScreamsMarkup}
-                </Grid>
-            </Grid>
-          )
+        // const GridOrder = this.state.hideNav ? (
+        //     <Grid container spacing={2}>
+        //         <Grid item sm={8} xs={12}>
+        //             {recentScreamsMarkup}
+        //         </Grid>
+        //         <Grid item sm={4} xs={12}>
+        //             <Profile />
+        //         </Grid>
+        //     </Grid>
+        //     ) : (
+        //         <Grid container spacing={2}>
+        //         <Grid item sm={4} xs={12}>
+        //             <Profile />
+        //         </Grid>
+        //         <Grid item sm={8} xs={12}>
+        //             {recentScreamsMarkup}
+        //         </Grid>
+        //     </Grid>
+        //   )
 
     return (
-        <>
-            {GridOrder}
-        </>
-        // <Grid container spacing={2}>
-        //     <Grid item sm={8} xs={12}>
-        //         {recentScreamsMarkup}
-        //     </Grid>
-        //     <Grid item sm={4} xs={12}>
-        //         <Profile />
-        //     </Grid>
-        // </Grid>
+        // <>
+        //     {GridOrder}
+        // </>
+        <Grid container spacing={2}>
+            <Grid item sm={8} xs={12}>
+                {recentScreamsMarkup}
+            </Grid>
+            <Grid item sm={4} xs={12}>
+                <Profile />
+            </Grid>
+        </Grid>
     );
     }
 }
