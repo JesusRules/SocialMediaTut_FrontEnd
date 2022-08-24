@@ -12,6 +12,14 @@ import { matchPath } from 'react-router'
 import ScreamSkeleton from '../util/ScreamSkeleton.js'
 import ProfileSkeleton from '../util/ProfileSkeleton.js'
 
+const styles = {
+    header: {
+        textAlign: 'center',
+        fontSize: 32,
+        paddingBottom: '1rem',
+    }
+}
+
 const getHandleFromPathname = () => {
     // return pathname.replace(/^us\./,'');
   }
@@ -19,7 +27,9 @@ class user extends Component {
     
     state = {
         profile: null,
-        screamIdParam: null
+        screamIdParam: null,
+        hideNav: false,
+        handle: '',
     };
     componentDidMount() {
         // const handle = this.props.match.params.handle;
@@ -38,11 +48,30 @@ class user extends Component {
         axios.get(`https://us-central1-socialape-14d54.cloudfunctions.net/api/user/${handle}`)
         .then(res => {
             this.setState({
+                handle: res.data.user.handle,
                 profile: res.data.user //profile is static - doesnt needd to be in state
             })
         })
         .catch(err => console.log(err));
+
+        //Flip stuff
+        window.addEventListener("resize", this.resize.bind(this));
+        this.resize();
     }
+    
+    //Flip stuff
+    resize() {
+        let currentHideNav = (window.innerWidth >= 600);
+        if (currentHideNav !== this.state.hideNav) {
+            this.setState({hideNav: currentHideNav});
+        }
+    }
+    
+    //Flip stuff
+    componentWillUnmount() {
+        window.removeEventListener("resize", this.resize.bind(this));
+    }
+
   render() {
     const { screams, loading } = this.props.data;
     const { screamIdParam } = this.state;
@@ -61,7 +90,7 @@ class user extends Component {
         })
     )
 
-    return (
+    const GridOrder = this.state.hideNav ? (
         <Grid container spacing={2}>
             <Grid item sm={8} xs={12}>
                 {screamsMarkup}
@@ -74,6 +103,45 @@ class user extends Component {
                 )} 
             </Grid>
         </Grid>
+        ) : (
+            <Grid container spacing={2}>
+            <Grid item sm={4} xs={12}>
+                {this.state.profile === null ? (
+                    <ProfileSkeleton/>
+                ) : (
+                <StaticProfile profile={this.state.profile}/>
+                )} 
+            </Grid>
+            <Grid item sm={8} xs={12}>
+                {screamsMarkup}
+            </Grid>
+        </Grid>
+      )
+
+      const title = !loading ? (
+        <Typography style={styles.header}>{this.state.handle}'s BARKS!</Typography>
+      ) : (
+        <Typography style={styles.header}> </Typography>
+      )
+    return (
+        // <>
+        //     {GridOrder}
+        // </>
+        <>
+        {title}
+        <Grid container spacing={2}>
+            <Grid item sm={4} xs={12}>
+                {this.state.profile === null ? (
+                    <ProfileSkeleton/>
+                ) : (
+                <StaticProfile profile={this.state.profile}/>
+                )} 
+            </Grid>
+            <Grid item sm={8} xs={12}>
+                {screamsMarkup}
+            </Grid>
+        </Grid>
+        </>
     )
   }
 }
@@ -84,7 +152,7 @@ user.propTypes = {
 }
 
 const mapStateToProps = state => ({
-    data: state.data
+    data: state.data,
 })
 
 export default connect(mapStateToProps, { getUserData })(user);

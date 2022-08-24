@@ -12,17 +12,64 @@ import Button from '@mui/material/Button';
 import { Tooltip } from '@mui/material';
 // Icons
 import HomeIcon from '@mui/icons-material/Home';
+import {styled} from '@mui/material/styles';
+import { createTheme, ThemeProvider, Box } from '@mui/system';
+import AppIcon from '../../images/pokes4.png'
+
+const theme = createTheme({
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 600,
+      md: 900,
+      lg: 1200,
+      xl: 1536,
+      HUGE: 3200,
+    }
+  }
+})
+
+
+const styles = {
+  profileIcon: {
+    position: 'absolute',
+    top: 10
+  },
+  profileIconImage: {
+    width: 50,
+  }
+}
+
+  const ProfileIconStyle = styled('div')({
+    [theme.breakpoints.up('1220')]: {
+      width: '100%',
+      maxWidth: '75em',
+      margin: '0 auto',
+      // paddingLeft: '1.5rem',
+      // paddingRight: '1.5rem',
+    }
+  });          
 
 class Navbar extends Component {
   render() {
     const { authenticated } = this.props;
     return (
       <AppBar>
+              <ProfileIconStyle>
+              <Link to="/login">
+              <MyButton style={styles.profileIcon} tip="Profile">
+                {/* <HomeIcon /> */}
+                <img src={AppIcon} style={styles.profileIconImage}/>
+              </MyButton>
+              </Link>
+              </ProfileIconStyle>
         <Toolbar className="nav-container">
           {authenticated ? (
             <Fragment>
-              {/* <Tooltip> */}
+
+
               <PostScream/>
+
               <Link to="/">
               <MyButton tip="Home">
                 <HomeIcon />

@@ -1,6 +1,6 @@
 import { SET_SCREAMS, LOADING_DATA, LIKE_SCREAM, UNLIKE_SCREAM, 
     DELETE_SCREAM, LOADING_UI, SET_ERRORS, CLEAR_ERRORS, POST_SCREAM, SET_SCREAM,
-    STOP_LOADING_UI, SUBMIT_COMMENT, RETURN } from '../types';
+    STOP_LOADING_UI, SUBMIT_COMMENT, JUST_RETURN } from '../types';
 import axios from 'axios'
 import { RssFeed } from '@mui/icons-material';
 
@@ -109,6 +109,8 @@ export const submitComment2 = (screamId, commentData) => (dispatch) => {
         //     payload: res.data.screamData
         // });
         dispatch(clearErrors());
+        // dispatch(justReturn());
+        
     })
     .catch(err => {
         dispatch({
@@ -149,4 +151,7 @@ export const getUserData = (userHandle) => (dispatch) => {
 
 export const clearErrors = () => (dispatch) => {
     dispatch({ type: CLEAR_ERRORS });
+}
+export const justReturn = () => (dispatch) => {
+    dispatch({ type: JUST_RETURN });
 }

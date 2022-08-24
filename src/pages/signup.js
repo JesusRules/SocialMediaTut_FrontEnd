@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { useParams, Navigate, useNavigate } from 'react-router-dom';
 // import withStyles from '@material-ui/core/styles/withStyles';
 import PropTypes from 'prop-types';
-import AppIcon from '../images/pokes3.png';
+import AppIcon from '../images/pokes4.png';
 // MUI Stuff
 import Grid from '@mui/material/Grid';
 import {Typography} from '@mui/material';
@@ -21,9 +21,11 @@ import {signupUser} from '../redux/actions/userActions.js'
 const styles = {
   form: {
     textAlign: 'center',
+    paddingBottom: '2.3rem',
   },
   image: {
     margin: '20px auto 20px auto',
+    width: 280,
   },
   pageTitle: {
     margin: '10px auto 10px auto'
@@ -91,7 +93,7 @@ export class signup extends Component {
   }
 
   render() {
-    const { classes, UI: {loading} } = this.props;
+    const { UI: {loading} } = this.props;
     const {errors} = this.state;
     return (
       <Grid con style={styles.form}>
@@ -115,7 +117,7 @@ export class signup extends Component {
             helperText={errors.confirmPassword} error={errors.confirmPassword ? true : false} style={styles.textField}
             value={this.state.confirmPassword} variant="standard" onChange={this.handleChange} fullWidth/>
             <br />
-            <TextField id="handle" name="handle" type="text" label="Handle" 
+            <TextField id="handle" name="handle" type="text" label="Name" 
             helperText={errors.handle} error={errors.handle ? true : false} style={styles.textField}
             value={this.state.handle} variant="standard" onChange={this.handleChange} fullWidth/>
             {errors.general && (

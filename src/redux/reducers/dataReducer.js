@@ -1,6 +1,6 @@
 import { SET_SCREAMS, LIKE_SCREAM, UNLIKE_SCREAM, 
     LOADING_DATA, DELETE_SCREAM, POST_SCREAM, SET_SCREAM,
-    SUBMIT_COMMENT } from '../types.js'
+    SUBMIT_COMMENT, JUST_RETURN } from '../types.js'
 
 const initialState = {
     screams: [],
@@ -61,6 +61,10 @@ export default function(state = initialState, action){
                     comments: [action.payload.newComment, ...state.scream.comments]
                     // comments: [action.payload, ...state.scream.comments]
                 }
+            };
+        case JUST_RETURN:
+            return {
+                ...state,
             };
         default:
             return state;

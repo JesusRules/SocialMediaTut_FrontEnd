@@ -113,6 +113,16 @@ const RespNextLine = () => {
 
 
 class Scream extends Component {
+  state = {
+    commentCount2: this.props.data.scream.commentCount,
+};
+componentWillReceiveProps(nextProps) {
+  if (nextProps.data.scream.commentCount) {
+      let number = this.props.data.scream.commentCount;
+      this.setState({commentCount2: number++});
+  }
+}
+
   render() {
     // RespTest(); NOT in render
 
@@ -160,6 +170,7 @@ class Scream extends Component {
               <ChatIcon  color="primary"/>
             </MyButton> */}
             <ScreamDialog commentButton={true} screamId={screamId} userHandle={userHandle} openDialog={this.props.openDialog} />
+            {/* <span className={'scream-details'} >{this.state.commentCount2} </span> */}
             <span className={'scream-details'} >{commentCount} </span>
             </div>
             
@@ -180,6 +191,8 @@ Scream.propTypes = {
 
 const mapStateToProps = (state) => ({
   user: state.user,
+  data: state.data
+  //DONT USE scream: state.data.scream,
 })
 
 // export default withStyles(styles)(Scream);
