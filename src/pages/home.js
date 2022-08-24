@@ -39,26 +39,26 @@ const RespHomePage = () => {
     )
   }
 
-const RespHomePage2 = () => {
-    // const [isMobile, setIsMobile] = useState(false)
+// const RespHomePage2 = () => {
+//     // const [isMobile, setIsMobile] = useState(false)
  
-    // //choose the screen size 
-    // const handleResize = () => {
-    // if (window.innerWidth < 600) {
-    //     setIsMobile(true)
-    // } else {
-    //     setIsMobile(false)
-    // }
-    // }
+//     // //choose the screen size 
+//     // const handleResize = () => {
+//     // if (window.innerWidth < 600) {
+//     //     setIsMobile(true)
+//     // } else {
+//     //     setIsMobile(false)
+//     // }
+//     // }
 
-    // // create an event listener
-    // useEffect(() => {
-    // window.addEventListener("resize", handleResize)
-    // })
+//     // // create an event listener
+//     // useEffect(() => {
+//     // window.addEventListener("resize", handleResize)
+//     // })
 
-    const isMobile2 = useMediaQuery({ query: `(max-width: 600px)` });
-    return isMobile2;
-  }
+//     const isMobile2 = useMediaQuery({ query: `(max-width: 600px)` });
+//     return isMobile2;
+//   }
 
 
 // const home = () => {
@@ -100,26 +100,6 @@ class home extends Component {
             <ScreamSkeleton/>
         );           
 
-        // const GridOrder = this.state.hideNav ? (
-        //     <Grid container spacing={2}>
-        //         <Grid item sm={8} xs={12}>
-        //             {recentScreamsMarkup}
-        //         </Grid>
-        //         <Grid item sm={4} xs={12}>
-        //             <Profile />
-        //         </Grid>
-        //     </Grid>
-        //     ) : (
-        //         <Grid container spacing={2}>
-        //         <Grid item sm={4} xs={12}>
-        //             <Profile />
-        //         </Grid>
-        //         <Grid item sm={8} xs={12}>
-        //             {recentScreamsMarkup}
-        //         </Grid>
-        //     </Grid>
-        //   )
-
     return (
         // <>
         //     {GridOrder}
@@ -146,3 +126,24 @@ const mapStateToProps = (state) => ({
 })
 
 export default connect(mapStateToProps, { getScreams })(home)
+
+
+        // const GridOrder = this.state.hideNav ? (
+        //     <Grid container spacing={2}>
+        //         <Grid item sm={8} xs={12}>
+        //             {recentScreamsMarkup}
+        //         </Grid>
+        //         <Grid item sm={4} xs={12}>
+        //             <Profile />
+        //         </Grid>
+        //     </Grid>
+        //     ) : (
+        //         <Grid container spacing={2}>
+        //         <Grid item sm={4} xs={12}>
+        //             <Profile />
+        //         </Grid>
+        //         <Grid item sm={8} xs={12}>
+        //             {recentScreamsMarkup}
+        //         </Grid>
+        //     </Grid>
+        //   )

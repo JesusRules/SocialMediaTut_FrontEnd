@@ -11,6 +11,7 @@ import Typography from '@mui/material/Typography';
 import { matchPath } from 'react-router'
 import ScreamSkeleton from '../util/ScreamSkeleton.js'
 import ProfileSkeleton from '../util/ProfileSkeleton.js'
+import Profile from '../components/profile/Profile.js'
 
 const styles = {
     header: {
@@ -20,9 +21,6 @@ const styles = {
     }
 }
 
-const getHandleFromPathname = () => {
-    // return pathname.replace(/^us\./,'');
-  }
 class user extends Component {
     
     state = {
@@ -32,15 +30,9 @@ class user extends Component {
         handle: '',
     };
     componentDidMount() {
-        // const handle = this.props.match.params.handle;
-        // const screamId = this.props.match.params.screamId;
-        
+
         const handle = (window.location.pathname).split('/')[2];
         const screamId = (window.location.pathname ).split('/')[4];
-        // const screamId = (window.location.pathname + '/scream/asdasdsd').split('/')[4];
-
-        // console.log(handle);
-        // console.log(screamId);
 
         if(screamId) this.setState({ screamIdParam: screamId });
 
@@ -124,9 +116,6 @@ class user extends Component {
         <Typography style={styles.header}> </Typography>
       )
     return (
-        // <>
-        //     {GridOrder}
-        // </>
         <>
         {title}
         <Grid container spacing={2}>
@@ -134,7 +123,8 @@ class user extends Component {
                 {this.state.profile === null ? (
                     <ProfileSkeleton/>
                 ) : (
-                <StaticProfile profile={this.state.profile}/>
+                <Profile />
+                // <StaticProfile profile={this.state.profile}/>
                 )} 
             </Grid>
             <Grid item sm={8} xs={12}>
