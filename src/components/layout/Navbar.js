@@ -45,7 +45,9 @@ const styles = {
   },
   profileIconImage: {
     width: 55,
+    height: 55,
     borderRadius: '50%',
+    objectFit: 'cover'
   },
   menuButton: {
     position: 'absolute',
@@ -66,7 +68,7 @@ const styles = {
   
   
 
-  const MUIMenuProfile = ({handleLogout, authenticated}) => {
+  const MUIMenuProfile = ({handleLogout, authenticated, imageUrl}) => {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
@@ -95,7 +97,7 @@ const styles = {
             >
             
             {authenticated ? (
-            <img src={AppIcon} style={styles.profileIconImage}/> 
+            <img src={imageUrl} style={styles.profileIconImage}/> 
             ) : (
               <img src={UnsignedIcon} style={styles.profileIconImage}/> 
             )}
@@ -133,7 +135,9 @@ class Navbar extends Component {
   }
 
   render() {
-    const { authenticated } = this.props;
+    // const { authenticated } = this.props;
+    const {user: { credentials: { handle, createdAt, imageUrl, bio, website, location }, loading, authenticated}} 
+    = this.props;
     return (
       <AppBar>
               {/* <ProfileIconStyle>
@@ -143,7 +147,9 @@ class Navbar extends Component {
               </MyButton>
               </Link>
               </ProfileIconStyle> */}
-              <MUIMenuProfile authenticated={authenticated} handleLogout={this.handleLogout}/>
+              <MUIMenuProfile authenticated={authenticated}
+                              imageUrl={imageUrl}
+                              handleLogout={this.handleLogout}/>
               
         <Toolbar className="nav-container">
           {authenticated ? (
@@ -178,7 +184,9 @@ Navbar.propTypes = {
 }
 
 const mapStateToProps = (state) => ({
-  authenticated: state.user.authenticated
+  // authenticated: state.user.authenticated,
+  // imageUrl: state.user.imageUrl
+  user: state.user
 });
 
 const mapActionsToProps = { 
