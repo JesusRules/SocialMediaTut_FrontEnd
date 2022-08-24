@@ -55,6 +55,9 @@ const styles = {
       paddingTop: 3,
       marginTop: '0.5rem',
       fontSize: 16,
+      position: 'relative',
+      top: '11px',
+      right: '7px'
       // }
     }
 }
@@ -149,14 +152,14 @@ class Scream extends Component {
             
             <div style={styles.text}>
             <LikeButton screamId={screamId} />
-            <span className={'scream-details'} >{likeCount} Likes</span>
-            
-            <RespNextLine/>
+            <span className={'scream-details'} >{likeCount} </span>   
 
+        {/* <RespNextLine/> */}
+        
             <MyButton tip="Comments">
               <ChatIcon  color="primary"/>
             </MyButton>
-            <span className={'scream-details'} >{commentCount} Comments</span>
+            <span className={'scream-details'} >{commentCount} </span>
             </div>
             
             <ScreamDialog screamId={screamId} userHandle={userHandle} openDialog={this.props.openDialog} />

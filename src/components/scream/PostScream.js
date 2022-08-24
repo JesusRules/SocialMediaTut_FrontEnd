@@ -31,11 +31,14 @@ const styles = {
         position: 'absolute',
     },
     closeButton: {
+        // position: 'absolute',
+        // left: '91%',
+        // top: '6%'
         position: 'absolute',
-        left: '91%',
-        top: '6%'
-        // left: '90.7%',
-        // top: '13%'
+        right: '0%',
+        marginRight: '.9rem',
+        top: '3%'
+        // cursor:'pointer'
     }
 }
 

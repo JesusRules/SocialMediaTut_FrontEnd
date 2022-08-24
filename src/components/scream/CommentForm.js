@@ -14,7 +14,8 @@ import DialogActions from '@mui/material/DialogActions';
 const styles = {
     // ...theme,
     textField: {
-        margin: '10px auto 10px auto'
+        margin: '10px auto 10px auto',
+        textAlign: 'center',
     },
     button: {
         marginTop: 12,
@@ -62,10 +63,12 @@ export class CommentForm extends Component {
     const errors = this.state.errors;
 
     const commentFormMarkup = authenticated ? (
-        <Grid item sm={12} style={{ textAlign: 'center'}}>
+        // <Grid item sm={12} style={{ textAlign: 'center'}}>
+        <Grid item xs={12} style={{ textAlign: 'center'}}>
             <form onSubmit={this.handleSubmit}>
             <TextField
                 // variant="standard"
+                fullWidth
                 name="body"
                 type="text"
                 label="Comment on bark"
@@ -73,11 +76,12 @@ export class CommentForm extends Component {
                 helperText={errors.comment}
                 value={this.state.body}
                 onChange={this.handleChange}
-                fullWidth
+                // fullWidth
                 multiline
-                rows="2"
+                rows="3"
                 style={styles.textField}
                  />
+                 <br/>
                     <Button type="submit"
                     variant="contained"
                     color="primary"

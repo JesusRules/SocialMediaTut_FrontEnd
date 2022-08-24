@@ -23,6 +23,24 @@ import ChatIcon from '@mui/icons-material/Chat';
 // Redux stuff
 import { connect } from 'react-redux';
 import { getScream, clearErrors } from '../../redux/actions/dataActions.js'
+import {styled} from '@mui/material/styles';
+import { createTheme, ThemeProvider, Box } from '@mui/system';
+
+
+const theme = createTheme({
+    breakpoints: {
+      values: {
+        xs: 0,
+        sm: 600,
+        md: 900,
+        lg: 1200,
+        xl: 1536,
+        HUGE: 3200,
+      }
+    }
+  })
+
+
 
 const styles = {
     //THEME!!!
@@ -81,9 +99,8 @@ const styles = {
 
 
     profileImage: {
-        // maxWidth: 200,
-        width: 200,
-        height: 200,
+        // width: 200,
+        // height: 200,
         borderRadius: '50%',
         objectFit: 'cover',
     },
@@ -97,7 +114,8 @@ const styles = {
         position: 'absolute',
         // top: '2.5%',
         // right: '2.5%',
-        left: '91%',
+        right: '0%',
+        marginRight: '.9rem',
         top: '3%'
         // cursor:'pointer'
         
@@ -111,8 +129,46 @@ const styles = {
         textAlign: 'center',
         marginTop: 50,
         marginBottom: 50
+    },
+    details: {
+        paddingTop: '1rem',
+        position: 'relative',
+        right: 12,
+    },
+    infoGrid: {
+        position: 'relative',
+        right: 10,
     }
 }
+
+
+const CardImgStyle = styled('img')({
+    width: 175,
+    height: 175,
+    paddingRight: '.8rem',
+
+    [theme.breakpoints.down('545')]: {
+        position: "relative",
+        // top: "50%",
+        // left: "50%",
+        // transform: "translate(50%, 0%)",
+        transform: "translate(0%, 0%)",
+        paddingRight: '0',
+        width: 50,
+        height: 50,
+    },
+    [theme.breakpoints.down('450')]: {
+        // width: 50,
+        // height: 50,
+        // position: 'absolute',
+        display: 'none',
+        // transform: "translate(0%, 0%)",
+        // right: '5%',
+    }
+  });          
+
+
+
 
 class ScreamDialog extends Component{
     state = {
@@ -158,11 +214,14 @@ class ScreamDialog extends Component{
                 <CircularProgress size={200} thickness={2}/>
             </div>
     ) : (
-        <Grid container spacing={0}>
-            <Grid item sm={5}>
-                <img src={userImage} alt="Profile" style={styles.profileImage}/>
+        <Grid container spacing={3}>
+            {/* <Grid item sm={5}> */}
+            <Grid item>
+                {/* <img src={userImage} alt="Profile" style={styles.profileImage}/> */}
+                <CardImgStyle src={userImage} alt="Profile" style={styles.profileImage}/>
             </Grid>
-            <Grid item sm={7}>
+            {/* <Grid item sm={7}> */}
+            <Grid style={styles.infoGrid} item>
                 <Typography
                     component={Link}
                     color="primary"
@@ -172,20 +231,27 @@ class ScreamDialog extends Component{
                         @{userHandle}
                     </Typography>
                     <hr style={styles.invisibleSeparator}/>
+
                     <Typography variant="body2" color="textSecondary">
                         {dayjs(createdAt).format('h:mm a, MMMM DD YYYY')}
                     </Typography>
+                   
                     <hr style={styles.invisibleSeparator}/>
-                    <Typography variant="body1">
+                   
+                    <Typography style={{fontSize: 25}} variant="body1">
                         {body}
                     </Typography>
+
+                    <div style={styles.details}>
                     <LikeButton screamId={screamId}/>
                     <span>{likeCount} Likes</span>
                 <MyButton tip="Comments">
                     <ChatIcon color="primary"/>
                 </MyButton>
                     <span>{commentCount} Comments</span>
+                    </div>
             </Grid>
+
             <hr style={styles.visibleSeparator}/>
             <CommentForm screamId={screamId} />
             <Comments comments={comments}/>
