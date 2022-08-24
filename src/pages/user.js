@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types';
 import { useParams, useLocation } from 'react-router-dom'; 
 import axios from 'axios';
@@ -67,6 +67,21 @@ class user extends Component {
   render() {
     const { screams, loading } = this.props.data;
     const { screamIdParam } = this.state;
+    const { authenticated } = this.props;
+
+    const profileThing1 = this.state.profile === null ? (
+        <ProfileSkeleton/>
+        ) : authenticated ? (
+            <Profile/>
+        ) : (
+            <StaticProfile profile={this.state.profile}/>
+        )
+    
+
+    // const profileThing2 = authenticated ? (
+    // ) : (
+    //     <StaticProfile profile={this.state.profile}/>
+    // )
 
     const screamsMarkup = loading ? (
         <ScreamSkeleton/>
@@ -115,22 +130,21 @@ class user extends Component {
       ) : (
         <Typography style={styles.header}> </Typography>
       )
+
     return (
         <>
         {title}
+        <Fragment>
         <Grid container spacing={2}>
             <Grid item sm={4} xs={12}>
-                {this.state.profile === null ? (
-                    <ProfileSkeleton/>
-                ) : (
-                <Profile />
-                // <StaticProfile profile={this.state.profile}/>
-                )} 
+                 {/* SHOW */}
+                {profileThing1}
             </Grid>
             <Grid item sm={8} xs={12}>
                 {screamsMarkup}
             </Grid>
         </Grid>
+        </Fragment>
         </>
     )
   }
@@ -143,6 +157,7 @@ user.propTypes = {
 
 const mapStateToProps = state => ({
     data: state.data,
+    authenticated: state.user.authenticated,
 })
 
 export default connect(mapStateToProps, { getUserData })(user);
