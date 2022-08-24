@@ -15,6 +15,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import {styled} from '@mui/material/styles';
 import { createTheme, ThemeProvider, Box } from '@mui/system';
 import AppIcon from '../../images/pokes4.png'
+import UnsignedIcon from '../../images/no-img.png'
 import { logoutUser } from '../../redux/actions/userActions.js';
 // import BasicMenu from '../../util/BasicMenu.js'
 import Menu from '@mui/material/Menu';
@@ -44,6 +45,7 @@ const styles = {
   },
   profileIconImage: {
     width: 55,
+    borderRadius: '50%',
   },
   menuButton: {
     position: 'absolute',
@@ -64,13 +66,16 @@ const styles = {
   
   
 
-  const MUIMenuProfile = ({handleLogout}) => {
+  const MUIMenuProfile = ({handleLogout, authenticated}) => {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
       setAnchorEl(event.currentTarget);
     };
     const handleClose = () => {
+      setAnchorEl(null);
+    };
+    const handleClickedLogout = () => {
       // this.props.logoutUser();
       setAnchorEl(null);
       handleLogout();
@@ -80,7 +85,6 @@ const styles = {
       <div>
 
           <ProfileIconStyle>
-          {/* <Link to="/login"> */}
           {/* <MyButton onClick={this.handleLogout} style={styles.profileIcon} tip="Profile"> */}
           <Button style={styles.profileIcon}
               id="basic-button"
@@ -89,24 +93,33 @@ const styles = {
               aria-expanded={open ? 'true' : undefined}
               onClick={handleClick}
             >
-            <img src={AppIcon} style={styles.profileIconImage}/>
+            
+            {authenticated ? (
+            <img src={AppIcon} style={styles.profileIconImage}/> 
+            ) : (
+              <img src={UnsignedIcon} style={styles.profileIconImage}/> 
+            )}
+
             </Button>
-          {/* </MyButton> */}
-          {/* </Link> */}
           </ProfileIconStyle>
-        <Menu
-          id="basic-menu"
-          anchorEl={anchorEl}
-          open={open}
-          onClose={handleClose}
-          MenuListProps={{
-            'aria-labelledby': 'basic-button',
-          }}
-        >
-          {/* <MenuItem onClick={handleClose}>Profile</MenuItem>
-          <MenuItem onClick={handleClose}>My account</MenuItem> */}
-          <MenuItem onClick={handleClose}>Logout</MenuItem>
-        </Menu>
+
+          {authenticated ? (
+              <Menu
+                id="basic-menu"
+                anchorEl={anchorEl}
+                open={open}
+                onClose={handleClose}
+                MenuListProps={{
+                  'aria-labelledby': 'basic-button',
+                }}
+              >
+                {/* <MenuItem onClick={handleClose}>Profile</MenuItem>
+                <MenuItem onClick={handleClose}>My account</MenuItem> */}
+                <MenuItem onClick={handleClickedLogout}>Logout</MenuItem>
+                </Menu>
+                  ) : (
+                    null
+                  )}
       </div>
     );
   }
@@ -130,7 +143,7 @@ class Navbar extends Component {
               </MyButton>
               </Link>
               </ProfileIconStyle> */}
-              <MUIMenuProfile handleLogout={this.handleLogout}/>
+              <MUIMenuProfile authenticated={authenticated} handleLogout={this.handleLogout}/>
               
         <Toolbar className="nav-container">
           {authenticated ? (
