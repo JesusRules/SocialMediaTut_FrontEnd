@@ -156,13 +156,14 @@ class Scream extends Component {
 
         {/* <RespNextLine/> */}
         
-            <MyButton tip="Comments">
+            {/* <MyButton tip="Comments">
               <ChatIcon  color="primary"/>
-            </MyButton>
+            </MyButton> */}
+            <ScreamDialog commentButton={true} screamId={screamId} userHandle={userHandle} openDialog={this.props.openDialog} />
             <span className={'scream-details'} >{commentCount} </span>
             </div>
             
-            <ScreamDialog screamId={screamId} userHandle={userHandle} openDialog={this.props.openDialog} />
+            <ScreamDialog commentButton={false} screamId={screamId} userHandle={userHandle} openDialog={this.props.openDialog} />
         </CardContent>
       </Card>
     )

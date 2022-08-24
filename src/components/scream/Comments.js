@@ -20,14 +20,17 @@ const styles = {
         marginBottom: 20
     },
     commentImage: {
-        width: 90,
-        height: 90,
+        paddingTop: 8,
+        width: 69,
+        height: 69,
         objectFit: 'cover',
         borderRadius: '50%',
-        // marginLeft: 0
+        marginLeft: 18
     },
     commentData: {
-        marginLeft: 20
+        marginLeft: 15.3,
+        paddingBottom: 5,
+        fontSize: 18,
         
     }
 }
@@ -41,12 +44,12 @@ class Comments extends Component{
                 const { body, createdAt, userImage, userHandle} = comment;
                 return (
                     <Fragment key={createdAt}>
-                        <Grid item sm={12}>
+                        <Grid item>
                             <Grid container>
-                                <Grid item sm={2}>
+                                <Grid item >
                                     <img src={userImage} alt="comment" style={styles.commentImage}/>
                                 </Grid>                              
-                                <Grid item sm={9}>
+                                <Grid item >
                                     <div style={styles.commentData}>
                                         <Typography
                                             variant="h5" 
@@ -59,7 +62,7 @@ class Comments extends Component{
                                             {dayjs(createdAt).format('h:mm a, MMMM DD YYYY')}
                                         </Typography>
                                         <hr style={styles.invisibleSeparator}/>
-                                        <Typography variant="body1">
+                                        <Typography style={{fontSize: 18}} variant="body1">
                                             {body}
                                         </Typography>
                                     </div>

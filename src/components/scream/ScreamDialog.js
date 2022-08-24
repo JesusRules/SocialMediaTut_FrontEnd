@@ -143,8 +143,8 @@ const styles = {
 
 
 const CardImgStyle = styled('img')({
-    width: 175,
-    height: 175,
+    width: 140,
+    height: 140,
     paddingRight: '.8rem',
 
     [theme.breakpoints.down('545')]: {
@@ -154,8 +154,8 @@ const CardImgStyle = styled('img')({
         // transform: "translate(50%, 0%)",
         transform: "translate(0%, 0%)",
         paddingRight: '0',
-        width: 50,
-        height: 50,
+        width: 60,
+        height: 60,
     },
     [theme.breakpoints.down('450')]: {
         // width: 50,
@@ -175,6 +175,7 @@ class ScreamDialog extends Component{
         open: false,
         oldPath: '',
         newPath: '',
+        commentButton2: false,
         // matches: window.matchMedia("(max-width: 500px)").matches,
 
     }
@@ -259,10 +260,19 @@ class ScreamDialog extends Component{
     )
     return (
         <Fragment>
-
+            
+            {!this.props.commentButton && (
             <MyButton onClick={this.handleOpen} tip="Expand bark" style={styles.expandButton}>
                 <UnfoldMore color="primary"/>
             </MyButton>
+            )}
+            
+            {this.props.commentButton && (
+               <MyButton onClick={this.handleOpen} tip="Comments">
+              <ChatIcon  color="primary"/>
+            </MyButton>
+            )}
+            
 
             <Dialog
                 open={this.state.open}
