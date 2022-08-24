@@ -91,7 +91,7 @@ export class signup extends Component {
   }
 
   render() {
-    const { classes, UI: {loading} } = this.props;
+    const { UI: {loading} } = this.props;
     const {errors} = this.state;
     return (
       <Grid con style={styles.form}>

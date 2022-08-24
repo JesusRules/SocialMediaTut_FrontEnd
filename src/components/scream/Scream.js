@@ -21,7 +21,7 @@ import { connect } from 'react-redux';
 import LikeButton from './LikeButton.js';
 import { createTheme, ThemeProvider, Box } from '@mui/system';
 import {styled} from '@mui/material/styles';
-import useWindowSize from '../../util/useWindowSize.js'
+// import useWindowSize from '../../util/useWindowSize.js'
 
 const theme = createTheme({
   breakpoints: {
@@ -93,11 +93,6 @@ const RespNextLine = () => {
     };
     }, []);
 
-    // const newTyp = w > 1000 ? (
-    //   <Typography>YES!!!</Typography>
-    //   ) : (
-    //   null
-    // )
     const newTyp = w < 445 ? (
       <br/>
       ) : (
