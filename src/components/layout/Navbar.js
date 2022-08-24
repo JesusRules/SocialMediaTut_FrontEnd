@@ -33,10 +33,12 @@ const theme = createTheme({
 const styles = {
   profileIcon: {
     position: 'absolute',
-    top: 10
+    top: -4,
+    // left: 5,
+    transform: 'translateX(15px)'
   },
   profileIconImage: {
-    width: 50,
+    width: 55,
   }
 }
 
