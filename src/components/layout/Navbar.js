@@ -15,6 +15,11 @@ import HomeIcon from '@mui/icons-material/Home';
 import {styled} from '@mui/material/styles';
 import { createTheme, ThemeProvider, Box } from '@mui/system';
 import AppIcon from '../../images/pokes4.png'
+import { logoutUser } from '../../redux/actions/userActions.js';
+// import BasicMenu from '../../util/BasicMenu.js'
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import AdUnitsIcon from '@mui/icons-material/AdUnits';
 
 const theme = createTheme({
   breakpoints: {
@@ -39,6 +44,11 @@ const styles = {
   },
   profileIconImage: {
     width: 55,
+  },
+  menuButton: {
+    position: 'absolute',
+    left: '50%',
+    color: 'black'
   }
 }
 
@@ -50,25 +60,81 @@ const styles = {
       // paddingLeft: '1.5rem',
       // paddingRight: '1.5rem',
     }
-  });          
+  });      
+  
+  
+
+  const MUIMenuProfile = ({handleLogout}) => {
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    const open = Boolean(anchorEl);
+    const handleClick = (event) => {
+      setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+      // this.props.logoutUser();
+      setAnchorEl(null);
+      handleLogout();
+      window.location.href = '/login';
+    };
+    return (
+      <div>
+
+          <ProfileIconStyle>
+          {/* <Link to="/login"> */}
+          {/* <MyButton onClick={this.handleLogout} style={styles.profileIcon} tip="Profile"> */}
+          <Button style={styles.profileIcon}
+              id="basic-button"
+              aria-controls={open ? 'basic-menu' : undefined}
+              aria-haspopup="true"
+              aria-expanded={open ? 'true' : undefined}
+              onClick={handleClick}
+            >
+            <img src={AppIcon} style={styles.profileIconImage}/>
+            </Button>
+          {/* </MyButton> */}
+          {/* </Link> */}
+          </ProfileIconStyle>
+        <Menu
+          id="basic-menu"
+          anchorEl={anchorEl}
+          open={open}
+          onClose={handleClose}
+          MenuListProps={{
+            'aria-labelledby': 'basic-button',
+          }}
+        >
+          {/* <MenuItem onClick={handleClose}>Profile</MenuItem>
+          <MenuItem onClick={handleClose}>My account</MenuItem> */}
+          <MenuItem onClick={handleClose}>Logout</MenuItem>
+        </Menu>
+      </div>
+    );
+  }
+
+
+
 
 class Navbar extends Component {
+    handleLogout = () => {
+      this.props.logoutUser();
+  }
+
   render() {
     const { authenticated } = this.props;
     return (
       <AppBar>
-              <ProfileIconStyle>
+              {/* <ProfileIconStyle>
               <Link to="/login">
-              <MyButton style={styles.profileIcon} tip="Profile">
-                {/* <HomeIcon /> */}
+              <MyButton onClick={this.handleLogout} style={styles.profileIcon} tip="Profile">
                 <img src={AppIcon} style={styles.profileIconImage}/>
               </MyButton>
               </Link>
-              </ProfileIconStyle>
+              </ProfileIconStyle> */}
+              <MUIMenuProfile handleLogout={this.handleLogout}/>
+              
         <Toolbar className="nav-container">
           {authenticated ? (
             <Fragment>
-
 
               <PostScream/>
 
@@ -102,4 +168,16 @@ const mapStateToProps = (state) => ({
   authenticated: state.user.authenticated
 });
 
-export default connect(mapStateToProps)(Navbar)
+const mapActionsToProps = { 
+  logoutUser
+};
+
+// Profile.propTypes = {
+//   user: PropTypes.object.isRequired,
+//   logoutUser: PropTypes.func.isRequired,
+//   uploadImage: PropTypes.func.isRequired
+//   // classes: PropTypes.object.isRequired,
+// }
+
+
+export default connect(mapStateToProps, mapActionsToProps)(Navbar)
