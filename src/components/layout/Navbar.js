@@ -68,11 +68,14 @@ const styles = {
   
   
 
-  const MUIMenuProfile = ({handleLogout, authenticated, imageUrl}) => {
+  const MUIMenuProfile = ({handleLogout, authenticated, imageUrl, handle}) => {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
       setAnchorEl(event.currentTarget);
+      if (!authenticated) {
+        window.location.href = '/login';
+      }
     };
     const handleClose = () => {
       setAnchorEl(null);
@@ -82,6 +85,10 @@ const styles = {
       setAnchorEl(null);
       handleLogout();
       window.location.href = '/login';
+    };
+    const handleClickedProfile = () => {
+      setAnchorEl(null);
+      window.location.href = `/user/${handle}`;
     };
     return (
       <div>
@@ -117,6 +124,7 @@ const styles = {
               >
                 {/* <MenuItem onClick={handleClose}>Profile</MenuItem>
                 <MenuItem onClick={handleClose}>My account</MenuItem> */}
+                <MenuItem onClick={handleClickedProfile}>Profile</MenuItem>
                 <MenuItem onClick={handleClickedLogout}>Logout</MenuItem>
                 </Menu>
                   ) : (
@@ -149,6 +157,7 @@ class Navbar extends Component {
               </ProfileIconStyle> */}
               <MUIMenuProfile authenticated={authenticated}
                               imageUrl={imageUrl}
+                              handle={handle}
                               handleLogout={this.handleLogout}/>
               
         <Toolbar className="nav-container">
