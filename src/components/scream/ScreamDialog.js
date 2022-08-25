@@ -215,6 +215,8 @@ class ScreamDialog extends Component{
     const { scream: { screamId, body, createdAt, likeCount, 
         commentCount, userImage, userHandle, comments }, UI: { loading }} = this.props;
 
+    const newString = body.replace(/(.{28})/g, "$1<br/>");
+
     const dialogMarkup = loading ? (
             <div style={styles.spinnerDiv}>
                 <CircularProgress size={200} thickness={2}/>
@@ -244,8 +246,9 @@ class ScreamDialog extends Component{
                    
                     <hr style={styles.invisibleSeparator}/>
                    
-                    <Typography style={{fontSize: 25}} variant="body1">
-                        {body}
+                    <Typography style={{fontSize: 20}} variant="body1">
+                        {/* {body} */}
+                        {newString.split("<br/>").join("\n")}
                     </Typography>
 
                     <div style={styles.details}>

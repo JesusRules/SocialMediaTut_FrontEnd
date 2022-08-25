@@ -1,5 +1,7 @@
 import React, { Component, useEffect, useState } from 'react'
-import {Typography } from '@mui/material';
+// import {Typography } from '@mui/material';
+// import Typography from '@mui/joy/Typography';
+import Typography from '@mui/material/Typography';
 // import withStyles from '@mui/material';
 import {Link} from 'react-router-dom'
 import '../../App.css';
@@ -43,6 +45,7 @@ const styles = {
        position: 'relative',
         display: 'flex',
         marginBottom: 20,
+        // paddingRight: 300
     },
     image:{
       //minWidth: 200
@@ -50,7 +53,8 @@ const styles = {
     },
     content:{
         paddingLeft: 21,
-        objectFit: 'cover'
+        
+        // objectFit: 'cover'
     },
     text: {
       paddingTop: 3,
@@ -149,6 +153,8 @@ componentWillReceiveProps(nextProps) {
       <DeleteScream screamId={screamId}/>
     ) : null
 
+    const newString = body.replace(/(.{20})/g, "$1<br/>");
+
     return (
       <Card style={styles.card}>
 
@@ -166,8 +172,10 @@ componentWillReceiveProps(nextProps) {
             {deleteButton}
             
             <Typography style={{fontSize: 13.3}}variant="body2" color="textSecondary">{dayjs(createdAt).fromNow()}</Typography>
-           
-            <Typography style={{paddingTop: 2, fontSize: 19}} variant="body1">{body}</Typography>
+            
+            <Typography style={{paddingTop: 2, fontSize: 19}} variant="body1">
+            {newString.split("<br/>").join("\n")}
+              </Typography>
             
             <div style={styles.text}>
             <LikeButton screamId={screamId} />
@@ -185,6 +193,7 @@ componentWillReceiveProps(nextProps) {
             
             <ScreamDialog commentButton={false} screamId={screamId} userHandle={userHandle} openDialog={this.props.openDialog} />
         </CardContent>
+
       </Card>
     )
   }

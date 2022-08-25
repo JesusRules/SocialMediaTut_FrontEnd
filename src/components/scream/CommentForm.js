@@ -69,6 +69,7 @@ export class CommentForm extends Component {
             <form onSubmit={this.handleSubmit}>
             <TextField
                 // variant="standard"
+                inputProps={{ maxLength: 320 }}
                 fullWidth
                 name="body"
                 type="text"

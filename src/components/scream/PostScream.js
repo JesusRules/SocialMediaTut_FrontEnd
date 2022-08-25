@@ -97,7 +97,7 @@ class PostScream extends Component {
                         <DialogContent>
                             {/* <form onSubmit={this.handleSubmit}> */}
                             <form>
-                                <TextField name="body" type="text" label="ARRRR!!" 
+                                <TextField inputProps={{ maxLength: 320 }} name="body" type="text" label="ARRRR!!" 
                                                 multiline rows="3" placeholder='Bark at your fellow pups' 
                                                 error={errors.body ? true : false} helperText={errors.body}
                                                 style={styles.textField} onChange={this.handleChange} fullWidth />

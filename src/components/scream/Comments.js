@@ -24,6 +24,7 @@ const styles = {
         marginBottom: 20
     },
     commentImage: {
+        
         paddingTop: 8,
         width: 57,
         height: 57,
@@ -60,12 +61,15 @@ class Comments extends Component{
         window.location.href = `/user/${this.commentHandle}`;
     }
 
+    
     render() {
         const { comments } = this.props;
+        let newString;
         return (
-        <Grid container>
+            <Grid container>
             {comments.map((comment, index) => {
                 const { body, createdAt, userImage, userHandle} = comment;
+                newString = body.replace(/(.{19})/g, "$1<br/>");
                 // this.setState({commentHandle: userHandle});
                 return (
                     <Fragment key={createdAt}>
@@ -92,7 +96,8 @@ class Comments extends Component{
                                         </Typography>
                                         <hr style={styles.invisibleSeparator}/>
                                         <Typography style={{fontSize: 17}} variant="body1">
-                                            {body}
+                                            {/* {body} */}
+                                            {newString.split("<br/>").join("\n")}
                                         </Typography>
                                     </div>
                                 </Grid>
