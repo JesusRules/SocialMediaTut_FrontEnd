@@ -56,11 +56,13 @@ class Comments extends Component{
 
         let newString = '';
 
-        return (
-        <Grid container>
+        if (comments) {
+
+            return (
+                <Grid container>
             {comments.map((comment, index) => {
                 const { body, createdAt, userImage, userHandle} = comment;
-
+                
                 if (body) {
                     newString = body.replace(/(.{28})/g, "$1<br/>");
                 }   
@@ -98,13 +100,14 @@ class Comments extends Component{
                         </Grid>
                         {/* {index !== comments.length -1 && (
                             <hr style={styles.visibleSeparator}/>
-                            )} */}
+                        )} */}
                             <hr style={styles.visibleSeparator}/>
                     </Fragment>
                 )
             })}
         </Grid>    
         )
+    }
     }
 }
 

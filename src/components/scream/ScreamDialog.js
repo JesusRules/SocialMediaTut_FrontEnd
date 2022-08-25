@@ -289,7 +289,7 @@ class ScreamDialog extends Component{
                     </Typography>
 
                     <div style={styles.details}>
-                    <LikeButton screamId={screamId}/>
+                    <LikeButton screamId={this.props.screamId}/>
                     <span>{likeCount} Likes</span>
                 <MyButton tip="Comments">
                     <ChatIcon color="primary"/>
@@ -360,6 +360,7 @@ ScreamDialog.propTypes = {
 const mapStateToProps = (state) => ({
     scream: state.data.scream,
     UI: state.UI,
+    
 })
 
 const mapActionsToProps = {
