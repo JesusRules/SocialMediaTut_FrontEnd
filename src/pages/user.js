@@ -73,9 +73,9 @@ class user extends Component {
     const profileThing1 = this.state.profile === null ? (
         <ProfileSkeleton/>
         ) : authenticated ? (
-            <Profile/>
-        ) : (
             <StaticProfile profile={this.state.profile}/>
+            ) : (
+            <Profile/>
         )
     
 
