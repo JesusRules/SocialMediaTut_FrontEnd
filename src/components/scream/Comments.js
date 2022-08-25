@@ -6,6 +6,7 @@ import dayjs from 'dayjs'
 // MUI
 import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
 //test icon
 import TestIcon from '../../images/pokes4.png'
 import axios from 'axios';
@@ -39,12 +40,9 @@ const styles = {
 }
 
 class Comments extends Component{
-    // state = {
-    //     profile: null,
-    //     screamIdParam: null,
-    //     hideNav: false,
-    //     handle: '',
-    // };
+    state = {
+        commentHandle: '',
+    };
 
     // componentDidMount() {
         
@@ -58,6 +56,9 @@ class Comments extends Component{
     //     })
     //     .catch(err => console.log(err));
     // }
+    pushToUserDetail = () => {
+        window.location.href = `/user/${this.commentHandle}`;
+    }
 
     render() {
         const { comments } = this.props;
@@ -65,6 +66,7 @@ class Comments extends Component{
         <Grid container>
             {comments.map((comment, index) => {
                 const { body, createdAt, userImage, userHandle} = comment;
+                // this.setState({commentHandle: userHandle});
                 return (
                     <Fragment key={createdAt}>
                         <Grid item>
@@ -74,13 +76,17 @@ class Comments extends Component{
                                 </Grid>                              
                                 <Grid item >
                                     <div style={styles.commentData}>
+                                        {/* <Button onClick={this.pushToUserDetail} variant="h5">
+                                        <Typography color="primary" variant="h5">{userHandle}</Typography>
+                                        </Button> */}
+                                        <a href={`/user/${userHandle}`}>
                                         <Typography
                                             variant="h5" 
-                                            component={Link} 
-                                            to={`/user/${userHandle}`}
                                             color="primary">
                                                 {userHandle}
                                             </Typography>
+                                        </a>
+
                                         <Typography variant="body2" color="textSecondary">
                                             {dayjs(createdAt).format('h:mm a, MMMM DD YYYY')}
                                         </Typography>

@@ -12,6 +12,7 @@ import { matchPath } from 'react-router'
 import ScreamSkeleton from '../util/ScreamSkeleton.js'
 import ProfileSkeleton from '../util/ProfileSkeleton.js'
 import Profile from '../components/profile/Profile.js'
+import StaticProfileOurs from '../components/profile/StaticProfileOurs.js'
 
 const styles = {
     header: {
@@ -73,9 +74,10 @@ class user extends Component {
     const profileThing1 = this.state.profile === null ? (
         <ProfileSkeleton/>
         ) : authenticated ? (
-            <StaticProfile profile={this.state.profile}/>
+            <StaticProfileOurs profile={this.state.profile}/>
+            // <Profile/>
             ) : (
-            <Profile/>
+                <StaticProfile profile={this.state.profile}/>
         )
     
 
@@ -153,7 +155,7 @@ class user extends Component {
 
 user.propTypes = {
     getUserData: PropTypes.func.isRequired,
-    data: PropTypes.object.isRequired
+    data: PropTypes.object.isRequired,
 }
 
 const mapStateToProps = state => ({

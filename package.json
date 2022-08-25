@@ -1,6 +1,6 @@
 {
   "name": "socialape-client",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.10.0",
@@ -25,7 +25,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "set PORT=3008 && react-scripts start",
+    "start": "set PORT=3013 && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
