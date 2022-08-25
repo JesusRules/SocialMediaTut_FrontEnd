@@ -46,6 +46,7 @@ class user extends Component {
         })
         .catch(err => console.log(err));
 
+        
         //Flip stuff
         window.addEventListener("resize", this.resize.bind(this));
         this.resize();

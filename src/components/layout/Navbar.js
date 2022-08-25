@@ -82,9 +82,11 @@ const styles = {
     };
     const handleClickedLogout = () => {
       // this.props.logoutUser();
-      setAnchorEl(null);
       handleLogout();
-      window.location.href = '/login';
+      setAnchorEl(null);
+      window.setTimeout(function() {
+        window.location.href = '/login';
+      }, 500);
     };
     const handleClickedProfile = () => {
       setAnchorEl(null);

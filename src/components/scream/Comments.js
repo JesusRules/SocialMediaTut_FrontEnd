@@ -6,6 +6,9 @@ import dayjs from 'dayjs'
 // MUI
 import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography';
+//test icon
+import TestIcon from '../../images/pokes4.png'
+import axios from 'axios';
 
 const styles = {
     //NO GLOBAL THEME
@@ -36,6 +39,26 @@ const styles = {
 }
 
 class Comments extends Component{
+    // state = {
+    //     profile: null,
+    //     screamIdParam: null,
+    //     hideNav: false,
+    //     handle: '',
+    // };
+
+    // componentDidMount() {
+        
+    //     this.props.getUserData(handle); //loads
+    //     axios.get(`https://us-central1-socialape-14d54.cloudfunctions.net/api/user/${handle}`)
+    //     .then(res => {
+    //         this.setState({
+    //             handle: res.data.user.handle,
+    //             profile: res.data.user //profile is static - doesnt needd to be in state
+    //         })
+    //     })
+    //     .catch(err => console.log(err));
+    // }
+
     render() {
         const { comments } = this.props;
         return (
@@ -84,4 +107,15 @@ Comments.propTypes = {
     comments: PropTypes.array.isRequired
 }
 
-export default Comments;
+// user.propTypes = {
+//     getUserData: PropTypes.func.isRequired,
+//     data: PropTypes.object.isRequired
+// }
+
+// const mapStateToProps = state => ({
+//     data: state.data,
+//     authenticated: state.user.authenticated,
+// })
+
+// export default connect(mapStateToProps, {})(Comments);
+export default (Comments);
