@@ -21,7 +21,7 @@ import { loginUser } from '../redux/actions/userActions.js'
 const styles = {
   form: {
     textAlign: 'center',
-    paddingBottom: '2.3rem',
+    paddingBottom: '4.9rem',
   },
   image: {
     margin: '20px auto 20px auto',

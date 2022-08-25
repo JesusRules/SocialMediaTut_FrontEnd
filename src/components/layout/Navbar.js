@@ -41,14 +41,14 @@ const styles = {
     position: 'absolute',
     top: -4,
     // left: 5,
-    transform: 'translateX(15px)'
+    transform: 'translateX(0px)'
   },
-  profileIconImage: {
-    width: 55,
-    height: 55,
-    borderRadius: '50%',
-    objectFit: 'cover'
-  },
+  // profileIconImage: {
+  //   width: 50,
+  //   height: 50,
+  //   borderRadius: '50%',
+  //   objectFit: 'cover'
+  // },
   menuButton: {
     position: 'absolute',
     left: '50%',
@@ -64,6 +64,17 @@ const styles = {
       // paddingLeft: '1.5rem',
       // paddingRight: '1.5rem',
     }
+  });      
+  const ProfileIconImageStyle = styled('img')({
+      width: 50,
+      height: 50,
+      borderRadius: '50%',
+      objectFit: 'cover',
+
+      [theme.breakpoints.up('600')]: {
+        width: 60,
+        height: 60,
+      },
   });      
   
   
@@ -106,9 +117,9 @@ const styles = {
             >
             
             {authenticated ? (
-            <img src={imageUrl} style={styles.profileIconImage}/> 
+            <ProfileIconImageStyle src={imageUrl} style={styles.profileIconImage}/> 
             ) : (
-              <img src={UnsignedIcon} style={styles.profileIconImage}/> 
+              <ProfileIconImageStyle src={UnsignedIcon} style={styles.profileIconImage}/> 
             )}
 
             </Button>

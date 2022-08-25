@@ -35,7 +35,8 @@ const styles = {
         left: 70,
         top: -12,
         // marginBottom: '.5rem',
-        width: 300,
+        width: 210,
+        // backgroundColor: 'red',
         paddingTop: '.6rem',
     },
 

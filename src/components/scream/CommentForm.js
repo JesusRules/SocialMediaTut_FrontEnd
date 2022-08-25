@@ -50,7 +50,7 @@ const styles = {
 const TextFieldStyle = styled(TextField)({
     margin: '10px auto 10px auto',
     textAlign: 'center',
-    width: '80vw',
+    width: '70vw',
 
     [theme.breakpoints.up('660')]: {
         width: 560,

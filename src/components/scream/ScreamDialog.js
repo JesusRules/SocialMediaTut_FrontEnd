@@ -113,8 +113,8 @@ const styles = {
         },
     },
     closeButton: {
-        position: 'absolute',
-        right: 0,
+        // position: 'absolute',
+        // right: 0,
         // marginRight: '.9rem',
         // top: '3%',
         
