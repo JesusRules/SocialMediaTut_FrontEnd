@@ -150,6 +150,10 @@ const styles = {
     commentAndForm: {
         position: 'relative',
         bottom: 70,
+    },
+    createdAt: {
+        fontStyle: 'italic',
+        transform: 'translate(5px, -5px)'
     }
 }
 
@@ -178,6 +182,7 @@ const TitleNameStyle = styled('div')({
     left: 122,
     // backgroundColor: 'red',
     width: 320,
+    margin: 0,
 
     [theme.breakpoints.down('500')]: {
         width: 230,
@@ -238,7 +243,10 @@ class ScreamDialog extends Component{
     const { scream: { screamId, body, createdAt, likeCount, 
         commentCount, userImage, userHandle, comments }, UI: { loading }} = this.props;
 
-    const newString = body.replace(/(.{28})/g, "$1<br/>");
+    let newString = '';
+    if (body) {
+        newString = body.replace(/(.{28})/g, "$1<br/>");
+    }
 
     const dialogMarkup = loading ? (
             <div style={styles.spinnerDiv}>
@@ -266,7 +274,7 @@ class ScreamDialog extends Component{
                     </Typography>
                     <hr style={styles.invisibleSeparator}/>
 
-                    <Typography variant="body2" color="textSecondary">
+                    <Typography variant="body2" color="textSecondary" style={styles.createdAt}>
                         {dayjs(createdAt).format('h:mm a, MMMM DD YYYY')}
                     </Typography>
                 </TitleNameStyle>
@@ -274,7 +282,7 @@ class ScreamDialog extends Component{
                 <div style={styles.screamCommentStuff}>
                     <hr style={styles.invisibleSeparator}/>
                    
-                    <Typography style={{fontSize: 18}} variant="body1">
+                    <Typography style={{paddingLeft: '1.6rem', fontSize: 18}} variant="body1">
                         {/* {body} */}
                         {newString.split("<br/>").join("\n")}
                     </Typography>

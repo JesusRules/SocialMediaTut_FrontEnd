@@ -73,7 +73,7 @@ const CardMediaStyled = styled(CardMedia)({
     minWidth: 140,
   },
   [theme.breakpoints.up('666')]: {
-    minWidth: 200,
+    minWidth: 220,
   }
 });            
 
@@ -153,7 +153,10 @@ componentWillReceiveProps(nextProps) {
       <DeleteScream screamId={screamId}/>
     ) : null
 
-    const newString = body.replace(/(.{20})/g, "$1<br/>");
+    let newString = '';
+    if (body) {
+        newString = body.replace(/(.{20})/g, "$1<br/>");
+    }
 
     return (
       <Card style={styles.card}>
@@ -165,13 +168,13 @@ componentWillReceiveProps(nextProps) {
         <CardContent style={styles.content}>
             
             <Link onClick={changeHandleProfile} to="">
-            <Typography style={{fontSize: 21.3}} variant="h5" color="primary">{userHandle}</Typography>
+            <Typography style={{fontSize: 22.3}} variant="h5" color="primary">{userHandle}</Typography>
             {/* <RespTest/> */}
             </Link>
 
             {deleteButton}
             
-            <Typography style={{fontSize: 13.3}}variant="body2" color="textSecondary">{dayjs(createdAt).fromNow()}</Typography>
+            <Typography style={{fontStyle: 'italic', fontSize: 13.3}}variant="body2" color="textSecondary">{dayjs(createdAt).fromNow()}</Typography>
             
             <Typography style={{paddingTop: 2, fontSize: 16}} variant="body1">
             {newString.split("<br/>").join("\n")}

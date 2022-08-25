@@ -117,7 +117,7 @@ export class signup extends Component {
             helperText={errors.confirmPassword} error={errors.confirmPassword ? true : false} style={styles.textField}
             value={this.state.confirmPassword} variant="standard" onChange={this.handleChange} fullWidth/>
             <br />
-            <TextField id="handle" name="handle" type="text" label="Name" 
+            <TextField inputProps={{ maxLength: 20 }} id="handle" name="handle" type="text" label="Name" 
             helperText={errors.handle} error={errors.handle ? true : false} style={styles.textField}
             value={this.state.handle} variant="standard" onChange={this.handleChange} fullWidth/>
             {errors.general && (

@@ -20,29 +20,50 @@ const styles = {
         marginBottom: 20
     },
     commentImage: {
-        // position: 'relative',
+        position: 'absolute',
         paddingTop: 8,
-        width: 69,
-        height: 69,
+        width: 47,
+        height: 47,
         objectFit: 'cover',
         borderRadius: '50%',
-        marginLeft: 18
+        marginLeft: 26,
+
+        transform: 'translateY(-17px)',
     },
+    nameTag: {
+        position: 'relative',
+        left: 70,
+        top: -12,
+        // marginBottom: '.5rem',
+        width: 300,
+        paddingTop: '.6rem',
+    },
+
     commentData: {
         marginLeft: 15.3,
         paddingBottom: 5,
-        fontSize: 18,
-        
+        fontSize: 16,
+    },
+    body: {
+        paddingLeft: '2.2rem',
+        paddingBottom: '1rem',
     }
 }
 
 class Comments extends Component{
     render() {
         const { comments } = this.props;
+
+        let newString = '';
+
         return (
         <Grid container>
             {comments.map((comment, index) => {
                 const { body, createdAt, userImage, userHandle} = comment;
+
+                if (body) {
+                    newString = body.replace(/(.{28})/g, "$1<br/>");
+                }   
                 return (
                     <Fragment key={createdAt}>
                         <Grid item>
@@ -52,20 +73,25 @@ class Comments extends Component{
                                 </Grid>                              
                                 <Grid item >
                                     <div style={styles.commentData}>
-                                        <Typography
+                                    <div style={styles.nameTag}>
+                                        <Typography style={{fontSize: 19}}
                                             variant="h5" 
                                             component={Link} 
                                             to={`/user/${userHandle}`}
                                             color="primary">
                                                 {userHandle}
                                             </Typography>
-                                        <Typography variant="body2" color="textSecondary">
+                                        <Typography 
+                                        style={{fontSize: 13, fontStyle: 'italic'}} variant="body2" color="textSecondary">
                                             {dayjs(createdAt).format('h:mm a, MMMM DD YYYY')}
                                         </Typography>
+                                    </div>
+                                    <div style={styles.body}>
                                         <hr style={styles.invisibleSeparator}/>
-                                        <Typography style={{fontSize: 18}} variant="body1">
-                                            {body}
+                                        <Typography style={{fontSize: 17}} variant="body1">
+                                        {newString.split("<br/>").join("\n")}
                                         </Typography>
+                                    </div>
                                     </div>
                                 </Grid>
                             </Grid>
