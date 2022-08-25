@@ -6,10 +6,6 @@ import dayjs from 'dayjs'
 // MUI
 import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-//test icon
-import TestIcon from '../../images/pokes4.png'
-import axios from 'axios';
 
 const styles = {
     //NO GLOBAL THEME
@@ -24,64 +20,29 @@ const styles = {
         marginBottom: 20
     },
     commentImage: {
+        // position: 'relative',
         paddingTop: 8,
-        width: 57,
-        height: 57,
+        width: 69,
+        height: 69,
         objectFit: 'cover',
         borderRadius: '50%',
-        marginLeft: 20,
-        // display: 'inline',
+        marginLeft: 18
     },
     commentData: {
-        marginLeft: 17.3,
+        marginLeft: 15.3,
         paddingBottom: 5,
         fontSize: 18,
-    },
-    commenterInfo: {
-        position: 'relative',
-        bottom: '3.4rem',
-        left: '4.6rem',
-        width: 350,
-        // backgroundColor: 'red',
-    },
-    message: {
-        fontSize: 17,
-        position: 'relative',
-        bottom: '2.6rem',
+        
     }
 }
 
 class Comments extends Component{
-    state = {
-        commentHandle: '',
-    };
-
-    // componentDidMount() {
-        
-    //     this.props.getUserData(handle); //loads
-    //     axios.get(`https://us-central1-socialape-14d54.cloudfunctions.net/api/user/${handle}`)
-    //     .then(res => {
-    //         this.setState({
-    //             handle: res.data.user.handle,
-    //             profile: res.data.user //profile is static - doesnt needd to be in state
-    //         })
-    //     })
-    //     .catch(err => console.log(err));
-    // }
-    pushToUserDetail = () => {
-        window.location.href = `/user/${this.commentHandle}`;
-    }
-
-    
     render() {
         const { comments } = this.props;
-        let newString;
         return (
-            <Grid container>
+        <Grid container>
             {comments.map((comment, index) => {
                 const { body, createdAt, userImage, userHandle} = comment;
-                newString = body.replace(/(.{19})/g, "$1<br/>");
-                // this.setState({commentHandle: userHandle});
                 return (
                     <Fragment key={createdAt}>
                         <Grid item>
@@ -91,24 +52,19 @@ class Comments extends Component{
                                 </Grid>                              
                                 <Grid item >
                                     <div style={styles.commentData}>
-                                        
-                                        <div style={styles.commenterInfo}>
-                                        <a href={`/user/${userHandle}`}>
-                                        <Typography style={{fontSize: 19}}
+                                        <Typography
                                             variant="h5" 
+                                            component={Link} 
+                                            to={`/user/${userHandle}`}
                                             color="primary">
                                                 {userHandle}
                                             </Typography>
-                                        </a>
-                                        <Typography style={{fontSize: 11}} variant="body2" color="textSecondary">
+                                        <Typography variant="body2" color="textSecondary">
                                             {dayjs(createdAt).format('h:mm a, MMMM DD YYYY')}
                                         </Typography>
-                                        </div>
-                                        
                                         <hr style={styles.invisibleSeparator}/>
-                                        <Typography style={styles.message} variant="body1">
-                                            {/* {body} */}
-                                            {newString.split("<br/>").join("\n")}
+                                        <Typography style={{fontSize: 18}} variant="body1">
+                                            {body}
                                         </Typography>
                                     </div>
                                 </Grid>
@@ -129,15 +85,4 @@ Comments.propTypes = {
     comments: PropTypes.array.isRequired
 }
 
-// user.propTypes = {
-//     getUserData: PropTypes.func.isRequired,
-//     data: PropTypes.object.isRequired
-// }
-
-// const mapStateToProps = state => ({
-//     data: state.data,
-//     authenticated: state.user.authenticated,
-// })
-
-// export default connect(mapStateToProps, {})(Comments);
-export default (Comments);
+export default Comments;

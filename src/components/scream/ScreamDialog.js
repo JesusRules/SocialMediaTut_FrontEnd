@@ -103,6 +103,8 @@ const styles = {
         // height: 200,
         borderRadius: '50%',
         objectFit: 'cover',
+        position: 'relative',
+        bottom: '2rem',
     },
     dialogContent: {
         padding: 20,
@@ -130,42 +132,63 @@ const styles = {
         marginTop: 50,
         marginBottom: 50
     },
+
+
     details: {
         paddingTop: '1rem',
         position: 'relative',
-        right: 12,
+        right: -10,
     },
     infoGrid: {
         position: 'relative',
         right: 10,
+    },
+    screamCommentStuff: {
+        position: 'relative',
+        bottom: 80,
+    },
+    commentAndForm: {
+        position: 'relative',
+        bottom: 70,
     }
 }
 
 
 const CardImgStyle = styled('img')({
-    width: 111,
-    height: 111,
+    width: 110,
+    height: 110,
     paddingRight: '.8rem',
 
     [theme.breakpoints.down('545')]: {
-        position: "relative",
-        // top: "50%",
-        // left: "50%",
-        // transform: "translate(50%, 0%)",
-        transform: "translate(0%, 0%)",
-        paddingRight: '0',
-        width: 60,
-        height: 60,
-    },
-    [theme.breakpoints.down('450')]: {
-        width: 50,
-        height: 50,
-        // position: 'absolute',
-        // display: 'none',
+        // position: "relative",
         // transform: "translate(0%, 0%)",
-        // right: '5%',
+        // paddingRight: '0',
+        // width: 60,
+        // height: 60,
+    },
+    [theme.breakpoints.down('440')]: {
+        width: 77,
+        height: 77,
     }
-  });          
+  });
+
+const TitleNameStyle = styled('div')({
+    position: 'relative',
+    bottom: 130,
+    left: 122,
+    // backgroundColor: 'red',
+    width: 320,
+
+    [theme.breakpoints.down('500')]: {
+        width: 230,
+    },
+    [theme.breakpoints.down('440')]: {
+        width: 200,
+        bottom: 110,
+        left: 82,
+        fontSize: 10
+    }
+})       
 
 
 
@@ -226,11 +249,14 @@ class ScreamDialog extends Component{
             {/* <Grid item sm={5}> */}
             <Grid item>
                 {/* <img src={userImage} alt="Profile" style={styles.profileImage}/> */}
-                <CardImgStyle src={userImage} alt="Profile" style={styles.profileImage}/>
             </Grid>
             {/* <Grid item sm={7}> */}
-            <Grid style={styles.infoGrid} item>
-                <Typography
+            <Grid  style={styles.infoGrid} item>
+            <div>
+                <CardImgStyle src={userImage} alt="Profile" style={styles.profileImage}/>
+                
+                <TitleNameStyle>
+                <Typography style={{fontSize: 21}}
                     component={Link}
                     color="primary"
                     variant="h5"
@@ -243,7 +269,9 @@ class ScreamDialog extends Component{
                     <Typography variant="body2" color="textSecondary">
                         {dayjs(createdAt).format('h:mm a, MMMM DD YYYY')}
                     </Typography>
+                </TitleNameStyle>
                    
+                <div style={styles.screamCommentStuff}>
                     <hr style={styles.invisibleSeparator}/>
                    
                     <Typography style={{fontSize: 18}} variant="body1">
@@ -259,11 +287,14 @@ class ScreamDialog extends Component{
                 </MyButton>
                     <span>{commentCount} Comments</span>
                     </div>
+                    </div>
+                    </div>
             </Grid>
-
+        <div style={styles.commentAndForm}>
             <hr style={styles.visibleSeparator}/>
-            <CommentForm screamId={screamId} />
+        <div style={{paddingLeft: '1.3rem'}}><CommentForm screamId={screamId}/></div>
             <Comments comments={comments}/>
+        </div>
         </Grid>
     )
     return (
