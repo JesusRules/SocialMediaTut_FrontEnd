@@ -165,7 +165,7 @@ componentWillReceiveProps(nextProps) {
         <CardContent style={styles.content}>
             
             <Link onClick={changeHandleProfile} to="">
-            <Typography style={{fontSize: 19}} variant="h5" color="primary">{userHandle}</Typography>
+            <Typography style={{fontSize: 21.3}} variant="h5" color="primary">{userHandle}</Typography>
             {/* <RespTest/> */}
             </Link>
 
@@ -173,7 +173,7 @@ componentWillReceiveProps(nextProps) {
             
             <Typography style={{fontSize: 13.3}}variant="body2" color="textSecondary">{dayjs(createdAt).fromNow()}</Typography>
             
-            <Typography style={{paddingTop: 2, fontSize: 19}} variant="body1">
+            <Typography style={{paddingTop: 2, fontSize: 16}} variant="body1">
             {newString.split("<br/>").join("\n")}
               </Typography>
             

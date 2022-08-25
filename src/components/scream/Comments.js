@@ -24,19 +24,30 @@ const styles = {
         marginBottom: 20
     },
     commentImage: {
-        
         paddingTop: 8,
         width: 57,
         height: 57,
         objectFit: 'cover',
         borderRadius: '50%',
-        marginLeft: 18
+        marginLeft: 20,
+        // display: 'inline',
     },
     commentData: {
-        marginLeft: 15.3,
+        marginLeft: 17.3,
         paddingBottom: 5,
         fontSize: 18,
-        
+    },
+    commenterInfo: {
+        position: 'relative',
+        bottom: '3.4rem',
+        left: '4.6rem',
+        width: 350,
+        // backgroundColor: 'red',
+    },
+    message: {
+        fontSize: 17,
+        position: 'relative',
+        bottom: '2.6rem',
     }
 }
 
@@ -80,9 +91,8 @@ class Comments extends Component{
                                 </Grid>                              
                                 <Grid item >
                                     <div style={styles.commentData}>
-                                        {/* <Button onClick={this.pushToUserDetail} variant="h5">
-                                        <Typography color="primary" variant="h5">{userHandle}</Typography>
-                                        </Button> */}
+                                        
+                                        <div style={styles.commenterInfo}>
                                         <a href={`/user/${userHandle}`}>
                                         <Typography style={{fontSize: 19}}
                                             variant="h5" 
@@ -90,12 +100,13 @@ class Comments extends Component{
                                                 {userHandle}
                                             </Typography>
                                         </a>
-
                                         <Typography style={{fontSize: 11}} variant="body2" color="textSecondary">
                                             {dayjs(createdAt).format('h:mm a, MMMM DD YYYY')}
                                         </Typography>
+                                        </div>
+                                        
                                         <hr style={styles.invisibleSeparator}/>
-                                        <Typography style={{fontSize: 17}} variant="body1">
+                                        <Typography style={styles.message} variant="body1">
                                             {/* {body} */}
                                             {newString.split("<br/>").join("\n")}
                                         </Typography>

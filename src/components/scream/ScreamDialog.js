@@ -246,7 +246,7 @@ class ScreamDialog extends Component{
                    
                     <hr style={styles.invisibleSeparator}/>
                    
-                    <Typography style={{fontSize: 20}} variant="body1">
+                    <Typography style={{fontSize: 18}} variant="body1">
                         {/* {body} */}
                         {newString.split("<br/>").join("\n")}
                     </Typography>
