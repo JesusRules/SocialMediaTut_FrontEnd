@@ -149,17 +149,17 @@ export const getUserData = (userHandle) => (dispatch) => {
     })
 }
 
-// UPDATE COMMENT COUNT
-export const updateCount = (screamId) => (dispatch) => {
-    axios.get(`https://us-central1-socialape-14d54.cloudfunctions.net/api/scream/${screamId}/updateCount`)
-    .then(res => {
-        dispatch({
-            type: UPDATE_COMMENT_COUNT,
-            payload: res.data
-        })
-    })
-    .catch(err => console.log(err));
-}
+// // UPDATE COMMENT COUNT
+// export const updateCount = (screamId) => (dispatch) => {
+//     axios.get(`https://us-central1-socialape-14d54.cloudfunctions.net/api/scream/${screamId}/updateCount`)
+//     .then(res => {
+//         dispatch({
+//             type: UPDATE_COMMENT_COUNT,
+//             payload: res.data
+//         })
+//     })
+//     .catch(err => console.log(err));
+// }
 
 
 export const clearErrors = () => (dispatch) => {

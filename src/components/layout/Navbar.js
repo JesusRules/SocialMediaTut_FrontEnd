@@ -15,7 +15,10 @@ import HomeIcon from '@mui/icons-material/Home';
 import {styled} from '@mui/material/styles';
 import { createTheme, ThemeProvider, Box } from '@mui/system';
 import AppIcon from '../../images/pokes4.png'
-import UnsignedIcon from '../../images/no-img.png'
+
+// import UnsignedIcon from '../../images/no-img.png'
+import UnsignedIcon from '../../images/no-user.png'
+
 import { logoutUser } from '../../redux/actions/userActions.js';
 // import BasicMenu from '../../util/BasicMenu.js'
 import Menu from '@mui/material/Menu';
