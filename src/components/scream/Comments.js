@@ -41,12 +41,12 @@ const styles = {
 
     commentData: {
         marginLeft: 15.3,
-        paddingBottom: 5,
+        paddingBottom: 0,
         fontSize: 16,
     },
     body: {
         paddingLeft: '2.2rem',
-        paddingBottom: '1rem',
+        paddingBottom: '0.27rem',
     }
 }
 
@@ -96,9 +96,10 @@ class Comments extends Component{
                                 </Grid>
                             </Grid>
                         </Grid>
-                        {index !== comments.length -1 && (
+                        {/* {index !== comments.length -1 && (
                             <hr style={styles.visibleSeparator}/>
-                        )}
+                            )} */}
+                            <hr style={styles.visibleSeparator}/>
                     </Fragment>
                 )
             })}

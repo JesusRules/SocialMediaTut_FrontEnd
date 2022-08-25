@@ -146,6 +146,7 @@ const styles = {
     screamCommentStuff: {
         position: 'relative',
         bottom: 80,
+        right: 25,
     },
     commentAndForm: {
         position: 'relative',
@@ -253,7 +254,7 @@ class ScreamDialog extends Component{
                 <CircularProgress size={200} thickness={2}/>
             </div>
     ) : (
-        <Grid container spacing={3}>
+        <Grid container style={{marginTop:'0rem'}} spacing={3}>
             {/* <Grid item sm={5}> */}
             <Grid item>
                 {/* <img src={userImage} alt="Profile" style={styles.profileImage}/> */}

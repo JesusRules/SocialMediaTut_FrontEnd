@@ -10,12 +10,29 @@ import { connect } from 'react-redux';
 import { submitComment, submitComment2, getScream, updateCount } from '../../redux/actions/dataActions.js';
 import store from '../../redux/store.js';
 import DialogActions from '@mui/material/DialogActions';
+import {styled} from '@mui/material/styles';
+import { createTheme } from '@mui/material/styles';
+
+const theme = createTheme({
+    breakpoints: {
+      values: {
+        xs: 0,
+        sm: 600,
+        md: 900,
+        lg: 1200,
+        xl: 1536,
+        HUGE: 3200,
+      }
+    }
+  })
 
 const styles = {
     // ...theme,
     textField: {
-        margin: '10px auto 10px auto',
-        textAlign: 'center',
+        // margin: '10px auto 10px auto',
+        // textAlign: 'center',
+        // width: '80vw'
+        //660px LOCK it
     },
     button: {
         marginTop: 12,
@@ -29,6 +46,21 @@ const styles = {
         marginBottom: 30
     }
 }
+
+const TextFieldStyle = styled(TextField)({
+    margin: '10px auto 10px auto',
+    textAlign: 'center',
+    width: '80vw',
+
+    [theme.breakpoints.up('660')]: {
+        width: 560,
+    }
+  });  
+
+
+
+
+
 
 export class CommentForm extends Component {
     state = {
@@ -67,7 +99,7 @@ export class CommentForm extends Component {
         // <Grid item sm={12} style={{ textAlign: 'center'}}>
         <Grid item xs={12} style={{ textAlign: 'center'}}>
             <form onSubmit={this.handleSubmit}>
-            <TextField
+            <TextFieldStyle
                 // variant="standard"
                 inputProps={{ maxLength: 320 }}
                 fullWidth
@@ -80,7 +112,7 @@ export class CommentForm extends Component {
                 onChange={this.handleChange}
                 // fullWidth
                 multiline
-                rows="3"
+                rows="4"
                 style={styles.textField}
                  />
                  <br/>
