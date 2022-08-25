@@ -114,12 +114,9 @@ const styles = {
     },
     closeButton: {
         position: 'absolute',
-        // top: '2.5%',
-        // right: '2.5%',
-        right: '0%',
-        marginRight: '.9rem',
-        top: '3%'
-        // cursor:'pointer'
+        right: 0,
+        // marginRight: '.9rem',
+        // top: '3%',
         
     },
     expandButton: {
