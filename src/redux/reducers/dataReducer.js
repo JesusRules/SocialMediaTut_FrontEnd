@@ -1,6 +1,6 @@
 import { SET_SCREAMS, LIKE_SCREAM, UNLIKE_SCREAM, 
     LOADING_DATA, DELETE_SCREAM, POST_SCREAM, SET_SCREAM,
-    SUBMIT_COMMENT, JUST_RETURN } from '../types.js'
+    SUBMIT_COMMENT, JUST_RETURN, UPDATE_COMMENT_COUNT } from '../types.js'
 
 const initialState = {
     screams: [],
@@ -31,6 +31,16 @@ export default function(state = initialState, action){
         case UNLIKE_SCREAM:
             let index = state.screams.findIndex((scream) => scream.screamId === action.payload.screamId);
             state.screams[index] = action.payload;//likeCount++
+            if (state.scream.screamId === action.payload.screamId){
+                state.scream = action.payload;
+            }
+            return {
+                ...state,
+                
+            };
+        case UPDATE_COMMENT_COUNT:
+            let index6 = state.screams.findIndex((scream) => scream.screamId === action.payload.screamId);
+            state.screams[index6] = action.payload;//likeCount++
             if (state.scream.screamId === action.payload.screamId){
                 state.scream = action.payload;
             }

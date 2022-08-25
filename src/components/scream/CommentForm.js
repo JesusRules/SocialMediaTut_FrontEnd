@@ -7,7 +7,7 @@ import Grid from '@mui/material/Grid'
 import TextField from '@mui/material/TextField'
 // Redux stuff
 import { connect } from 'react-redux';
-import { submitComment, submitComment2 } from '../../redux/actions/dataActions.js';
+import { submitComment, submitComment2, getScream, updateCount } from '../../redux/actions/dataActions.js';
 import store from '../../redux/store.js';
 import DialogActions from '@mui/material/DialogActions';
 
@@ -56,6 +56,7 @@ export class CommentForm extends Component {
         event.preventDefault();
         // this.props.submitComment(this.props.screamId, { body: this.state.body });
         this.props.submitComment2(this.props.screamId, { body: this.state.body });
+        // this.props.updateCount(this.props.screamId);
     };
 
   render() {
@@ -100,6 +101,8 @@ export class CommentForm extends Component {
 CommentForm.propTypes = {
     // submitComment: PropTypes.func.isRequired,
     submitComment2: PropTypes.func.isRequired,
+    updateCount: PropTypes.func.isRequired,
+    getScream: PropTypes.func.isRequired,
     UI: PropTypes.object.isRequired,
     data: PropTypes.object.isRequired,
     // classes: PropTypes.object.isRequired,
@@ -113,4 +116,10 @@ const mapStateToProps = (state) => ({
     authenticated: state.user.authenticated
 })
 
-export default connect(mapStateToProps, {submitComment2} )(CommentForm);
+const mapActionsToProps = {
+    submitComment2,
+    getScream,
+    updateCount
+}
+
+export default connect(mapStateToProps, mapActionsToProps )(CommentForm);

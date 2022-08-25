@@ -22,6 +22,7 @@ import LikeButton from './LikeButton.js';
 import { createTheme, ThemeProvider, Box } from '@mui/system';
 import {styled} from '@mui/material/styles';
 import useWindowSize from '../../util/useWindowSize.js'
+import {updateCount, likeScream} from '../../redux/actions/dataActions.js'
 
 const theme = createTheme({
   breakpoints: {
@@ -65,7 +66,7 @@ const styles = {
 // const CardSizeDiv = styled('div')(({theme}) => ({
 const CardMediaStyled = styled(CardMedia)({
   [theme.breakpoints.down('666')]: {
-    minWidth: 150,
+    minWidth: 140,
   },
   [theme.breakpoints.up('666')]: {
     minWidth: 200,
@@ -115,10 +116,15 @@ const RespNextLine = () => {
 class Scream extends Component {
   state = {
     commentCount2: this.props.data.scream.commentCount,
+    commentPlus: 0,
 };
+componentDidMount() {
+  // this.props.updateCount(this.props.screamId);
+}
 componentWillReceiveProps(nextProps) {
   if (nextProps.data.scream.commentCount) {
       let number = this.props.data.scream.commentCount;
+      // this.props.likeScream(this.props.screamId);
       this.setState({commentCount2: number++});
   }
 }
@@ -135,6 +141,9 @@ componentWillReceiveProps(nextProps) {
       const { classes, scream : {body, createdAt, userImage, 
         userHandle, screamId, likeCount, commentCount},
          user: { authenticated, credentials: { handle } } } = this.props;
+      // const { classes, scream : {body, createdAt, userImage, 
+      //   userHandle, screamId, likeCount, commentCount},
+      //    user: { authenticated, credentials: { handle } } } = this.props;
 
     const deleteButton = authenticated && userHandle === handle ? (
       <DeleteScream screamId={screamId}/>
@@ -150,7 +159,7 @@ componentWillReceiveProps(nextProps) {
         <CardContent style={styles.content}>
             
             <Link onClick={changeHandleProfile} to="">
-            <Typography style={{fontSize: 22}} variant="h5" color="primary">{userHandle}</Typography>
+            <Typography style={{fontSize: 19}} variant="h5" color="primary">{userHandle}</Typography>
             {/* <RespTest/> */}
             </Link>
 
@@ -158,7 +167,7 @@ componentWillReceiveProps(nextProps) {
             
             <Typography style={{fontSize: 13.3}}variant="body2" color="textSecondary">{dayjs(createdAt).fromNow()}</Typography>
            
-            <Typography style={{paddingTop: 2, fontSize: 21}} variant="body1">{body}</Typography>
+            <Typography style={{paddingTop: 2, fontSize: 19}} variant="body1">{body}</Typography>
             
             <div style={styles.text}>
             <LikeButton screamId={screamId} />
@@ -183,7 +192,8 @@ componentWillReceiveProps(nextProps) {
 
 Scream.propTypes = {
   user: PropTypes.object.isRequired,
-  scream: PropTypes.object.isRequired,
+  // updateCount: PropTypes.func.isRequired,
+  // scream: PropTypes.object.isRequired,
   // classes: PropTypes.object.isRequired
   openDialog: PropTypes.bool
 
@@ -195,6 +205,11 @@ const mapStateToProps = (state) => ({
   //DONT USE scream: state.data.scream,
 })
 
+// const mapActionsToProps = { 
+//   updateCount,
+//   likeScream
+// };
+
 // export default withStyles(styles)(Scream);
-export default connect(mapStateToProps)(Scream)
+export default connect(mapStateToProps, {})(Scream)
 // export default (Scream)

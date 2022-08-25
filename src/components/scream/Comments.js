@@ -25,8 +25,8 @@ const styles = {
     },
     commentImage: {
         paddingTop: 8,
-        width: 69,
-        height: 69,
+        width: 57,
+        height: 57,
         objectFit: 'cover',
         borderRadius: '50%',
         marginLeft: 18
@@ -80,18 +80,18 @@ class Comments extends Component{
                                         <Typography color="primary" variant="h5">{userHandle}</Typography>
                                         </Button> */}
                                         <a href={`/user/${userHandle}`}>
-                                        <Typography
+                                        <Typography style={{fontSize: 19}}
                                             variant="h5" 
                                             color="primary">
                                                 {userHandle}
                                             </Typography>
                                         </a>
 
-                                        <Typography variant="body2" color="textSecondary">
+                                        <Typography style={{fontSize: 11}} variant="body2" color="textSecondary">
                                             {dayjs(createdAt).format('h:mm a, MMMM DD YYYY')}
                                         </Typography>
                                         <hr style={styles.invisibleSeparator}/>
-                                        <Typography style={{fontSize: 18}} variant="body1">
+                                        <Typography style={{fontSize: 17}} variant="body1">
                                             {body}
                                         </Typography>
                                     </div>

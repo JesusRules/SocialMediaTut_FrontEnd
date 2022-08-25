@@ -1,6 +1,6 @@
 import { SET_SCREAMS, LOADING_DATA, LIKE_SCREAM, UNLIKE_SCREAM, 
     DELETE_SCREAM, LOADING_UI, SET_ERRORS, CLEAR_ERRORS, POST_SCREAM, SET_SCREAM,
-    STOP_LOADING_UI, SUBMIT_COMMENT, JUST_RETURN } from '../types';
+    STOP_LOADING_UI, SUBMIT_COMMENT, JUST_RETURN, UPDATE_COMMENT_COUNT } from '../types';
 import axios from 'axios'
 import { RssFeed } from '@mui/icons-material';
 
@@ -148,6 +148,19 @@ export const getUserData = (userHandle) => (dispatch) => {
         })
     })
 }
+
+// UPDATE COMMENT COUNT
+export const updateCount = (screamId) => (dispatch) => {
+    axios.get(`https://us-central1-socialape-14d54.cloudfunctions.net/api/scream/${screamId}/updateCount`)
+    .then(res => {
+        dispatch({
+            type: UPDATE_COMMENT_COUNT,
+            payload: res.data
+        })
+    })
+    .catch(err => console.log(err));
+}
+
 
 export const clearErrors = () => (dispatch) => {
     dispatch({ type: CLEAR_ERRORS });

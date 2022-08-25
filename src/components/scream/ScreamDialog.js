@@ -143,8 +143,8 @@ const styles = {
 
 
 const CardImgStyle = styled('img')({
-    width: 140,
-    height: 140,
+    width: 111,
+    height: 111,
     paddingRight: '.8rem',
 
     [theme.breakpoints.down('545')]: {
@@ -158,10 +158,10 @@ const CardImgStyle = styled('img')({
         height: 60,
     },
     [theme.breakpoints.down('450')]: {
-        // width: 50,
-        // height: 50,
+        width: 50,
+        height: 50,
         // position: 'absolute',
-        display: 'none',
+        // display: 'none',
         // transform: "translate(0%, 0%)",
         // right: '5%',
     }
@@ -186,6 +186,9 @@ class ScreamDialog extends Component{
         // const handler = e => this.setState({matches: e.matches});
         // window.matchMedia()
     }
+    componentDidUpdate() {
+        // this.props.getScream(this.props.screamId);
+    }
     handleOpen = () => {
         let oldPath = window.location.pathname;
 
@@ -203,6 +206,7 @@ class ScreamDialog extends Component{
         window.history.pushState(null, null, this.state.oldPath);
         this.props.clearErrors();
         this.setState({ open: false })
+        this.props.getScream(this.props.screamId);
         // window.location = this.state.oldPath;
         // setTimeout(() => window.location.reload(false), 1000);
     }
@@ -283,7 +287,7 @@ class ScreamDialog extends Component{
                 >
             <MyButton tip="Close" onClick={this.handleClose} style={styles.closeButton}>
             <CloseIcon/>
-        </MyButton>
+            </MyButton>
             {/* <DialogActions>
             <Button onClick={this.handleClose} style={styles.closeButton}>
               <CloseIcon/>Close
@@ -317,7 +321,7 @@ const mapStateToProps = (state) => ({
 
 const mapActionsToProps = {
     getScream,
-    clearErrors
+    clearErrors,
 };
 
 export default connect(mapStateToProps, mapActionsToProps)(ScreamDialog);

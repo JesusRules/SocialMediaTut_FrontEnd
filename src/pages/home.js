@@ -129,7 +129,7 @@ export default connect(mapStateToProps, { getScreams })(home)
 
 
 
-//LOOK UP
+//L
 
         // const GridOrder = this.state.hideNav ? (
         //     <Grid container spacing={2}>

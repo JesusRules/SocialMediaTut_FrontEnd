@@ -18,4 +18,6 @@ export const UNLIKE_SCREAM = 'UNLIKE_SCREAM';
 export const DELETE_SCREAM = 'DELETE_SCREAM';
 export const POST_SCREAM = 'POST_SCREAM';
 export const SUBMIT_COMMENT = 'SUBMIT_COMMENT';
+// new
 export const JUST_RETURN = 'JUST_RETURN';
+export const UPDATE_COMMENT_COUNT = 'UPDATE_COMMENT_COUNT';
