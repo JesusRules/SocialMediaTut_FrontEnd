@@ -21,14 +21,14 @@ const styles = {
     },
     commentImage: {
         position: 'absolute',
-        paddingTop: 8,
+        // paddingTop: 8,
         width: 47,
         height: 47,
         objectFit: 'cover',
         borderRadius: '50%',
         marginLeft: 26,
 
-        transform: 'translateY(-17px)',
+        transform: 'translateY(-10.6px)',
     },
     nameTag: {
         position: 'relative',
@@ -92,7 +92,8 @@ class Comments extends Component{
                                     <div style={styles.body}>
                                         <hr style={styles.invisibleSeparator}/>
                                         <Typography style={{fontSize: 17}} variant="body1">
-                                        {newString.split("<br/>").join("\n")}
+                                        {/* {newString.split("<br/>").join("\n")} */}
+                                        {body}
                                         </Typography>
                                     </div>
                                     </div>

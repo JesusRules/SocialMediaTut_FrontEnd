@@ -116,6 +116,7 @@ const styles = {
         // right: 0,
         // marginRight: '.9rem',
         // top: '3%',
+        padding: '0rem',
         
     },
     expandButton: {
@@ -129,20 +130,21 @@ const styles = {
         marginBottom: 50
     },
 
-
+    //details = like and comment section
     details: {
         paddingTop: '1rem',
         position: 'relative',
-        right: -10,
+        right: -15,
     },
     infoGrid: {
         position: 'relative',
         right: 10,
     },
+    //details AND body
     screamCommentStuff: {
         position: 'relative',
         bottom: 80,
-        right: 25,
+        right: 11,
     },
     commentAndForm: {
         position: 'relative',
@@ -158,7 +160,8 @@ const styles = {
 const CardImgStyle = styled('img')({
     width: 110,
     height: 110,
-    paddingRight: '.8rem',
+    transform: 'translateX(6.1px)',
+    // paddingRight: '.8rem',
 
     [theme.breakpoints.down('545')]: {
         // position: "relative",
@@ -176,9 +179,9 @@ const CardImgStyle = styled('img')({
 const TitleNameStyle = styled('div')({
     position: 'relative',
     bottom: 130,
-    left: 122,
+    left: 132,
     // backgroundColor: 'red',
-    width: 320,
+    width: 250,
     margin: 0,
 
     [theme.breakpoints.down('500')]: {
@@ -249,7 +252,7 @@ class ScreamDialog extends Component{
                 <CircularProgress size={200} thickness={2}/>
             </div>
     ) : (
-        <Grid container style={{marginTop:'0rem'}} spacing={3}>
+        <Grid container style={{}} spacing={3}>
             {/* <Grid item sm={5}> */}
             <Grid item>
                 {/* <img src={userImage} alt="Profile" style={styles.profileImage}/> */}
@@ -279,8 +282,8 @@ class ScreamDialog extends Component{
                     <hr style={styles.invisibleSeparator}/>
                    
                     <Typography style={{paddingLeft: '1.6rem', fontSize: 18}} variant="body1">
-                        {/* {body} */}
-                        {newString.split("<br/>").join("\n")}
+                        {body}
+                        {/* {newString.split("<br/>").join("\n")} */}
                     </Typography>
 
                     <div style={styles.details}>

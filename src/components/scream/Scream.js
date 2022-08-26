@@ -227,7 +227,8 @@ class Scream extends Component {
             <Typography style={{fontStyle: 'italic', fontSize: 13.3}}variant="body2" color="textSecondary">{dayjs(createdAt).fromNow()}</Typography>
             
             <Typography style={{paddingTop: 2, fontSize: 16}} variant="body1">
-            {newString.split("<br/>").join("\n")}
+            {/* {newString.split("<br/>").join("\n")} */}
+            {body}
               </Typography>
             
             <div style={styles.text}>
