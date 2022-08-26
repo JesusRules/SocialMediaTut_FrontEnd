@@ -173,7 +173,12 @@ const CardImgStyle = styled('img')({
     [theme.breakpoints.down('440')]: {
         width: 77,
         height: 77,
-    }
+    },
+    [theme.breakpoints.down('340')]: {
+        width: 50,
+        height: 50,
+        transform: 'translate(6.1px, -8px)',
+    },
   });
 
 const TitleNameStyle = styled('div')({
@@ -192,7 +197,11 @@ const TitleNameStyle = styled('div')({
         bottom: 110,
         left: 82,
         fontSize: 10
-    }
+    },
+    [theme.breakpoints.down('340')]: {
+        bottom: 90,
+        left: 60,
+    },
 })       
 
 
@@ -288,11 +297,11 @@ class ScreamDialog extends Component{
 
                     <div style={styles.details}>
                     <LikeButton screamId={this.props.screamId}/>
-                    <span>{likeCount} Likes</span>
+                    <span style={{fontSize: 15.6}}>{likeCount} Likes</span>
                 <MyButton tip="Comments">
                     <ChatIcon color="primary"/>
                 </MyButton>
-                    <span>{commentCount} Comments</span>
+                    <span style={{fontSize: 15.6}}>{commentCount} Comments</span>
                     </div>
                     </div>
                     </div>

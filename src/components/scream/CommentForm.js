@@ -55,9 +55,15 @@ const TextFieldStyle = styled(TextField)({
     textAlign: 'center',
     width: '78vw',
     
+    [theme.breakpoints.down('370')]: {
+        width: 240,
+    },
+    [theme.breakpoints.down('325')]: {
+        width: 210,
+    },
     [theme.breakpoints.up('660')]: {
         width: 550,
-    }
+    },
 });  
 
 
