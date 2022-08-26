@@ -144,11 +144,15 @@ class StaticProfileOurs extends Component {
         <span>Joined {dayjs(ourProfile ? createdAt : profile.createdAt).format('MMM YYYY')}</span>
                 </div>
             
-        {ourProfile && (
+            {/* LOG OUT BUTTON ALTERED */}
+        {/* {ourProfile && (
             <MyButton tip="Logout" onClick={this.handleLogout} >
             <KeyboardReturn color="primary"/>
             </MyButton>
-        )}
+        )} */}
+            <MyButton style={{paddingBottom: '2rem'}} tip="Logout" >
+            {/* <KeyboardReturn color="primary"/> */}
+            </MyButton>
 
         {ourProfile && (
             <EditDetails/>
