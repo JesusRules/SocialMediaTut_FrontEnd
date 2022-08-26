@@ -233,10 +233,8 @@ class ScreamDialog extends Component{
     }
     componentDidMount() {
         if(this.props.openDialog){ //if exists from Scream, from user page
-            this.handleOpen();
+            // this.handleOpen();
         }
-        // const handler = e => this.setState({matches: e.matches});
-        // window.matchMedia()
     }
     componentDidUpdate() {
         // console.log(Child32());
@@ -256,9 +254,12 @@ class ScreamDialog extends Component{
         this.props.getScream(this.props.screamId);
     }
     handleClose = () => {
-
-        this.props.getScreams();
         window.history.pushState(null, null, this.state.oldPath);
+        let oldPath = (window.location.pathname).split('/')[1]; //should be user
+        if (oldPath !== 'user') 
+        {
+            this.props.getScreams();
+        }
         this.props.clearErrors();
         this.setState({ open: false })
         // setTimeout(() => this.props.getScream(this.props.screamId), 1000);

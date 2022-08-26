@@ -132,53 +132,54 @@ class Profile extends Component {
       authenticated}} = this.props;
     
       let profileMarkup = !loading ? (authenticated ? (
+        <>
+        </>
+        // <Paper style={styles.paper}>
+        //     <div style={styles.profile}>
+        //         <div style={styles.profileImageWrapper}>
+        //             <img src={imageUrl} alt="profile" style={styles.profileImage}/>
+        //             <input type="file" id="imageInput" hidden="hidden" onChange={this.handleImageChange}/>
+        //             <MyButton tip="Edit profile picture" onClick={this.handleEditPicture} style={styles.profileImageWrapperButton}>
+        //                 <EditIcon color="primary"/>
+        //             </MyButton>
+        //         </div>
+        //         <hr style={styles.profileHR}/>
+        //         <div style={styles.profileDetails}>
+        // <MuiLink style={{textDecoration: 'none' }} component={Link} to={`/user/${handle}`} color="primary" variant="h5">
+        //     @{handle}
+        // </MuiLink>
+        // <hr style={styles.profileHR}/>
+        // {bio && <Typography variant="body2">{bio}</Typography>}
+        // <hr style={styles.profileHR}/>
+        // {location && (
+        //     <Fragment>
+        //         <LocationOn color="primary"/> <span>{location}</span>
+        //     <hr style={styles.profileHR}/>
+        //     </Fragment>
+        // )}
+        // {website && (
+        //     <Fragment>
+        //         <LinkIcon color="primary"/>
+        //         <a style={{color: theme.palette.primary.main }} href={website} target="_blank" rel="noopener noreferrer">
+        //             {' '}{website}
+        //         </a>
+        //         <hr style={styles.profileHR}/>
+        //     </Fragment>
+        // )}
+        // <CalendarToday color="primary"/>{' '}
+        // <span>Joined {dayjs(createdAt).format('MMM YYYY')}</span>
+        //         </div>
 
-        <Paper style={styles.paper}>
-            <div style={styles.profile}>
-                <div style={styles.profileImageWrapper}>
-                    <img src={imageUrl} alt="profile" style={styles.profileImage}/>
-                    <input type="file" id="imageInput" hidden="hidden" onChange={this.handleImageChange}/>
-                    <MyButton tip="Edit profile picture" onClick={this.handleEditPicture} style={styles.profileImageWrapperButton}>
-                        <EditIcon color="primary"/>
-                    </MyButton>
-                </div>
-                <hr style={styles.profileHR}/>
-                <div style={styles.profileDetails}>
-        <MuiLink style={{textDecoration: 'none' }} component={Link} to={`/user/${handle}`} color="primary" variant="h5">
-            @{handle}
-        </MuiLink>
-        <hr style={styles.profileHR}/>
-        {bio && <Typography variant="body2">{bio}</Typography>}
-        <hr style={styles.profileHR}/>
-        {location && (
-            <Fragment>
-                <LocationOn color="primary"/> <span>{location}</span>
-            <hr style={styles.profileHR}/>
-            </Fragment>
-        )}
-        {website && (
-            <Fragment>
-                <LinkIcon color="primary"/>
-                <a style={{color: theme.palette.primary.main }} href={website} target="_blank" rel="noopener noreferrer">
-                    {' '}{website}
-                </a>
-                <hr style={styles.profileHR}/>
-            </Fragment>
-        )}
-        <CalendarToday color="primary"/>{' '}
-        <span>Joined {dayjs(createdAt).format('MMM YYYY')}</span>
-                </div>
-
-            {/* <MyButton tip="Logout" onClick={this.handleLogout} >
-            <KeyboardReturn color="primary"/>
-            </MyButton> */}
-            <MyButton style={{paddingBottom: '2rem'}} tip="Logout" >
-            {/* <KeyboardReturn color="primary"/> */}
-            </MyButton>
+        //     {/* <MyButton tip="Logout" onClick={this.handleLogout} >
+        //     <KeyboardReturn color="primary"/>
+        //     </MyButton> */}
+        //     <MyButton style={{paddingBottom: '2rem'}} tip="Logout" >
+        //     {/* <KeyboardReturn color="primary"/> */}
+        //     </MyButton>
             
-        <EditDetails/>
-            </div>
-        </Paper>
+        // <EditDetails/>
+        //     </div>
+        // </Paper>
       ) : (
         <Paper style={styles.paper}>
             <Typography variant="body2" align="center">
