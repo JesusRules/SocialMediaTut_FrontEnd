@@ -66,6 +66,22 @@ const TextFieldStyle = styled(TextField)({
     },
 });  
 
+const TextFieldMissingStyle = styled('div')({
+    margin: '10px auto 10px auto',
+    textAlign: 'center',
+    width: '78vw',
+    
+    [theme.breakpoints.down('370')]: {
+        width: 240,
+    },
+    [theme.breakpoints.down('325')]: {
+        width: 210,
+    },
+    [theme.breakpoints.up('660')]: {
+        width: 550,
+    },
+});  
+
 
 export class CommentForm extends Component {
     state = {
@@ -144,7 +160,8 @@ export class CommentForm extends Component {
             </form>
             <hr style={styles.visibleSeparator} />
         </Grid>
-    ) : null
+        //ELSE do div
+    ) : <TextFieldMissingStyle></TextFieldMissingStyle>
 
     return commentFormMarkup;
   }
