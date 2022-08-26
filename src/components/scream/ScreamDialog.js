@@ -162,14 +162,20 @@ const CardImgStyle = styled('img')({
     height: 110,
     transform: 'translateX(6.1px)',
     // paddingRight: '.8rem',
+    position: 'relative',
+    top: -45,
 
-    [theme.breakpoints.down('545')]: {
-        // position: "relative",
-        // transform: "translate(0%, 0%)",
-        // paddingRight: '0',
-        // width: 60,
-        // height: 60,
+    [theme.breakpoints.up('520')]: {
+        transform: 'translateX(80px)',
     },
+
+    // [theme.breakpoints.down('545')]: {
+    //     // position: "relative",
+    //     // transform: "translate(0%, 0%)",
+    //     // paddingRight: '0',
+    //     // width: 60,
+    //     // height: 60,
+    // },
     [theme.breakpoints.down('440')]: {
         width: 77,
         height: 77,
@@ -183,11 +189,15 @@ const CardImgStyle = styled('img')({
 
 const TitleNameStyle = styled('div')({
     position: 'relative',
-    bottom: 130,
+    bottom: 150,
     left: 132,
     // backgroundColor: 'red',
     width: 250,
     margin: 0,
+
+    [theme.breakpoints.up('520')]: {
+        left: 200,
+    },
 
     [theme.breakpoints.down('500')]: {
         width: 230,

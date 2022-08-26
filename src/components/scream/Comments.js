@@ -46,7 +46,7 @@ const styles = {
         fontSize: 16,
     },
     body: {
-        // paddingLeft: '.8rem',
+        paddingLeft: '.33rem',
         paddingBottom: '0.27rem',
     }
 }
