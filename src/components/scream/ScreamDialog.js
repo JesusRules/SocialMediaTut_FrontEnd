@@ -174,21 +174,16 @@ const CardImgStyle = styled('img')({
         transform: 'translateX(80px)',
     },
 
-    // [theme.breakpoints.down('545')]: {
-    //     // position: "relative",
-    //     // transform: "translate(0%, 0%)",
-    //     // paddingRight: '0',
-    //     // width: 60,
-    //     // height: 60,
-    // },
     [theme.breakpoints.down('440')]: {
         width: 77,
         height: 77,
+        right: 13,
+        transform: 'translate(0px, -0px)',
     },
     [theme.breakpoints.down('340')]: {
         width: 50,
         height: 50,
-        transform: 'translate(6.1px, -8px)',
+        transform: 'translate(6.1px, -20px)',
     },
   });
 
@@ -210,12 +205,15 @@ const TitleNameStyle = styled('div')({
     [theme.breakpoints.down('440')]: {
         width: 200,
         bottom: 110,
-        left: 82,
-        fontSize: 10
+        left: 75,
+        fontSize: 10,
+        transform: 'translate(0px, -5px)',
     },
     [theme.breakpoints.down('340')]: {
         bottom: 90,
-        left: 60,
+        left: 50,
+        bottom: 116,
+        transform: 'translate(0px, 0px)',
     },
 })       
 
