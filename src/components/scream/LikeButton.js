@@ -33,7 +33,7 @@ export class LikeButton extends Component {
   render() {
     // const {classes, user: { authenticated }} = this.props;
     const { authenticated } = this.props.user;
-    console.log("SCREAM ID OF LIKE BUTTON: " + this.props.screamId);
+    // console.log("SCREAM ID OF LIKE BUTTON: " + this.props.screamId);
     const likeButton = !authenticated ? (
         //empty heart
         <Link to='/login'>

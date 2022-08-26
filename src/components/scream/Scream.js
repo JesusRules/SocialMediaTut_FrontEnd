@@ -24,7 +24,8 @@ import LikeButton from './LikeButton.js';
 import { createTheme, ThemeProvider, Box } from '@mui/system';
 import {styled} from '@mui/material/styles';
 import useWindowSize from '../../util/useWindowSize.js'
-import {updateCount, likeScream} from '../../redux/actions/dataActions.js'
+import {getUserData, getScream, getScreams} from '../../redux/actions/dataActions.js'
+import axios from 'axios';
 
 const theme = createTheme({
   breakpoints: {
@@ -108,7 +109,7 @@ const RespNextLine = () => {
       ) : (
       null
     )
-
+    
     return (
       <>
         {newTyp}
@@ -117,37 +118,65 @@ const RespNextLine = () => {
 }
 
 
+// let globalCommentCount;
+// export function RetrieveCommentCount(commentCount) {
+//      console.log("NEW: " + commentCount);
+//      globalCommentCount = commentCount;
+//      console.log("GLOBAL: " + globalCommentCount);
+// }
+
+
+
 class Scream extends Component {
+  
   state = {
     commentCount2: this.props.data.scream.commentCount,
-    commentPlus: 0,
-};
-componentDidMount() {
-  // this.props.updateCount(this.props.screamId);
-}
-componentWillReceiveProps(nextProps) {
-  if (nextProps.data.scream.commentCount) {
-      let number = this.props.data.scream.commentCount;
-      // this.props.likeScream(this.props.screamId);
-      this.setState({commentCount2: number++});
-  }
-}
+    commentNew: 0,
+  };
 
-  render() {
-    // RespTest(); NOT in render
+  // componentDidMount() {
 
-      const changeHandleProfile = () => {
-        window.location.href = `/user/${userHandle}`;    
+    // this.props.updateCount(this.props.screamId);
+    
+    componentWillReceiveProps(nextProps) {
+      // WORKS but ONLY 1 comment count at a time!!! Calls global variable and gets sent FROM CommentForm - line 96 AND 121-from here
+      // setTimeout(() => {
+      //   console.log("Global sscomment Count: " + globalCommentCount);
+      //   this.setState({commentNew: globalCommentCount});
+      //    }, 1000);
+
+         //GOOD TOO
+            axios.get(`https://us-central1-socialape-14d54.cloudfunctions.net/api/scream/${this.props.scream.screamId}`)
+            .then(res => {
+                console.log(res.data.userHandle, res.data.commentCount);
+            
+                this.setState({
+                    commentNew: res.data,
+                  })
+              
+        })
+        .catch(err => console.log(err));
       }
-
-      dayjs.extend(relativeTime);
-
-      const { classes, scream : {body, createdAt, userImage, 
-        userHandle, screamId, likeCount, commentCount},
-         user: { authenticated, credentials: { handle } } } = this.props;
+    
+    
+    render() {
+      // RespTest(); NOT in render
+    
+    const changeHandleProfile = () => {
+      window.location.href = `/user/${userHandle}`;    
+    }
+    
+    dayjs.extend(relativeTime);
+    
+    const { classes, scream : {body, createdAt, userImage, 
+      userHandle, screamId, likeCount, commentCount},
+      user: { authenticated, credentials: { handle } } } = this.props;
       // const { classes, scream : {body, createdAt, userImage, 
       //   userHandle, screamId, likeCount, commentCount},
       //    user: { authenticated, credentials: { handle } } } = this.props;
+
+      // const newCommentCount = this.props.screamm.commentCount;
+  
 
     const deleteButton = authenticated && userHandle === handle ? (
       <DeleteScream screamId={screamId}/>
@@ -204,6 +233,10 @@ componentWillReceiveProps(nextProps) {
 
 Scream.propTypes = {
   user: PropTypes.object.isRequired,
+  data: PropTypes.object.isRequired,
+  getScreams: PropTypes.func.isRequired,
+  getScream: PropTypes.func.isRequired,
+  getUserData: PropTypes.func.isRequired,
   // updateCount: PropTypes.func.isRequired,
   // scream: PropTypes.object.isRequired,
   // classes: PropTypes.object.isRequired
@@ -213,15 +246,18 @@ Scream.propTypes = {
 
 const mapStateToProps = (state) => ({
   user: state.user,
-  data: state.data
+  data: state.data,
+  UI: state.UI
   //DONT USE scream: state.data.scream,
 })
 
-// const mapActionsToProps = { 
-//   updateCount,
-//   likeScream
-// };
+const mapActionsToProps = { 
+  // likeScream
+  getScream,
+  getScreams,
+  getUserData,
+};
 
 // export default withStyles(styles)(Scream);
-export default connect(mapStateToProps, {})(Scream)
+export default connect(mapStateToProps, mapActionsToProps)(Scream)
 // export default (Scream)

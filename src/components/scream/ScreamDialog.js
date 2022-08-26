@@ -26,7 +26,6 @@ import { getScream, clearErrors } from '../../redux/actions/dataActions.js'
 import {styled} from '@mui/material/styles';
 import { createTheme, ThemeProvider, Box } from '@mui/system';
 
-
 const theme = createTheme({
     breakpoints: {
       values: {
@@ -194,8 +193,6 @@ const TitleNameStyle = styled('div')({
 })       
 
 
-
-
 class ScreamDialog extends Component{
     state = {
         open: false,
@@ -213,6 +210,7 @@ class ScreamDialog extends Component{
         // window.matchMedia()
     }
     componentDidUpdate() {
+        // console.log(Child32());
         // this.props.getScream(this.props.screamId);
     }
     handleOpen = () => {
@@ -298,7 +296,7 @@ class ScreamDialog extends Component{
             </Grid>
         <div style={styles.commentAndForm}>
             <hr style={styles.visibleSeparator}/>
-        <div style={{paddingLeft: '1.3rem'}}><CommentForm screamId={screamId}/></div>
+        <div style={{paddingLeft: '1.3rem'}}><CommentForm screamCommentCount={52} screamId={screamId}/></div>
             <Comments comments={comments}/>
         </div>
         </Grid>

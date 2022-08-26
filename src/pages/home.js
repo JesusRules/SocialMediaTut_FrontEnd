@@ -92,13 +92,17 @@ class home extends Component {
     }
 
     render() {
-        const { screams, loading } = this.props.data;
-        
-        let recentScreamsMarkup = !loading ? (
-            screams.map(scream => <Scream key={scream.screamId} scream={scream}/>)
-            ) :  (
-            <ScreamSkeleton/>
-        );           
+        const { screams, loading, scream } = this.props.data;
+       
+        let recentScreamsMarkup
+        if (screams) {
+                recentScreamsMarkup = !loading ? (
+                    screams.map(scream => <Scream key={scream.screamId} scream={scream} screamm={scream}/>)
+                    ) :  (
+                    <ScreamSkeleton/>
+                    
+                )           
+           }
 
     return (
         // <>
