@@ -21,9 +21,27 @@ export const getScreams = () => (dispatch) => {
         })
     })
 }
+// Get screams for ONE user
+export const getScreamsForUser = (handle) => (dispatch) => {
+    dispatch({ type: LOADING_DATA });
+    axios.get(`https://us-central1-socialape-14d54.cloudfunctions.net/api/user/${handle}`)
+    .then(res => {
+        dispatch({
+            type: SET_SCREAMS,
+            payload: res.data.screams
+        })
+    })
+    .catch(err => {
+        dispatch({
+            type: SET_SCREAMS,
+            payload: []
+        })
+    })
+}
 
 export const getScream = (screamId) => (dispatch) => {
     dispatch( { type: LOADING_UI });
+    // dispatch({ type: LOADING_DATA });
     axios.get(`https://us-central1-socialape-14d54.cloudfunctions.net/api/scream/${screamId}`)
     .then(res => {
         dispatch({
