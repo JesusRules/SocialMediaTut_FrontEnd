@@ -144,7 +144,7 @@ const styles = {
     screamCommentStuff: {
         position: 'relative',
         bottom: 80,
-        right: 11,
+        right: 24,
     },
     commentAndForm: {
         position: 'relative',
@@ -153,6 +153,11 @@ const styles = {
     createdAt: {
         fontStyle: 'italic',
         transform: 'translate(5px, -5px)'
+    },
+
+    //ULTIMATE THING
+    entireGrid: {
+        transform: 'translateY(25px)',
     }
 }
 
@@ -165,7 +170,7 @@ const CardImgStyle = styled('img')({
     position: 'relative',
     top: -45,
 
-    [theme.breakpoints.up('520')]: {
+    [theme.breakpoints.up('605')]: {
         transform: 'translateX(80px)',
     },
 
@@ -195,11 +200,11 @@ const TitleNameStyle = styled('div')({
     width: 250,
     margin: 0,
 
-    [theme.breakpoints.up('520')]: {
+    [theme.breakpoints.up('605')]: {
         left: 200,
     },
 
-    [theme.breakpoints.down('500')]: {
+    [theme.breakpoints.down('505')]: {
         width: 230,
     },
     [theme.breakpoints.down('440')]: {
@@ -271,7 +276,7 @@ class ScreamDialog extends Component{
                 <CircularProgress size={200} thickness={2}/>
             </div>
     ) : (
-        <Grid container style={{}} spacing={3}>
+        <Grid container style={styles.entireGrid} spacing={3}>
             {/* <Grid item sm={5}> */}
             <Grid item>
                 {/* <img src={userImage} alt="Profile" style={styles.profileImage}/> */}
