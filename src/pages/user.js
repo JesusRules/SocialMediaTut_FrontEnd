@@ -129,7 +129,7 @@ class user extends Component {
       )
 
       const title = !loading ? (
-        <Typography style={styles.header}>{this.state.handle}'s BARKS!</Typography>
+        <Typography style={styles.header}>{this.state.handle}'s Profile/BARKS!</Typography>
       ) : (
         <Typography style={styles.header}> </Typography>
       )

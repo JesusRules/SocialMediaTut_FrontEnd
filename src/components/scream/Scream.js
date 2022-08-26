@@ -125,16 +125,42 @@ const RespNextLine = () => {
 //      console.log("GLOBAL: " + globalCommentCount);
 // }
 
-
+let myWildString = '';
+let commentCountG = 320;
 
 class Scream extends Component {
   
   state = {
-    commentCount2: this.props.data.scream.commentCount,
-    commentNew: 0,
+    commentCount: 0,
   };
 
-  // componentDidMount() {
+  componentDidMount() {
+    this.setState({commentCount: this.props.scream.commentCount});
+    //GOOD TOO
+    // axios.get(`https://us-central1-socialape-14d54.cloudfunctions.net/api/scream/${this.props.scream.screamId}`)
+    // .then(res => {
+    //     console.log(`${res.data.screamId}/${res.data.commentCount}`);
+    //     myWildString = `${res.data.screamId}/${res.data.commentCount}`;
+    // })
+    // .catch(err => console.log(err));
+
+      //   setTimeout(() => {
+      //     if (myWildString !== '') {
+      //     const stringId = myWildString.split('/')[0];
+      //     console.log("NAME: " + stringId);
+      //     const stringCount = myWildString.split('/')[1];
+      //     console.log("COUNT: " + stringCount);
+
+      //     // console.log('ID creator: ' + screamId);
+      //     // console.log('ID updated: ' + stringId);
+      //     if (this.props.scream.screamId == stringId) {
+      //       console.log('REACHED');
+      //       this.setState({commentCount: parseInt(stringCount)});
+      //     }
+      //   }
+      // }, 1000);
+
+  }
 
     // this.props.updateCount(this.props.screamId);
     
@@ -146,18 +172,13 @@ class Scream extends Component {
       //    }, 1000);
 
          //GOOD TOO
-            axios.get(`https://us-central1-socialape-14d54.cloudfunctions.net/api/scream/${this.props.scream.screamId}`)
-            .then(res => {
-                console.log(res.data.userHandle, res.data.commentCount);
-            
-                this.setState({
-                    commentNew: res.data,
-                  })
-              
-        })
-        .catch(err => console.log(err));
+        //     axios.get(`https://us-central1-socialape-14d54.cloudfunctions.net/api/scream/${this.props.scream.screamId}`)
+        //     .then(res => {
+        //         console.log(`${res.data.screamId}/${res.data.commentCount}`);
+        //         myWildString = `${res.data.screamId}/${res.data.commentCount}`;
+        // })
+        // .catch(err => console.log(err));
       }
-    
     
     render() {
       // RespTest(); NOT in render
@@ -168,15 +189,15 @@ class Scream extends Component {
     
     dayjs.extend(relativeTime);
     
-    const { classes, scream : {body, createdAt, userImage, 
+    let { classes, scream : {body, createdAt, userImage, 
       userHandle, screamId, likeCount, commentCount},
       user: { authenticated, credentials: { handle } } } = this.props;
       // const { classes, scream : {body, createdAt, userImage, 
       //   userHandle, screamId, likeCount, commentCount},
       //    user: { authenticated, credentials: { handle } } } = this.props;
+      commentCountG = commentCount;
 
-      // const newCommentCount = this.props.screamm.commentCount;
-  
+      //OLD TIMEOUT
 
     const deleteButton = authenticated && userHandle === handle ? (
       <DeleteScream screamId={screamId}/>
@@ -219,8 +240,8 @@ class Scream extends Component {
               <ChatIcon  color="primary"/>
             </MyButton> */}
             <ScreamDialog commentButton={true} screamId={screamId} userHandle={userHandle} openDialog={this.props.openDialog} />
-            {/* <span className={'scream-details'} >{this.state.commentCount2} </span> */}
             <span className={'scream-details'} >{commentCount} </span>
+            {/* <span className={'scream-details'} >{this.state.commentCount} </span> */}
             </div>
             
             <ScreamDialog commentButton={false} screamId={screamId} userHandle={userHandle} openDialog={this.props.openDialog} />

@@ -22,7 +22,7 @@ import UnfoldMore from '@mui/icons-material/UnfoldMore';
 import ChatIcon from '@mui/icons-material/Chat';
 // Redux stuff
 import { connect } from 'react-redux';
-import { getScream, clearErrors } from '../../redux/actions/dataActions.js'
+import { likeScream, getScreams, getScream, clearErrors } from '../../redux/actions/dataActions.js'
 import {styled} from '@mui/material/styles';
 import { createTheme, ThemeProvider, Box } from '@mui/system';
 
@@ -227,12 +227,12 @@ class ScreamDialog extends Component{
         this.props.getScream(this.props.screamId);
     }
     handleClose = () => {
+
+        this.props.getScreams();
         window.history.pushState(null, null, this.state.oldPath);
         this.props.clearErrors();
         this.setState({ open: false })
-        this.props.getScream(this.props.screamId);
-        // window.location = this.state.oldPath;
-        // setTimeout(() => window.location.reload(false), 1000);
+        // setTimeout(() => this.props.getScream(this.props.screamId), 1000);
     }
 
     render() {
@@ -345,6 +345,12 @@ class ScreamDialog extends Component{
 
 ScreamDialog.propTypes = {
     clearErrors: PropTypes.func.isRequired,
+
+    //test
+    likeScream: PropTypes.func.isRequired,
+    getScreams: PropTypes.func.isRequired,
+
+
     getScream: PropTypes.func.isRequired,
     screamId: PropTypes.string.isRequired,
     userHandle: PropTypes.string.isRequired,
@@ -361,6 +367,9 @@ const mapStateToProps = (state) => ({
 const mapActionsToProps = {
     getScream,
     clearErrors,
+    //test
+    likeScream,
+    getScreams,
 };
 
 export default connect(mapStateToProps, mapActionsToProps)(ScreamDialog);
