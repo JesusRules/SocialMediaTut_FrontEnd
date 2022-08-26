@@ -157,7 +157,7 @@ const styles = {
 
     //ULTIMATE THING
     entireGrid: {
-        transform: 'translateY(25px)',
+        transform: 'translateY(50px)',
     }
 }
 
