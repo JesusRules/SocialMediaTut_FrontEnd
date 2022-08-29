@@ -109,7 +109,7 @@ class home extends Component {
         let recentScreamsMarkup
         if (screams) {
                 recentScreamsMarkup = !loading ? (
-                    screams.map(scream => <Scream key={scream.screamId} scream={scream}  screamm={scream}/>)
+                    screams.map(scream => <Scream key={scream.screamId} scream={scream}     screamm={scream}/>)
                     ) :  (
                     <ScreamSkeleton/>
                     

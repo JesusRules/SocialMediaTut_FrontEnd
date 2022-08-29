@@ -3,9 +3,12 @@ import PropTypes from 'prop-types';
 // import withStyles from 'asd'
 import {Link} from 'react-router-dom'
 import dayjs from 'dayjs'
+import DeleteComment from './DeleteComment';
 // MUI
 import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography';
+import { connect } from 'react-redux';
+
 
 const styles = {
     //NO GLOBAL THEME
@@ -54,6 +57,8 @@ const styles = {
 class Comments extends Component{
     render() {
         const { comments } = this.props;
+        const { user: { authenticated, credentials: { handle} }} = this.props;
+
 
         let newString = '';
 
@@ -62,11 +67,16 @@ class Comments extends Component{
             return (
                 <Grid container>
             {comments.map((comment, index) => {
-                const { body, createdAt, userImage, userHandle} = comment;
+                const { body, createdAt, userImage, userHandle, commentId} = comment;
                 
                 if (body) {
                     newString = body.replace(/(.{28})/g, "$1<br/>");
                 }   
+                //Get comment stuff from map array comments
+                const deleteButton = authenticated && userHandle === handle ? (
+                    <DeleteComment commentId={commentId}/>
+                  ) : null
+
                 return (
                     <Fragment key={createdAt}>
                         <Grid item>
@@ -84,6 +94,9 @@ class Comments extends Component{
                                             color="primary">
                                                 {userHandle}
                                             </Typography>
+
+                                            {deleteButton}
+
                                         <Typography 
                                         style={{fontSize: 13, fontStyle: 'italic'}} variant="body2" color="textSecondary">
                                             {dayjs(createdAt).format('h:mm a, MMMM DD YYYY')}
@@ -113,8 +126,15 @@ class Comments extends Component{
     }
 }
 
+const mapStateToProps = (state) => ({
+    user: state.user,
+    // data: state.data,
+  })
+
 Comments.propTypes = {
-    comments: PropTypes.array.isRequired
+    comments: PropTypes.array.isRequired,
+    user: PropTypes.object.isRequired
 }
 
-export default Comments;
+export default connect(mapStateToProps, {})(Comments);
+// export default Comments;
