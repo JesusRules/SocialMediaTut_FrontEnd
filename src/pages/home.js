@@ -17,6 +17,12 @@ import ScreamSkeleton from '../util/ScreamSkeleton.js'
 import {styled} from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
+//LOGIN TOKEN STUFF
+import { SET_AUTHENTICATED } from '../redux/types.js';
+import { logoutUser, getUserData } from '../redux/actions/userActions.js'
+import jwtDecode from 'jwt-decode'
+import store, {persistor} from '../redux/store.js';
+
 const RespHomePage = () => {
     const [w, setW] = useState(window.innerWidth);
   
@@ -39,26 +45,25 @@ const RespHomePage = () => {
     )
   }
 
-// const RespHomePage2 = () => {
-//     // const [isMobile, setIsMobile] = useState(false)
- 
-//     // //choose the screen size 
-//     // const handleResize = () => {
-//     // if (window.innerWidth < 600) {
-//     //     setIsMobile(true)
-//     // } else {
-//     //     setIsMobile(false)
-//     // }
-//     // }
-
-//     // // create an event listener
-//     // useEffect(() => {
-//     // window.addEventListener("resize", handleResize)
-//     // })
-
-//     const isMobile2 = useMediaQuery({ query: `(max-width: 600px)` });
-//     return isMobile2;
-//   }
+const TokenCheck = () => {
+  const token = localStorage.FBIdToken;
+//   console.log(token);
+  if (token){
+    const decodedToken = jwtDecode(token);
+    if (decodedToken.exp * 1000 < Date.now()) {
+      store.dispatch(logoutUser());
+      window.location.href = '/login'
+    } else {
+      store.dispatch({ type: SET_AUTHENTICATED });
+      axios.defaults.headers.common['Authorization'] = token; //if we refresh!
+      store.dispatch(getUserData());
+    }
+  } else {
+    store.dispatch(logoutUser());
+    // alert("You've been timed out, please sign in again")
+    //   window.location.href = '/login'
+  }
+}
 
 
 // const home = () => {
@@ -78,6 +83,13 @@ class home extends Component {
 
         window.addEventListener("resize", this.resize.bind(this));
         this.resize();
+
+        window.addEventListener('focus', this.focus.bind(this));
+        this.focus();
+    }
+    focus() {
+        console.log("FOCUSED");
+        TokenCheck();
     }
     
     resize() {

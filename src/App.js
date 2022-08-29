@@ -23,7 +23,9 @@ import Signup from './pages/signup.js';
 import User from './pages/user.js'
 import axios from 'axios';
 
+
 const theme = createTheme(themeFile)
+
 
 const token = localStorage.FBIdToken;
 if (token){
@@ -36,9 +38,14 @@ if (token){
     axios.defaults.headers.common['Authorization'] = token; //if we refresh!
     store.dispatch(getUserData());
   }
+} else {
+  store.dispatch(logoutUser());
+    // window.location.href = '/login'
 }
 
+
 function App() {
+
   return (
     <ThemeProvider  theme={theme}>
       <Provider store={store}>

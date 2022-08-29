@@ -13,6 +13,11 @@ import ScreamSkeleton from '../util/ScreamSkeleton.js'
 import ProfileSkeleton from '../util/ProfileSkeleton.js'
 import Profile from '../components/profile/Profile.js'
 import StaticProfileOurs from '../components/profile/StaticProfileOurs.js'
+//LOGIN TOKEN STUFF
+import { SET_AUTHENTICATED } from '../redux/types.js';
+import { logoutUser } from '../redux/actions/userActions.js'
+import jwtDecode from 'jwt-decode'
+import store, {persistor} from '../redux/store.js';
 
 const styles = {
     header: {
@@ -21,6 +26,26 @@ const styles = {
         paddingBottom: '1rem',
     }
 }
+
+const TokenCheck = () => {
+    const token = localStorage.FBIdToken;
+  //   console.log(token);
+    if (token){
+      const decodedToken = jwtDecode(token);
+      if (decodedToken.exp * 1000 < Date.now()) {
+        store.dispatch(logoutUser());
+        window.location.href = '/login'
+      } else {
+        store.dispatch({ type: SET_AUTHENTICATED });
+        axios.defaults.headers.common['Authorization'] = token; //if we refresh!
+        store.dispatch(getUserData());
+      }
+    } else {
+      store.dispatch(logoutUser());
+      // alert("You've been timed out, please sign in again")
+      //   window.location.href = '/login'
+    }
+  }
 
 class user extends Component {
     
@@ -47,10 +72,17 @@ class user extends Component {
         })
         .catch(err => console.log(err));
 
+        //Focus token logout stuff
+        window.addEventListener('focus', this.focus.bind(this));
+        this.focus();
         
         //Flip stuff
         window.addEventListener("resize", this.resize.bind(this));
         this.resize();
+    }
+    focus() {
+        console.log("FOCUSED");
+        TokenCheck();
     }
     
     //Flip stuff
