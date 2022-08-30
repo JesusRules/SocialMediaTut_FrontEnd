@@ -8,7 +8,14 @@ import DeleteComment from './DeleteComment';
 import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography';
 import { connect } from 'react-redux';
-
+import { deleteScream, getScream, deleteComment } from '../../redux/actions/dataActions.js'
+import MyButton from '../../util/MyButton.js';
+// MUI Stuff
+import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import DialogTitle from '@mui/material/DialogTitle';
+import DialogActions from '@mui/material/DialogActions';
+import DeleteOutline from '@mui/icons-material/DeleteOutline'; //icon
 
 const styles = {
     //NO GLOBAL THEME
@@ -51,12 +58,43 @@ const styles = {
     body: {
         paddingLeft: '.33rem',
         paddingBottom: '0.27rem',
+    },
+    deleteButton: {
+        position: 'relative',
+        left: '0%',
+        transform: 'translateY(-3px)',
     }
 }
 
+
 class Comments extends Component{
+    state = {
+        open: false,
+    };
+    handleOpen = () => {
+        this.setState({ open: true })
+    }
+    handleClose = () => {
+        this.setState({ open: false });
+    }
+    deleteComment2 = (commentId, screamId) => {
+        // ev.preventDefault();
+        console.log("CommentID: " + commentId);
+        // let index = this.props.comments.findIndex((comment) => comment.commentId === commentId);
+        // this.props.comments.splice(index, 1);
+        this.props.deleteComment(commentId, screamId);
+        this.setState({ open: false });
+    }
+    callCommentsSplice = (commentId, screamId) => {
+        setTimeout(() => {
+            // let index = this.props.comments.findIndex((comment) => comment.commentId === commentId);
+            // this.props.comments.splice(index, 1);
+            this.props.getScream(this.props.screamId);
+            }, 550);
+    }
+
     render() {
-        const { comments } = this.props;
+        let { comments } = this.props;
         const { user: { authenticated, credentials: { handle} }} = this.props;
 
 
@@ -72,10 +110,41 @@ class Comments extends Component{
                 if (body) {
                     newString = body.replace(/(.{28})/g, "$1<br/>");
                 }   
+
                 //Get comment stuff from map array comments
                 const deleteButton = authenticated && userHandle === handle ? (
-                    <DeleteComment commentId={commentId}/>
+                    <DeleteComment callCommentsSplice={this.callCommentsSplice} commentId={commentId} screamId={this.props.screamId}/>
+                //     <Fragment>
+                //     <MyButton tip="Delete Comment" onClick={this.handleOpen} style={styles.deleteButton}>
+                //         <DeleteOutline color="secondary"/>
+                //     </MyButton>
+                //     <Dialog
+                //         open={this.state.open}
+                //         onClose={this.handleClose}
+                //         fullWidth
+                //         maxWidth="sm">
+                //     <DialogTitle>
+                //         Are you sure you want to delete this comment ?
+                //         <DialogActions>
+                //             <Button onClick={this.handleClose} color="primary">Cancel</Button>
+                //             <Button onClick={ () => this.deleteComment2(commentId, this.props.screamId) } color="secondary">Delete</Button>
+                //             {/* <Button onClick={this.deleteComment2(commentId, this.props.screamId)} color="secondary">Delete</Button> */}
+                //         </DialogActions>
+                //     </DialogTitle>
+                //     </Dialog>
+                // </Fragment>
                   ) : null
+
+                  //DELETE COMMENT ALTERNATE 2 TEST
+                //   const deleteComment = () => {
+                //     let index = comments.findIndex((comment) => comment.commentId === commentId);
+                //     comments.splice(index, 1);
+                //     this.props.deleteComment(this.props.commentId);
+                //     this.setState({ });
+                //     // return {
+                //     //     ...state
+                //     // };
+                // }
 
                 return (
                     <Fragment key={createdAt}>
@@ -132,9 +201,12 @@ const mapStateToProps = (state) => ({
   })
 
 Comments.propTypes = {
+    deleteComment: PropTypes.func.isRequired,
+    getScream: PropTypes.func.isRequired,
     comments: PropTypes.array.isRequired,
-    user: PropTypes.object.isRequired
+    // user: PropTypes.object.isRequired,
+    // commentId: PropTypes.string.isRequired,
 }
 
-export default connect(mapStateToProps, {})(Comments);
+export default connect(mapStateToProps, {deleteComment, getScream})(Comments);
 // export default Comments;

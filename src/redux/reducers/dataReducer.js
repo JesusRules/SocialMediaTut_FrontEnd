@@ -1,11 +1,12 @@
 import { SET_SCREAMS, LIKE_SCREAM, UNLIKE_SCREAM, 
     LOADING_DATA, DELETE_SCREAM, POST_SCREAM, SET_SCREAM,
-    SUBMIT_COMMENT, JUST_RETURN, UPDATE_COMMENT_COUNT } from '../types.js'
+    SUBMIT_COMMENT, JUST_RETURN, UPDATE_COMMENT_COUNT, DELETE_COMMENT } from '../types.js'
 
 const initialState = {
     screams: [],
     scream: {},
-    loading: false
+    loading: false,
+    comments: [],
 };
 
 export default function(state = initialState, action){
@@ -50,6 +51,12 @@ export default function(state = initialState, action){
         case DELETE_SCREAM:
             let index2 = state.screams.findIndex((scream) => scream.screamId === action.payload);
             state.screams.splice(index2, 1); //starts at index (0? 1? 2?) then cuts 1 after
+            return {
+                ...state
+            };
+        case DELETE_COMMENT: //????? did not use
+            let index32 = state.comments.findIndex((comment) => comment.commentId === action.payload);
+            state.comments.splice(index32, 1); //starts at index (0? 1? 2?) then cuts 1 after
             return {
                 ...state
             };

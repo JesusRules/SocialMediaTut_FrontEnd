@@ -1,6 +1,6 @@
 import { SET_SCREAMS, LOADING_DATA, LIKE_SCREAM, UNLIKE_SCREAM, 
     DELETE_SCREAM, LOADING_UI, SET_ERRORS, CLEAR_ERRORS, POST_SCREAM, SET_SCREAM,
-    STOP_LOADING_UI, SUBMIT_COMMENT, JUST_RETURN, UPDATE_COMMENT_COUNT } from '../types';
+    STOP_LOADING_UI, SUBMIT_COMMENT, JUST_RETURN, UPDATE_COMMENT_COUNT, DELETE_COMMENT } from '../types';
 import axios from 'axios'
 import { RssFeed } from '@mui/icons-material';
 
@@ -146,6 +146,27 @@ export const deleteScream = (screamId) => (dispatch) => {
             type: DELETE_SCREAM,
             payload: screamId
         })
+    })
+    .catch(err => console.log(err));
+}
+
+// Delete a comment
+export const deleteComment = (commentId, screamId) => (dispatch) => {
+    axios.delete(`https://us-central1-socialape-14d54.cloudfunctions.net/api/comment/${commentId}`)
+    .then(() => {
+        // dispatch({
+        //     type: DELETE_COMMENT,
+        //     payload: commentId
+        // })
+    })
+    .catch(err => console.log(err));
+
+    axios.get(`https://us-central1-socialape-14d54.cloudfunctions.net/api/scream/${screamId}/minusCC`)
+    .then(() => {
+        // dispatch({
+        //     type: DELETE_COMMENT,
+        //     payload: commentId
+        // })
     })
     .catch(err => console.log(err));
 }

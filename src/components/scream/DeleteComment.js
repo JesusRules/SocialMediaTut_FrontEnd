@@ -11,7 +11,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DeleteOutline from '@mui/icons-material/DeleteOutline'; //icon
 
 import { connect } from 'react-redux';
-import { deleteScream } from '../../redux/actions/dataActions.js'
+import { deleteScream, deleteComment, getScream, getScreams } from '../../redux/actions/dataActions.js'
 
 const styles = {
     deleteButton: {
@@ -38,13 +38,19 @@ class DeleteComment extends Component {
     handleClose = () => {
         this.setState({ open: false });
     }
-    deleteComment = () => {
-        this.props.deleteScream(this.props.commentId);
+    deleteComment = (commentId, screamId) => {
+        // this.props.deleteScream(this.props.commentId);
+        console.log("new delete button2: " + commentId);
+        this.props.deleteComment(commentId, screamId);
+        this.props.callCommentsSplice(commentId, screamId);
+        // this.props.getScream(screamId); //when deletes comment, call this
+        // this.props.getScreams();
         this.setState({ open: false });
     }
 
     render() {
-    const { classess, commentId } = this.props;
+    const { classess } = this.props;
+    const { scream: { screamId } } = this.props;
 
     return (
     <Fragment>
@@ -62,7 +68,7 @@ class DeleteComment extends Component {
             Are you sure you want to delete this comment ?
             <DialogActions>
                 <Button onClick={this.handleClose} color="primary">Cancel</Button>
-                <Button onClick={this.deleteComment} color="secondary">Delete</Button>
+                <Button onClick={ () => this.deleteComment(this.props.commentId, this.props.screamId)} color="secondary">Delete</Button>
             </DialogActions>
         </DialogTitle>
 
@@ -73,10 +79,21 @@ class DeleteComment extends Component {
 }
 
 DeleteComment.propTypes = {
-    deleteScream: PropTypes.func.isRequired,
-
+    // deleteScream: PropTypes.func.isRequired,
+    // deleteComment: PropTypes.func.isRequired,
+    // scream: PropTypes.object.isRequired,
     // screamId: PropTypes.string.isRequired,
     commentId: PropTypes.string.isRequired,
 }
 
-export default connect(null, { deleteScream })(DeleteComment)
+const mapStateToProps = (state) => ({
+    scream: state.data.scream // pass in
+})
+
+const mapActionsToProps = {
+    deleteComment,
+    getScream,
+    getScreams,
+};
+
+export default connect(mapStateToProps, mapActionsToProps)(DeleteComment)

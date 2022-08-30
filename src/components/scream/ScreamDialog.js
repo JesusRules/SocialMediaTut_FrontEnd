@@ -251,7 +251,7 @@ class ScreamDialog extends Component{
         window.history.pushState(null, null, newPath);
 
         this.setState({ open: true, oldPath, newPath })
-        this.props.getScream(this.props.screamId);
+        this.props.getScream(this.props.screamId); //when deletes comment, call this
     }
     handleClose = () => {
         window.history.pushState(null, null, this.state.oldPath);
@@ -330,7 +330,7 @@ class ScreamDialog extends Component{
         <div style={styles.commentAndForm}>
             <hr style={styles.visibleSeparator}/>
         <div style={{paddingLeft: '1.3rem'}}><CommentForm screamCommentCount={52} screamId={screamId}/></div>
-            <Comments comments={comments}/>
+            <Comments comments={comments} screamId={screamId}/>
         </div>
         </Grid>
     )
