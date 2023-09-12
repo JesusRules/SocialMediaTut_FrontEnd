@@ -99,11 +99,6 @@ const RespNextLine = () => {
     };
     }, []);
 
-    // const newTyp = w > 1000 ? (
-    //   <Typography>YES!!!</Typography>
-    //   ) : (
-    //   null
-    // )
     const newTyp = w < 445 ? (
       <br/>
       ) : (
